@@ -6,7 +6,7 @@ import { resolve } from "path";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  base: "./", // relativo para que los assets funcionen bien en Render/Supabase
+  base: "/", // relativo para que los assets funcionen bien en Render/Supabase
   plugins: [
     mdx(),     // 🧠 habilita importación de archivos .mdx
     react(),
