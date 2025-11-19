@@ -1,0 +1,457 @@
+import st1 from "./images/loginstorytelling1.png";
+import st2 from "./images/loginstorytelling2.png";
+import aboutuseai from "./images/Aboutuseai.gif";
+import { trackEvent } from "../../utils/tracking";
+
+export const date = "2025-11-14";
+
+## What Evolvian Stands For
+
+<img
+  src={st1}
+  alt="Evolvian storytelling image 1"
+  style={{ width: "100%", borderRadius: "12px", marginBottom: "24px" }}
+/>
+
+{/* ✨ EVOLVIAN STORY — versión creativa para MDX */}
+<section className="w-full py-24 bg-white">
+  <div className="max-w-4xl mx-auto px-6 text-center">
+
+    {/* INTRO */}
+    <p className="text-lg text-gray-700 leading-relaxed mb-6">
+      Every business carries a story —
+      not just in what it sells, but in what it <em>knows</em>.
+    </p>
+
+    <p className="text-gray-700 leading-relaxed mb-6">
+      Across documents, manuals, conversations, processes, and customer questions 
+      lives the intelligence that shapes how teams work and how customers feel cared for.
+    </p>
+
+    <p className="text-gray-700 leading-relaxed mb-6">
+      But most companies don’t have a simple way to turn all that knowledge into something
+      actionable… something alive… something that helps them work faster and serve better.
+    </p>
+
+    {/* STATEMENT */}
+    <p className="text-2xl font-semibold text-[#274472] my-12">
+      That is why Evolvian exists.
+    </p>
+
+    {/* CORE MESSAGE */}
+    <p className="text-gray-700 leading-relaxed mb-6">
+      We believe every business deserves its own intelligent assistant — 
+      one that speaks in its voice, understands its content, 
+      and represents its brand with clarity and consistency.
+    </p>
+
+    <p className="text-gray-700 leading-relaxed mb-10">
+      Evolvian was created so companies can finally own their intelligence,
+      automate what slows them down, and unlock what makes them exceptional.
+    </p>
+
+    {/* OUTRO */}
+    <p className="text-lg text-[#274472] font-medium leading-relaxed">
+      When knowledge becomes intelligent,
+      <br />
+      businesses become unstoppable.
+    </p>
+
+  </div>
+</section>
+
+
+---
+
+{/* 🌟 WHY EVOLVIAN — versión final Tailwind */}
+<section className="w-full py-24 bg-[#f8fafc]">
+  <div className="max-w-6xl mx-auto px-6 text-center">
+
+    {/* TITLE */}
+    <h2 className="text-4xl font-bold text-[#274472] mb-16">
+      Why Evolvian AI?
+    </h2>
+
+    {/* GRID */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      {/* CARD TEMPLATE */}
+      {[
+        {
+          title: "Efficiency",
+          back: "Automate 70% of repetitive questions.",
+          color: "bg-[#274472] text-white",
+          event: "Why_Click_Efficiency",
+        },
+        {
+          title: "Smart Assistant",
+          back: "Built with your own documents using RAG.",
+          color: "bg-[#4a90e2] text-white",
+          event: "Why_Click_SmartAssistant",
+        },
+        {
+          title: "Fast Setup",
+          back: "Create your assistant in minutes — no code needed.",
+          color: "bg-[#f5a623] text-white",
+          event: "Why_Click_FastSetup",
+        },
+        {
+          title: "Multi-Channel",
+          back: "Works on website, WhatsApp or email.",
+          color: "bg-[#a3d9b1] text-[#274472]",
+          event: "Why_Click_MultiChannel",
+        },
+      ].map((item, index) => (
+        <div
+          key={index}
+          onClick={() => trackEvent({ name: item.event, label: item.title })}
+          className="group cursor-pointer perspective"
+        >
+          <div
+            className="
+            relative h-48 w-full rounded-xl shadow-lg 
+            transition-transform duration-700 transform-style-3d 
+            group-hover:rotate-y-180 bg-white
+          "
+          >
+
+            {/* FRONT */}
+            <div
+              className="
+              absolute inset-0 flex items-center justify-center 
+              backface-hidden bg-white rounded-xl border border-gray-200
+            "
+            >
+              <p className="text-xl font-semibold text-[#274472]">
+                {item.title}
+              </p>
+            </div>
+
+            {/* BACK */}
+            <div
+              className={`
+              absolute inset-0 flex items-center justify-center 
+              rotate-y-180 backface-hidden rounded-xl p-4 text-sm ${item.color}
+            `}
+            >
+              {item.back}
+            </div>
+
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
+
+
+---
+
+{/* 💡 WHAT WE DO — versión premium para MDX */}
+<section className="w-full py-24 bg-[#f8fafc]">
+  <div className="max-w-5xl mx-auto px-6">
+
+    {/* TITLE */}
+    <h2 className="text-4xl font-bold text-[#274472] mb-10 text-center">
+      💡 What We Do
+    </h2>
+
+    {/* IMAGE */}
+    <img 
+      src={st2} 
+      alt="Evolvian storytelling image 2" 
+      className="w-full rounded-xl shadow-md mb-12"
+    />
+
+    {/* TEXT */}
+    <p className="text-lg text-gray-700 mb-12 text-center max-w-2xl mx-auto">
+      Evolvian helps businesses transform their documents, content, and internal knowledge into a smart assistant capable of:
+    </p>
+
+    {/* GRID — Small cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
+      {[
+        "Answering customer questions",
+        "Helping employees find information instantly",
+        "Supporting sales, onboarding, operations, and daily workflows",
+        "Reducing repetitive tasks",
+        "Giving consistent, branded responses",
+        "Being available 24/7 and across channels"
+      ].map((item, i) => (
+        <div
+          key={i}
+          className="
+            flex items-start gap-3 p-4 bg-white 
+            border border-[#ededed] rounded-xl shadow-sm 
+            hover:shadow-md transition-shadow text-left
+          "
+        >
+          <div className="w-10 h-10 rounded-full bg-[#4a90e2]/10 flex items-center justify-center">
+            <svg
+              className="w-6 h-6 text-[#4a90e2]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <p className="text-gray-800">{item}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* CHANNELS */}
+    <p className="text-lg text-gray-700 mb-6 text-center font-medium">
+      With Evolvian, your assistant can live:
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto mb-12">
+      {[
+        "On your website (embedded widget)",
+        "On WhatsApp",
+        "Through email",
+        "More channels coming soon"
+      ].map((item, i) => (
+        <div key={i} className="p-3 bg-white border border-[#ededed] rounded-lg shadow-sm text-gray-800 text-center">
+          {item}
+        </div>
+      ))}
+    </div>
+
+    {/* FINAL LINE */}
+    <p className="text-gray-700 text-center max-w-3xl mx-auto text-lg leading-relaxed">
+      It becomes part of your business — a helpful partner that knows your content, 
+      your tone, your processes, and your clients.
+    </p>
+
+  </div>
+</section>
+
+
+---
+
+{/* 🎯 WHY WE DO IT — versión premium para MDX */}
+<section className="w-full py-24 bg-white">
+  <div className="max-w-4xl mx-auto px-6">
+
+    {/* TITLE */}
+    <h2 className="text-4xl font-bold text-[#274472] mb-10 text-center">
+      🎯 Why We Do It
+    </h2>
+
+    {/* INTRO */}
+    <p className="text-lg text-gray-700 mb-6 text-center leading-relaxed">
+      We do this because the reality is simple:
+      <br />
+      <strong className="text-[#274472]">
+        Most companies want AI, but don’t know where to start.
+      </strong>
+    </p>
+
+    <p className="text-gray-700 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
+      They don’t have time, technical teams, or complex resources.
+      They need solutions that <em>work today</em>, not someday.
+    </p>
+
+    {/* GRID — Small cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
+      {[
+        "Understand their unique context",
+        "Make their work lighter",
+        "Increase productivity",
+        "Save time",
+        "Reduce stress",
+        "Improve communication",
+        "Help them scale effortlessly"
+      ].map((item, i) => (
+        <div
+          key={i}
+          className="
+            flex items-start gap-3 p-4 bg-[#f8fafc]
+            border border-[#ededed] rounded-xl shadow-sm 
+            hover:shadow-md transition-shadow text-left
+          "
+        >
+          <div className="w-10 h-10 rounded-full bg-[#a3d9b1]/30 flex items-center justify-center">
+            <svg
+              className="w-6 h-6 text-[#274472]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <p className="text-gray-800">{item}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* FINAL STATEMENT */}
+    <p className="text-gray-700 text-center max-w-3xl mx-auto text-lg leading-relaxed">
+      We believe AI should amplify what teams already do — not replace them.
+      <br />
+      Evolvian exists so companies can stay human, while working smarter.
+    </p>
+
+  </div>
+</section>
+
+
+---
+
+{/* 🌱 WHAT EVOLVIAN HAS ALREADY BECOME — premium small cards */}
+<section className="w-full py-20 bg-[#f8fafc]">
+  <div className="max-w-5xl mx-auto px-6 text-center">
+
+    {/* TITLE */}
+    <h2 className="text-4xl font-bold text-[#274472] mb-12">
+      🌱 What Evolvian Has Already Become
+    </h2>
+
+    {/* INTRO TEXT */}
+    <p className="text-lg text-gray-700 mb-14 max-w-2xl mx-auto">
+      Today, Evolvian is already helping businesses:
+    </p>
+
+    {/* GRID OF SMALL CARDS */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[
+        "Turn their knowledge into answers",
+        "Automate support",
+        "Respond instantly across channels",
+        "Reduce workloads",
+        "Improve customer satisfaction",
+        "Free their teams from repetitive tasks",
+        "Gain time to focus on growth"
+      ].map((text, i) => (
+        <div
+          key={i}
+          className="
+            flex items-center gap-3 p-4 bg-white 
+            border border-[#ededed] rounded-xl 
+            shadow-sm hover:shadow-md transition-shadow 
+            text-left
+          "
+        >
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#4a90e2]/10 flex items-center justify-center">
+            <svg
+              className="w-6 h-6 text-[#4a90e2]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <p className="text-gray-800 text-sm sm:text-base">
+            {text}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* FOOTER TEXT */}
+    <p className="text-gray-700 mt-14 max-w-2xl mx-auto leading-relaxed">
+      We continue expanding with more features, more channels, 
+      and more ways for your assistant to support your business.
+    </p>
+
+  </div>
+</section>
+
+
+---
+
+{/* 🌐 OUR VISION — versión premium para MDX */}
+<section className="w-full py-24 bg-[#f8fafc]">
+  <div className="max-w-4xl mx-auto px-6">
+
+    {/* TITLE */}
+    <h2 className="text-4xl font-bold text-[#274472] mb-10 text-center">
+      🌐 Our Vision
+    </h2>
+
+    {/* MAIN STATEMENT */}
+    <p className="text-lg text-gray-700 mb-12 text-center leading-relaxed max-w-3xl mx-auto">
+      Evolvian’s vision is clear:
+      <br />
+      <strong className="text-[#274472] text-xl">
+        To become the universal platform where companies build and control 
+        their own intelligent assistants — tailored to their brand, trained on 
+        their knowledge, and ready to serve anytime.
+      </strong>
+    </p>
+
+    {/* GRID — small premium cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
+      {[
+        "Business knowledge is instantly accessible",
+        "Every company has its own AI identity",
+        "Work flows smoothly, without bottlenecks",
+        "Customers receive answers in seconds",
+        "Teams feel supported, not overwhelmed",
+        "AI becomes a natural extension of business operations"
+      ].map((item, i) => (
+        <div
+          key={i}
+          className="
+            flex items-start gap-3 p-4 bg-white 
+            border border-[#ededed] rounded-xl shadow-sm
+            hover:shadow-md transition-shadow
+          "
+        >
+          <div className="w-10 h-10 rounded-full bg-[#4a90e2]/10 flex items-center justify-center">
+            <svg
+              className="w-6 h-6 text-[#4a90e2]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <p className="text-gray-800">{item}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* FINAL TEXT */}
+    <p className="text-gray-700 text-center max-w-2xl mx-auto text-lg leading-relaxed">
+      We are building this future with intention, care, and ambition.
+      <br />
+      And we’re just getting started.
+    </p>
+
+  </div>
+</section>
+
+
+---
+
+<img
+  src={aboutuseai}
+  alt="About Evolvian"
+  style={{ width: "100%", borderRadius: "12px", marginTop: "24px" }}
+/>
+
+<div className="text-center mt-12">
+  <a
+    href="https://www.evolvianai.net/register"
+    target="_blank"
+    rel="noopener noreferrer"
+    onClick={() => trackEvent({ name: "Register_Click_From_Blog" })}
+    className="
+      inline-block bg-[#f5a623] text-white px-6 py-3 rounded-xl 
+      font-semibold shadow-md hover:shadow-lg transition
+    "
+  >
+    Start Your Evolvian Assistant
+  </a>
+</div>

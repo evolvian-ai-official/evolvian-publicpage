@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Branding Evolvian */
-body {
-  @apply bg-brand-lightgreen text-brand-darkblue;
-}
