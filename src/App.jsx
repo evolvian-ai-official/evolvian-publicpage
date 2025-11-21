@@ -43,10 +43,18 @@ export default function App() {
               gap: "2rem",
             }}
           >
-            <a href="#plans">Services</a>
-            <a href="#contact">Contact</a>
-            <a href="#about-us">About</a>
-            <a href="/blog">Blog</a>
+            <a href="#plans" onClick={() => trackEvent({ name: "Nav_Click", label: "Services" })}>
+              Services
+            </a>
+            <a href="#contact" onClick={() => trackEvent({ name: "Nav_Click", label: "Contact" })}>
+              Contact
+            </a>
+            <a href="#about-us" onClick={() => trackEvent({ name: "Nav_Click", label: "About" })}>
+              About
+            </a>
+            <a href="/blog" onClick={() => trackEvent({ name: "Nav_Click", label: "Blog" })}>
+              Blog
+            </a>
           </nav>
 
           {/* CTA DESKTOP */}
@@ -56,6 +64,7 @@ export default function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="login-button"
+              onClick={() => trackEvent({ name: "Login_Click", label: "Header_Desktop" })}
               style={{ padding: "0.4rem 1rem", backgroundColor: "#274472", color: "#fff", borderRadius: "6px" }}
             >
               Log in
@@ -65,6 +74,7 @@ export default function App() {
               href="https://www.evolvianai.net/register"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent({ name: "Register_Click", label: "Header_Desktop" })}
               style={{ fontSize: "1rem", marginTop: "0.3rem", color: "#4a90e2", textDecoration: "underline" }}
             >
               Register here
@@ -103,23 +113,41 @@ export default function App() {
               borderTop: "1px solid #eee",
             }}
           >
-            <a href="#plans">Services</a>
-            <a href="#contact">Contact</a>
-            <a href="#about-us">About</a>
-            <a href="/blog">Blog</a>
+            <a href="#plans" onClick={() => trackEvent({ name: "Nav_Click", label: "Services_Mobile" })}>
+              Services
+            </a>
+            <a href="#contact" onClick={() => trackEvent({ name: "Nav_Click", label: "Contact_Mobile" })}>
+              Contact
+            </a>
+            <a href="#about-us" onClick={() => trackEvent({ name: "Nav_Click", label: "About_Mobile" })}>
+              About
+            </a>
+            <a href="/blog" onClick={() => trackEvent({ name: "Nav_Click", label: "Blog_Mobile" })}>
+              Blog
+            </a>
 
-            <a href="https://www.evolvianai.net" className="login-button" style={{ backgroundColor: "#4a90e2", color: "#fff", padding: "0.5rem", textAlign: "center", borderRadius: "6px" }}>
+            <a
+              href="https://www.evolvianai.net"
+              className="login-button"
+              onClick={() => trackEvent({ name: "Login_Click", label: "Header_Mobile" })}
+              style={{ backgroundColor: "#4a90e2", color: "#fff", padding: "0.5rem", textAlign: "center", borderRadius: "6px" }}
+            >
               Log in
             </a>
 
-            <a href="https://www.evolvianai.net/register" style={{ textAlign: "center", color: "#4a90e2", textDecoration: "underline" }}>
+            <a
+              href="https://www.evolvianai.net/register"
+              onClick={() => trackEvent({ name: "Register_Click", label: "Header_Mobile" })}
+              style={{ textAlign: "center", color: "#4a90e2", textDecoration: "underline" }}
+            >
               Register here
             </a>
           </div>
         )}
       </header>
-
-
+    </>
+  );
+}
 
 
 
