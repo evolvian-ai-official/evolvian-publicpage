@@ -10,7 +10,10 @@ export default function App() {
   return (
     <>
       {/* 🧭 HEADER */}
-      <header className="main-header" style={{ width: "100%", backgroundColor: "#fff", boxShadow: "0 2px 6px rgba(0,0,0,0.05)" }}>
+      <header
+        className="main-header"
+        style={{ width: "100%", backgroundColor: "#fff", boxShadow: "0 2px 6px rgba(0,0,0,0.05)" }}
+      >
         <div
           className="header-container"
           style={{
@@ -43,16 +46,31 @@ export default function App() {
               gap: "2rem",
             }}
           >
-            <a href="#plans" onClick={() => trackEvent({ name: "Nav_Click", label: "Services" })}>
+            <a
+              href="#plans"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "Services_Desktop" })}
+            >
               Services
             </a>
-            <a href="#contact" onClick={() => trackEvent({ name: "Nav_Click", label: "Contact" })}>
+
+            <a
+              href="#contact"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "Contact_Desktop" })}
+            >
               Contact
             </a>
-            <a href="#about-us" onClick={() => trackEvent({ name: "Nav_Click", label: "About" })}>
+
+            <a
+              href="#about-us"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "About_Desktop" })}
+            >
               About
             </a>
-            <a href="/blog" onClick={() => trackEvent({ name: "Nav_Click", label: "Blog" })}>
+
+            <a
+              href="/blog"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "Blog_Desktop" })}
+            >
               Blog
             </a>
           </nav>
@@ -113,16 +131,31 @@ export default function App() {
               borderTop: "1px solid #eee",
             }}
           >
-            <a href="#plans" onClick={() => trackEvent({ name: "Nav_Click", label: "Services_Mobile" })}>
+            <a
+              href="#plans"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "Services_Mobile" })}
+            >
               Services
             </a>
-            <a href="#contact" onClick={() => trackEvent({ name: "Nav_Click", label: "Contact_Mobile" })}>
+
+            <a
+              href="#contact"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "Contact_Mobile" })}
+            >
               Contact
             </a>
-            <a href="#about-us" onClick={() => trackEvent({ name: "Nav_Click", label: "About_Mobile" })}>
+
+            <a
+              href="#about-us"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "About_Mobile" })}
+            >
               About
             </a>
-            <a href="/blog" onClick={() => trackEvent({ name: "Nav_Click", label: "Blog_Mobile" })}>
+
+            <a
+              href="/blog"
+              onClick={() => trackEvent({ name: "Nav_Click", label: "Blog_Mobile" })}
+            >
               Blog
             </a>
 
@@ -145,9 +178,7 @@ export default function App() {
           </div>
         )}
       </header>
-    </>
-  );
-}
+
 
 
 
