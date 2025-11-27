@@ -1,0 +1,226 @@
+import step1 from "./images/widgetstep1.png";
+import step2 from "./images/widgetstep2.png";
+import step3 from "./images/widgetstep3.png";
+import step4 from "./images/widgetstep4.png";
+import step5 from "./images/widgetstep5.png";
+import { trackEvent } from "../../utils/tracking";
+
+export const date = "2025-11-29";
+
+# 🧠 How to Install the Evolvian AI Chat Widget
+
+<section className="w-full py-20 bg-white">
+  <div className="max-w-4xl mx-auto px-6 text-center">
+
+    {/* HEADLINE SUBTEXT */}
+    <p className="text-lg text-gray-700 leading-relaxed mb-6">
+      Adding the Evolvian AI Chat Widget to your website takes only a few minutes — 
+      and instantly gives your visitors access to a smart assistant powered by your own content.
+    </p>
+
+    {/* VALUE STATEMENT */}
+    <p className="text-gray-700 leading-relaxed mb-6">
+      You can install it as a floating chat bubble or embed it directly into a page using an iframe.
+      Both methods work automatically with your Evolvian settings, branding, and RAG documents.
+    </p>
+
+    {/* GUIDE PROMISE */}
+    <p className="text-gray-700 leading-relaxed">
+      This step-by-step guide includes installation snippets, visuals, and troubleshooting tips 
+      so you can get your assistant live in just a few minutes.
+    </p>
+
+  </div>
+</section>
+
+
+---
+
+# ⚙️ Option 1 — Floating Chat Button (Recommended)
+
+<section className="w-full py-16 bg-[#f8fafc]">
+  <div className="max-w-4xl mx-auto px-6">
+
+    <h2 className="text-3xl font-bold text-[#274472] mb-8">
+      Floating Chat Script
+    </h2>
+
+    <p className="text-gray-700 leading-relaxed mb-6">
+      This method adds a floating chat bubble to every page on your website.
+      Simply paste the following code right before the closing <code>&lt;/body&gt;</code> tag.
+    </p>
+
+    <pre className="bg-gray-900 text-white p-4 rounded-lg overflow-auto mb-6 text-sm">
+{`<script
+  type="module"
+  src="https://evolvian-assistant.onrender.com/static/embed-floating.js"
+  data-public-client-id="YOUR_PUBLIC_CLIENT_ID"
+></script>`}
+    </pre>
+
+    <img
+      src={step2}
+      alt="Floating button installation preview"
+      className="w-full rounded-xl shadow-md mb-6"
+    />
+
+    <ul className="text-gray-700 list-disc pl-6 space-y-2">
+      <li>Copy the script above</li>
+      <li>Paste it before <code>&lt;/body&gt;</code> on your website</li>
+      <li>Save and reload your page</li>
+    </ul>
+
+  </div>
+</section>
+
+---
+
+# 🪟 Option 2 — Embedded Chat Window (Iframe)
+
+<section className="w-full py-16 bg-white">
+  <div className="max-w-4xl mx-auto px-6">
+
+    <h2 className="text-3xl font-bold text-[#274472] mb-8">
+      Fixed Iframe Window
+    </h2>
+
+    <p className="text-gray-700 leading-relaxed mb-6">
+      This version lets you place the Evolvian assistant inside a specific section of your site,
+      such as a Support or Contact page.
+    </p>
+
+    <pre className="bg-gray-900 text-white p-4 rounded-lg overflow-auto mb-6 text-sm">
+{`<iframe
+  src="https://evolvian-assistant.onrender.com/static/widget.html?public_client_id=YOUR_PUBLIC_CLIENT_ID"
+  style="width:360px;height:520px;border:none;border-radius:12px;"
+  allow="clipboard-write; microphone"
+  title="Evolvian AI Chat Widget"
+></iframe>`}
+    </pre>
+
+    <img
+      src={step3}
+      alt="Iframe installation preview"
+      className="w-full rounded-xl shadow-md mb-6"
+    />
+
+    <p className="text-gray-700 leading-relaxed mb-6">
+      You can also adjust the width, height, and placement using custom CSS.
+    </p>
+
+  </div>
+</section>
+
+---
+
+# 📖 Step-by-Step Full Installation Guide
+
+<section className="w-full py-20 bg-[#f8fafc]">
+  <div className="max-w-4xl mx-auto px-6">
+
+    <h2 className="text-3xl font-bold text-[#274472] mb-12 text-center">
+      Step-by-Step Installation (With Visuals)
+    </h2>
+
+    {/* STEP 1 */}
+    <div className="mb-16">
+      <h3 className="text-2xl text-[#f5a623] font-semibold mb-4">Step 1 — Get Your Public Client ID</h3>
+      <p className="text-gray-700 leading-relaxed mb-4">
+        Your Public Client ID identifies your assistant.  
+        You’ll find it under: <strong>Dashboard → Settings</strong>.
+      </p>
+      <img src={step1} alt="Step 1 screenshot" className="w-full rounded-xl shadow-md" />
+    </div>
+
+    {/* STEP 2 */}
+    <div className="mb-16">
+      <h3 className="text-2xl text-[#f5a623] font-semibold mb-4">Step 2 — Add the Script</h3>
+      <p className="text-gray-700 leading-relaxed mb-4">
+        Paste the script before the <code>&lt;/body&gt;</code> tag to enable the floating chat bubble.
+      </p>
+      <img src={step2} alt="Step 2 screenshot" className="w-full rounded-xl shadow-md" />
+    </div>
+
+    {/* STEP 3 */}
+    <div className="mb-16">
+      <h3 className="text-2xl text-[#f5a623] font-semibold mb-4">Step 3 — Add the Iframe (Optional)</h3>
+      <p className="text-gray-700 leading-relaxed mb-4">
+        Use the iframe mode if you prefer embedding the chat into a fixed location.
+      </p>
+      <img src={step3} alt="Step 3 screenshot" className="w-full rounded-xl shadow-md" />
+    </div>
+
+    {/* STEP 4 */}
+    <div className="mb-16">
+      <h3 className="text-2xl text-[#f5a623] font-semibold mb-4">Step 4 — Test the Widget</h3>
+      <p className="text-gray-700 leading-relaxed mb-4">
+        After installing the script or iframe:
+      </p>
+      <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+        <li>Ensure the chat icon appears on the page</li>
+        <li>Open the chat and send a test message</li>
+        <li>Check the conversation in <strong>Dashboard → Chat History</strong></li>
+      </ul>
+      <img src={step4} alt="Step 4 screenshot" className="w-full rounded-xl shadow-md" />
+    </div>
+
+    {/* STEP 5 */}
+    <div className="mb-8">
+      <h3 className="text-2xl text-[#f5a623] font-semibold mb-4">Step 5 — Troubleshooting</h3>
+      <p className="text-gray-700 leading-relaxed mb-4">
+        If the widget doesn’t appear:
+      </p>
+      <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+        <li>Verify your Public Client ID</li>
+        <li>Refresh the page after adding the script</li>
+        <li>Check for CSP restrictions</li>
+        <li>Make sure your site allows external JavaScript</li>
+      </ul>
+      <img src={step5} alt="Step 5 screenshot" className="w-full rounded-xl shadow-md" />
+    </div>
+
+  </div>
+</section>
+
+---
+
+# 🎨 Customize Your Widget
+
+<section className="w-full py-16 bg-white">
+  <div className="max-w-4xl mx-auto px-6">
+
+    <p className="text-lg text-gray-700 text-center mb-6">
+      You can fully customize your Evolvian widget, including:
+    </p>
+
+    <ul className="text-gray-700 list-disc pl-6 space-y-2 mb-8 max-w-md mx-auto">
+      <li>Colors</li>
+      <li>Welcome message</li>
+      <li>Theme</li>
+      <li>Branding</li>
+      <li>Position and size</li>
+    </ul>
+
+    <p className="text-center text-gray-700 leading-relaxed">
+      Visit <strong>Dashboard → Customize Widget</strong> to update appearance and behavior.
+    </p>
+
+  </div>
+</section>
+
+---
+
+<div className="text-center mt-12">
+  <a
+    href="https://www.evolvianai.net/register"
+    target="_blank"
+    rel="noopener noreferrer"
+    onClick={() => trackEvent({ name: "Register_Click_From_Blog" })}
+    className="
+      inline-block bg-[#f5a623] text-white px-6 py-3 rounded-xl 
+      font-semibold shadow-md hover:shadow-lg transition
+    "
+  >
+    Start Your Evolvian Assistant
+  </a>
+</div>

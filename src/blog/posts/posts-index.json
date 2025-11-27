@@ -1,8 +1,15 @@
 [
   {
+    "slug": "howtoinstallchatwidget",
+    "title": "Learn how to install Evolvian chat widget",
+    "excerpt": "Discover how to set up your Evolvian chat widget in your site..."
+  },
+  
+  {
     "slug": "whyevolvianexist",
     "title": "Introducing Evolvian AI as a service",
     "excerpt": "Discover how the new multi-channel Evolvian transform customer interaction..."
   }
+  
   
 ]
