@@ -1,10 +1,16 @@
 [
   {
+    "slug": "customizeyourwidget",
+    "title": "Customize your chat widget",
+    "excerpt": "Create a seamless brand experience by adjusting colors, tone, and layout in a few simple steps."
+  },
+
+  {
     "slug": "howtoinstallchatwidget",
     "title": "Learn how to install Evolvian chat widget",
     "excerpt": "Discover how to set up your Evolvian chat widget in your site..."
   },
-  
+
   {
     "slug": "whyevolvianexist",
     "title": "Introducing Evolvian AI as a service",
