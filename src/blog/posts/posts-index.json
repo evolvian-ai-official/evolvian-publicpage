@@ -1,21 +1,17 @@
 [
   {
     "slug": "customizeyourwidget",
-    "title": "Customize your chat widget",
-    "excerpt": "Create a seamless brand experience by adjusting colors, tone, and layout in a few simple steps."
+    "title": "Customize your chat widget for better conversions",
+    "excerpt": "Learn how to align colors, behavior, trust settings, and messaging so your Evolvian widget feels native to your brand."
   },
-
   {
     "slug": "howtoinstallchatwidget",
-    "title": "Learn how to install Evolvian chat widget",
-    "excerpt": "Discover how to set up your Evolvian chat widget in your site..."
+    "title": "How to install Evolvian chat widget (step by step)",
+    "excerpt": "Implement the widget in minutes with script or iframe mode, validate setup, and troubleshoot common installation issues."
   },
-
   {
     "slug": "whyevolvianexist",
-    "title": "Introducing Evolvian AI as a service",
-    "excerpt": "Discover how the new multi-channel Evolvian transform customer interaction..."
+    "title": "Why Evolvian exists: from knowledge to business action",
+    "excerpt": "Discover Evolvian's mission and how teams turn internal knowledge into faster support, better lead qualification, and scalable conversations."
   }
-  
-  
 ]
