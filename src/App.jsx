@@ -35,66 +35,66 @@ const COPY = {
     nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog" },
     auth: { login: "Log in", startFree: "Start free" },
     hero: {
-      kicker: "AI Assistant Platform for Revenue Teams",
-      titleBefore: "Convert more visitors with a",
-      titleEmphasis: "business-ready AI assistant",
+      kicker: "AI Operations Assistant for Growing Teams",
+      titleBefore: "Automate daily operations with",
+      titleEmphasis: "one assistant for chat, WhatsApp, and email",
       description:
-        "Deploy an assistant trained on your own content, capture qualified leads, and automate follow-up across website, WhatsApp, and email.",
+        "Deploy an assistant trained on your own content to handle operational conversations, schedule appointments, send reminders, and keep message history in one place.",
       ctaPrimary: "Start free",
-      ctaSecondary: "Talk to sales",
-      pills: ["No code setup", "Lead capture included", "24h response support"],
-      statLeadLabel: "Lead quality",
-      statLeadValue: "High intent",
-      statSetupLabel: "Setup time",
+      ctaSecondary: "Talk to team",
+      pills: ["No-code setup", "Appointments + reminders", "Message history included"],
+      statLeadLabel: "Operational load",
+      statLeadValue: "Less manual work",
+      statSetupLabel: "Go-live time",
       statSetupValue: "< 1 day",
     },
     trust: [
-      { title: "Fast setup", description: "Launch your assistant in minutes with no-code onboarding." },
-      { title: "Multi-channel", description: "Website, WhatsApp, and email in one unified AI flow." },
-      { title: "Lead-ready", description: "Capture qualified leads and route them to your team quickly." },
-      { title: "Business context", description: "Responses grounded on your own documents and policies." },
+      { title: "Operational assistant", description: "Resolve repetitive daily requests with AI guided by your process." },
+      { title: "Connected channels", description: "Website chat, WhatsApp, and email in one unified conversation flow." },
+      { title: "Appointments and reminders", description: "Automate scheduling confirmations and reminder messages." },
+      { title: "History by contact", description: "Keep message history so your team always has full context." },
     ],
     features: {
-      kicker: "Why teams choose Evolvian",
-      title: "Built for real operations, not just demos",
+      kicker: "Why operations teams choose Evolvian",
+      title: "Built for daily execution, not just demos",
       description:
-        "Every feature is designed to reduce repetitive workload while improving lead quality and customer experience.",
+        "Every feature is designed to reduce repetitive workload and keep communication consistent across channels.",
       cards: [
         {
-          title: "AI trained on your business",
+          title: "AI assistant aligned to your business",
           description:
-            "Upload your documents and give clear instructions so every answer reflects your process.",
+            "Upload your documents and instructions so each answer follows your policies and workflows.",
         },
         {
-          title: "Capture leads with the right details",
+          title: "Message history in one place",
           description:
-            "Collect name, email, and use case details so your sales conversations start with clear context.",
+            "Review previous chat, WhatsApp, and email interactions before replying to each contact.",
         },
         {
-          title: "Appointment automation",
+          title: "Appointments and reminders",
           description:
-            "Enable scheduling, reminders, and follow-up flows from the same assistant experience.",
+            "Enable scheduling, reminder, and follow-up flows from the same assistant experience.",
         },
         {
-          title: "Brand-consistent widget",
+          title: "One flow for chat, WhatsApp, and email",
           description:
-            "Customize colors, typography, legal links, and behavior to match your website identity.",
+            "Operate conversations across channels without splitting context between tools.",
         },
         {
-          title: "Performance insights",
+          title: "Capture key customer data",
           description:
-            "Track user interactions and optimize conversion points with clear event instrumentation.",
+            "Collect name, email, and use-case details so your team can act faster.",
         },
         {
-          title: "Scale with confidence",
-          description: "Keep support quality while increasing volume across channels.",
+          title: "Operational visibility",
+          description: "Track interactions and response quality to improve day-to-day execution.",
         },
       ],
     },
     plans: {
       kicker: "Pricing",
-      title: "Choose the plan that matches your growth stage",
-      description: "Start free and upgrade when your lead volume and automation needs increase.",
+      title: "Choose the plan that matches your current operations",
+      description: "Start free and upgrade as conversation volume and automation needs grow.",
       mostPopular: "Most popular",
       ctas: {
         free: "Start for free",
@@ -105,7 +105,7 @@ const COPY = {
       descriptions: {
         free: "Try Evolvian at no cost.",
         starter: "Perfect for small businesses that need real automation.",
-        premium: "Best value for growth teams and recurring customer ops.",
+        premium: "Best value for teams handling recurring operational conversations.",
         white_label: "Enterprise and agency solution with tailored implementation.",
       },
       highlights: {
@@ -135,7 +135,7 @@ const COPY = {
     },
     process: {
       kicker: "Implementation flow",
-      title: "From setup to qualified conversations in 3 steps",
+      title: "From setup to automated operations in 3 steps",
       items: [
         {
           step: "01",
@@ -150,7 +150,7 @@ const COPY = {
         {
           step: "03",
           title: "Launch and optimize",
-          description: "Deploy to your channels and improve conversion with live data.",
+          description: "Deploy to your channels and improve daily execution with live data.",
         },
       ],
     },
@@ -175,7 +175,7 @@ const COPY = {
         name: "Your full name",
         email: "you@company.com",
         subject: "What do you want to improve?",
-        usage: "Example: We need to automate first response and qualify leads from WhatsApp.",
+        usage: "Example: We need to automate first response, appointments, and reminders from WhatsApp.",
       },
       terms: "I accept the Terms & Conditions.",
       termsPrefix: "I accept the",
@@ -203,12 +203,12 @@ const COPY = {
     },
     about: {
       kicker: "About Evolvian",
-      title: "We help teams scale support and sales conversations with AI",
+      title: "We help teams scale support and customer communication with AI",
       description:
-        "Evolvian empowers businesses to deploy assistants aligned with their own policies and knowledge base. The result is faster response times, better qualified leads, and a smoother customer experience.",
+        "Evolvian empowers businesses to deploy assistants aligned with their own policies and knowledge base. The result is faster response times, consistent follow-up, and smoother day-to-day operations.",
       bullets: [
         "Custom prompts by business",
-        "Lead capture connected to operations",
+        "Customer data capture connected to operations",
         "Transparent setup and support",
       ],
     },
@@ -240,65 +240,65 @@ const COPY = {
     nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog" },
     auth: { login: "Iniciar sesion", startFree: "Empieza gratis" },
     hero: {
-      kicker: "Plataforma de Asistentes AI para equipos de ventas",
-      titleBefore: "Convierte mas visitantes con un",
-      titleEmphasis: "asistente AI listo para negocio",
+      kicker: "Plataforma de Asistente AI Operativo",
+      titleBefore: "Automatiza tu operacion diaria con",
+      titleEmphasis: "un asistente para chat, WhatsApp y email",
       description:
-        "Despliega un asistente entrenado con tu contenido, captura leads calificados y automatiza seguimiento en web, WhatsApp y email.",
+        "Despliega un asistente entrenado con tu contenido para atender la parte operativa: responder mensajes, agendar citas, enviar recordatorios y guardar historico de conversaciones.",
       ctaPrimary: "Empieza gratis",
-      ctaSecondary: "Hablar con ventas",
-      pills: ["Sin codigo", "Captura de leads", "Soporte en 24h"],
-      statLeadLabel: "Calidad de lead",
-      statLeadValue: "Alta intencion",
-      statSetupLabel: "Tiempo de setup",
+      ctaSecondary: "Hablar con equipo",
+      pills: ["Sin codigo", "Citas y recordatorios", "Historico de mensajes"],
+      statLeadLabel: "Carga operativa",
+      statLeadValue: "Menos trabajo manual",
+      statSetupLabel: "Tiempo de lanzamiento",
       statSetupValue: "< 1 dia",
     },
     trust: [
-      { title: "Implementacion rapida", description: "Lanza tu asistente en minutos con onboarding no-code." },
-      { title: "Multicanal", description: "Web, WhatsApp y email en un solo flujo de AI." },
-      { title: "Orientado a leads", description: "Captura leads calificados y derivalos rapido a tu equipo." },
-      { title: "Contexto de negocio", description: "Respuestas basadas en tus documentos y politicas." },
+      { title: "Asistente operativo", description: "Resuelve solicitudes repetitivas del dia a dia con AI guiada por tu proceso." },
+      { title: "Canales conectados", description: "Web chat, WhatsApp y email en un solo flujo de conversacion." },
+      { title: "Citas y recordatorios", description: "Automatiza confirmaciones de agenda y mensajes de recordatorio." },
+      { title: "Historico por contacto", description: "Conserva el historico de mensajes para responder con contexto completo." },
     ],
     features: {
-      kicker: "Por que equipos eligen Evolvian",
-      title: "Pensado para operacion real, no solo demos",
+      kicker: "Por que equipos operativos eligen Evolvian",
+      title: "Hecho para la operacion diaria, no solo para demos",
       description:
-        "Cada funcion esta disenada para reducir trabajo repetitivo y mejorar conversion y experiencia del cliente.",
+        "Cada funcion esta disenada para reducir trabajo repetitivo y mantener una atencion consistente entre canales.",
       cards: [
         {
-          title: "AI entrenada con tu negocio",
+          title: "Asistente AI alineado a tu negocio",
           description:
-            "Sube tus documentos y da instrucciones claras para que cada respuesta refleje tu proceso.",
+            "Sube documentos e instrucciones para que cada respuesta siga tus politicas y flujos.",
         },
         {
-          title: "Captura leads con datos clave",
+          title: "Historico unificado de mensajes",
           description:
-            "Recolecta nombre, email y caso de uso para que ventas inicie conversaciones con contexto.",
+            "Consulta interacciones previas de chat, WhatsApp y email antes de responder a cada contacto.",
         },
         {
-          title: "Automatizacion de citas",
+          title: "Citas y recordatorios",
           description:
             "Activa agendas, recordatorios y seguimiento desde la misma experiencia del asistente.",
         },
         {
-          title: "Widget alineado a tu marca",
+          title: "Un flujo para chat, WhatsApp y email",
           description:
-            "Personaliza colores, tipografia, enlaces legales y comportamiento para tu sitio.",
+            "Opera conversaciones entre canales sin perder contexto entre herramientas.",
         },
         {
-          title: "Metricas de performance",
-          description: "Mide interacciones y optimiza puntos de conversion con eventos claros.",
+          title: "Captura datos clave del cliente",
+          description: "Recolecta nombre, email y caso de uso para que tu equipo actue mas rapido.",
         },
         {
-          title: "Escala con confianza",
-          description: "Mantiene calidad de atencion mientras aumenta tu volumen de conversaciones.",
+          title: "Visibilidad operativa",
+          description: "Mide interacciones y calidad de respuesta para mejorar la ejecucion diaria.",
         },
       ],
     },
     plans: {
       kicker: "Planes",
-      title: "Elige el plan segun tu etapa de crecimiento",
-      description: "Empieza gratis y sube de plan cuando aumente tu volumen y automatizacion.",
+      title: "Elige el plan segun tu operacion actual",
+      description: "Empieza gratis y sube de plan cuando aumenten tus conversaciones y automatizacion.",
       mostPopular: "Mas popular",
       ctas: {
         free: "Empieza gratis",
@@ -309,7 +309,7 @@ const COPY = {
       descriptions: {
         free: "Prueba Evolvian sin costo.",
         starter: "Ideal para negocios pequenos que necesitan automatizar.",
-        premium: "Mejor opcion para equipos en crecimiento.",
+        premium: "Mejor opcion para equipos con conversaciones operativas recurrentes.",
         white_label: "Solucion empresarial y agencias con implementacion a medida.",
       },
       highlights: {
@@ -339,7 +339,7 @@ const COPY = {
     },
     process: {
       kicker: "Flujo de implementacion",
-      title: "De setup a conversaciones calificadas en 3 pasos",
+      title: "De setup a operacion automatizada en 3 pasos",
       items: [
         {
           step: "01",
@@ -354,7 +354,7 @@ const COPY = {
         {
           step: "03",
           title: "Lanza y optimiza",
-          description: "Publica en tus canales y mejora conversion con datos reales.",
+          description: "Publica en tus canales y mejora la ejecucion diaria con datos reales.",
         },
       ],
     },
@@ -379,7 +379,7 @@ const COPY = {
         name: "Tu nombre completo",
         email: "tu@empresa.com",
         subject: "Que te gustaria mejorar?",
-        usage: "Ejemplo: Necesitamos automatizar primera respuesta y calificar leads de WhatsApp.",
+        usage: "Ejemplo: Necesitamos automatizar primera respuesta, citas y recordatorios por WhatsApp.",
       },
       terms: "Acepto los Terminos y Condiciones.",
       termsPrefix: "Acepto los",
@@ -406,12 +406,12 @@ const COPY = {
     },
     about: {
       kicker: "Sobre Evolvian",
-      title: "Ayudamos a escalar soporte y ventas con AI",
+      title: "Ayudamos a escalar soporte y comunicacion con clientes con AI",
       description:
-        "Evolvian permite desplegar asistentes alineados a politicas y base de conocimiento de cada negocio. Resultado: respuestas mas rapidas, mejores leads y mejor experiencia de cliente.",
+        "Evolvian permite desplegar asistentes alineados a politicas y base de conocimiento de cada negocio. Resultado: respuestas mas rapidas, seguimiento consistente y una operacion diaria mas fluida.",
       bullets: [
         "Prompts personalizados por negocio",
-        "Captura de leads conectada a operacion",
+        "Captura de datos de cliente conectada a operacion",
         "Implementacion clara y soporte",
       ],
     },
