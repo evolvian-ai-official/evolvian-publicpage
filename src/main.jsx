@@ -7,6 +7,7 @@ import "./App.css";   // ← Esto es lo importante
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import Demo from "./pages/Demo";
 import { trackPageView } from "./utils/tracking";
 import { PublicLanguageProvider } from "./contexts/PublicLanguageContext";
 import { PublicConsentProvider } from "./contexts/PublicConsentContext";
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Routes>
             {/* 🏠 Home */}
             <Route path="/" element={<App />} />
+            <Route path="/demo" element={<Demo />} />
 
             {/* 📰 Blog - listado */}
             <Route path="/blog" element={<BlogIndex />} />

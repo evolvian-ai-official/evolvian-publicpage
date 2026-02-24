@@ -280,6 +280,27 @@ a {
   background: rgba(255, 255, 255, 0.16);
 }
 
+.btn-evolvian-yellow {
+  color: #1f2937;
+  background: linear-gradient(135deg, #f5a623, #ffd166);
+  border: 1px solid rgba(255, 226, 168, 0.9);
+  box-shadow: 0 10px 26px rgba(245, 166, 35, 0.28);
+}
+
+.btn-evolvian-yellow:hover {
+  box-shadow: 0 14px 30px rgba(245, 166, 35, 0.36);
+}
+
+.btn-evolvian-yellow-outline {
+  color: #ffe8b0;
+  background: rgba(245, 166, 35, 0.12);
+  border: 1px solid rgba(245, 166, 35, 0.55);
+}
+
+.btn-evolvian-yellow-outline:hover {
+  background: rgba(245, 166, 35, 0.2);
+}
+
 .btn-large {
   min-height: 48px;
   padding: 0.88rem 1.2rem;
@@ -467,6 +488,8 @@ a {
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .feature-card h3 {
@@ -477,6 +500,75 @@ a {
 .feature-card p {
   margin: 0.6rem 0 0;
   color: var(--muted);
+}
+
+.feature-image-frame {
+  margin-top: 0.9rem;
+  border-radius: 12px;
+  border: 1px solid #dbe7f5;
+  background: #f7fbff;
+  padding: 0.4rem;
+  overflow: hidden;
+}
+
+.feature-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.feature-image-slot {
+  margin-top: 0.9rem;
+  min-height: 120px;
+  border-radius: 12px;
+  border: 1px dashed #b7cbe4;
+  background:
+    linear-gradient(180deg, rgba(245, 166, 35, 0.08), rgba(255, 255, 255, 0.95)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(74, 144, 226, 0.04),
+      rgba(74, 144, 226, 0.04) 10px,
+      rgba(74, 144, 226, 0.01) 10px,
+      rgba(74, 144, 226, 0.01) 20px
+    );
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.feature-image-slot-title {
+  margin: 0;
+  color: #1f3554;
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.feature-image-slot-meta {
+  margin: 0;
+  color: #334155;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.feature-image-slot-meta code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #dbe7f5;
+  border-radius: 6px;
+  padding: 0.15rem 0.35rem;
+  word-break: break-all;
+}
+
+.feature-image-slot-hint {
+  margin: 0;
+  color: #5b6d84;
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .plan-grid {
@@ -1150,6 +1242,55 @@ textarea.form-control {
 
 .footer-grid a:hover {
   color: #fff;
+}
+
+.footer-social-block {
+  margin-top: 0.8rem;
+}
+
+.footer-social-title {
+  margin: 0.25rem 0 0;
+  color: #e2e8f0;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.footer-social-row {
+  margin-top: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.footer-social-link {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  background: rgba(245, 166, 35, 0.09);
+  color: #f8d080;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.footer-grid a.footer-social-link {
+  display: inline-flex;
+  margin-top: 0;
+  font-size: 0;
+}
+
+.footer-social-link:hover {
+  color: #fff4d2;
+  background: rgba(245, 166, 35, 0.2);
+  border-color: rgba(245, 166, 35, 0.6);
+  transform: translateY(-1px);
+}
+
+.footer-social-link svg {
+  width: 18px;
+  height: 18px;
 }
 
 .footer-privacy-btn {

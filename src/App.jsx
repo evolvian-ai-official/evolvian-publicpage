@@ -8,9 +8,9 @@ import "./App.css";
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
 
 const FALLBACK_PLAN_PRICES = {
-  free: "$0/mo",
-  starter: "$19/mo",
-  premium: "$49/mo",
+  free: "$0 USD/mo",
+  starter: "$19 USD/mo",
+  premium: "$49 USD/mo",
   white_label: null,
 };
 
@@ -30,9 +30,59 @@ const LANGUAGE_OPTIONS = [
   { value: "es", label: "Espanol" },
 ];
 
+const DIRECT_LOGIN_URL = "https://www.evolvianai.net/login";
+
+const FEATURE_ILLUSTRATION_SLOTS = [
+  { fileName: "feature-01-asistente-ai.png", publicUrl: "/feature-boxes/feature-01-asistente-ai.png" },
+  { fileName: "feature-02-historico-unificado.png", publicUrl: "/feature-boxes/feature-02-historico-unificado.png" },
+  { fileName: "feature-03-citas-recordatorios.png", publicUrl: "/feature-boxes/feature-03-citas-recordatorios.png" },
+  { fileName: "feature-04-canales-conectados.png", publicUrl: "/feature-boxes/feature-04-canales-conectados.png" },
+  { fileName: "feature-05-captura-datos.png", publicUrl: "/feature-boxes/feature-05-captura-datos.png" },
+  { fileName: "feature-06-visibilidad-operativa.png", publicUrl: "/feature-boxes/feature-06-visibilidad-operativa.png" },
+];
+
+const FOOTER_SOCIAL_LINKS = [
+  { key: "whatsapp", label: "WhatsApp", href: "https://www.whatsapp.com/" },
+  { key: "instagram", label: "Instagram", href: "https://www.instagram.com/" },
+  { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/" },
+];
+
+function FeatureIllustration({ imageSlot, featureTitle, featureCopy }) {
+  const [hasImageError, setHasImageError] = useState(false);
+
+  if (!imageSlot) return null;
+
+  if (!hasImageError) {
+    return (
+      <div className="feature-image-frame">
+        <img
+          src={imageSlot.publicUrl}
+          alt={featureTitle}
+          className="feature-image"
+          loading="lazy"
+          onError={() => setHasImageError(true)}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="feature-image-slot" aria-label={featureCopy.imageSlotTitle}>
+      <p className="feature-image-slot-title">{featureCopy.imageSlotTitle}</p>
+      <p className="feature-image-slot-meta">
+        {featureCopy.imageSlotPathLabel}: <code>{imageSlot.publicUrl}</code>
+      </p>
+      <p className="feature-image-slot-meta">
+        {featureCopy.imageSlotFileLabel}: <code>{imageSlot.fileName}</code>
+      </p>
+      <p className="feature-image-slot-hint">{featureCopy.imageSlotHint}</p>
+    </div>
+  );
+}
+
 const COPY = {
   en: {
-    nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog" },
+    nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog", demo: "Demo" },
     auth: { login: "Log in", startFree: "Start free" },
     hero: {
       kicker: "AI Operations Assistant for Growing Teams",
@@ -42,6 +92,7 @@ const COPY = {
         "Deploy an assistant trained on your own content to handle operational conversations, schedule appointments, send reminders, and keep message history in one place.",
       ctaPrimary: "Start free",
       ctaSecondary: "Talk to team",
+      ctaDemo: "Try demo",
       pills: ["No-code setup", "Appointments + reminders", "Message history included"],
       statLeadLabel: "Operational load",
       statLeadValue: "Less manual work",
@@ -59,6 +110,10 @@ const COPY = {
       title: "Built for daily execution, not just demos",
       description:
         "Every feature is designed to reduce repetitive workload and keep communication consistent across channels.",
+      imageSlotTitle: "Illustrative image space",
+      imageSlotPathLabel: "Suggested URL path",
+      imageSlotFileLabel: "Suggested file name",
+      imageSlotHint: "Add the file in public/feature-boxes with this name to show the illustration here.",
       cards: [
         {
           title: "AI assistant aligned to your business",
@@ -76,18 +131,18 @@ const COPY = {
             "Enable scheduling, reminder, and follow-up flows from the same assistant experience.",
         },
         {
-          title: "One flow for chat, WhatsApp, and email",
+          title: "Conversation channels: widget, WhatsApp, and email",
           description:
-            "Operate conversations across channels without splitting context between tools.",
+            "Generate conversations through the Evolvian widget, WhatsApp, and email. These channels are not unified yet.",
         },
         {
           title: "Capture key customer data",
           description:
-            "Collect name, email, and use-case details so your team can act faster.",
+            "Collect name, email, phone, and use-case details so your team can act faster.",
         },
         {
-          title: "Operational visibility",
-          description: "Track interactions and response quality to improve day-to-day execution.",
+          title: "Centralize customer communication with Evolvian",
+          description: "Manage customer communication and captured data from Evolvian to support daily operations.",
         },
       ],
     },
@@ -217,6 +272,7 @@ const COPY = {
       locationLine1: "1001 S Main St Ste 500",
       locationLine2: "Kalispell, MT 59901",
       contactTitle: "Contact",
+      socialTitle: "Social",
       legalTitle: "Legal",
       getStarted: "Get started",
       createAccount: "Create your account",
@@ -237,7 +293,7 @@ const COPY = {
     },
   },
   es: {
-    nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog" },
+    nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog", demo: "Demo" },
     auth: { login: "Iniciar sesion", startFree: "Empieza gratis" },
     hero: {
       kicker: "Plataforma de Asistente AI Operativo",
@@ -247,6 +303,7 @@ const COPY = {
         "Despliega un asistente entrenado con tu contenido para atender la parte operativa: responder mensajes, agendar citas, enviar recordatorios y guardar historico de conversaciones.",
       ctaPrimary: "Empieza gratis",
       ctaSecondary: "Hablar con equipo",
+      ctaDemo: "Probar demo",
       pills: ["Sin codigo", "Citas y recordatorios", "Historico de mensajes"],
       statLeadLabel: "Carga operativa",
       statLeadValue: "Menos trabajo manual",
@@ -264,6 +321,10 @@ const COPY = {
       title: "Hecho para la operacion diaria, no solo para demos",
       description:
         "Cada funcion esta disenada para reducir trabajo repetitivo y mantener una atencion consistente entre canales.",
+      imageSlotTitle: "Espacio para imagen ilustrativa",
+      imageSlotPathLabel: "Ruta sugerida",
+      imageSlotFileLabel: "Nombre sugerido",
+      imageSlotHint: "Coloca el archivo en public/feature-boxes con este nombre y la imagen se mostrara aqui.",
       cards: [
         {
           title: "Asistente AI alineado a tu negocio",
@@ -281,17 +342,17 @@ const COPY = {
             "Activa agendas, recordatorios y seguimiento desde la misma experiencia del asistente.",
         },
         {
-          title: "Un flujo para chat, WhatsApp y email",
+          title: "Canales de conversacion: widget, WhatsApp y email",
           description:
-            "Opera conversaciones entre canales sin perder contexto entre herramientas.",
+            "Genera conversaciones por Evolvian widget, WhatsApp y email.",
         },
         {
           title: "Captura datos clave del cliente",
-          description: "Recolecta nombre, email y caso de uso para que tu equipo actue mas rapido.",
+          description: "Recolecta nombre, email y telefono para que tu equipo actue mas rapido.",
         },
         {
-          title: "Visibilidad operativa",
-          description: "Mide interacciones y calidad de respuesta para mejorar la ejecucion diaria.",
+          title: "Centraliza tu comunicacion con clientes con Evolvian",
+          description: "Gestiona la comunicacion con clientes y los datos capturados desde Evolvian para tu operacion diaria.",
         },
       ],
     },
@@ -420,6 +481,7 @@ const COPY = {
       locationLine1: "1001 S Main St Ste 500",
       locationLine2: "Kalispell, MT 59901",
       contactTitle: "Contacto",
+      socialTitle: "Redes",
       legalTitle: "Legal",
       getStarted: "Comenzar",
       createAccount: "Crear tu cuenta",
@@ -441,10 +503,41 @@ const COPY = {
   },
 };
 
+function FooterSocialIcon({ kind }) {
+  if (kind === "instagram") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
+
+  if (kind === "linkedin") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="4" />
+        <circle cx="8" cy="8" r="1" fill="currentColor" stroke="none" />
+        <path d="M8 11v5" />
+        <path d="M12 16v-5" />
+        <path d="M12 13.2c0-1.2.8-2.2 2-2.2s2 .9 2 2.3V16" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.1A8.5 8.5 0 1 1 21 11.5Z" />
+      <path d="M9.2 9.3c.3-.6.7-.7 1-.7h.3c.1 0 .3.1.4.3l.7 1.5c.1.2.1.4 0 .6l-.5.6c-.1.1-.2.2-.1.4.4.8 1.1 1.5 1.9 2 .2.1.3 0 .4-.1l.6-.5c.2-.1.4-.2.6-.1l1.4.7c.2.1.3.2.3.4v.3c0 .3-.1.7-.7 1-.4.2-1 .2-1.7 0-1.8-.6-4.2-2.8-4.9-4.9-.2-.7-.2-1.4.1-1.8Z" />
+    </svg>
+  );
+}
+
 function formatMonthlyPrice(priceUsd) {
   const price = Number(priceUsd);
   if (!Number.isFinite(price)) return null;
-  return Number.isInteger(price) ? `$${price.toFixed(0)}/mo` : `$${price.toFixed(2)}/mo`;
+  return Number.isInteger(price) ? `$${price.toFixed(0)} USD/mo` : `$${price.toFixed(2)} USD/mo`;
 }
 
 export default function App() {
@@ -466,6 +559,7 @@ export default function App() {
       { href: "#contact", label: t.nav.contact },
       { href: "#about-us", label: t.nav.about },
       { href: "/blog", label: t.nav.blog },
+      { href: "/demo", label: t.nav.demo },
     ],
     [t]
   );
@@ -478,7 +572,7 @@ export default function App() {
         description: t.plans.descriptions.free,
         highlights: t.plans.highlights.free,
         ctaLabel: t.plans.ctas.free,
-        ctaHref: "https://www.evolvianai.net/register",
+        ctaHref: DIRECT_LOGIN_URL,
         ctaEvent: "StartForFree_Click",
         theme: "soft",
       },
@@ -697,7 +791,7 @@ export default function App() {
               </select>
             </div>
             <a
-              href="https://www.evolvianai.net"
+              href={DIRECT_LOGIN_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"
@@ -706,7 +800,7 @@ export default function App() {
               {t.auth.login}
             </a>
             <a
-              href="https://www.evolvianai.net/register"
+              href={DIRECT_LOGIN_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
@@ -755,7 +849,7 @@ export default function App() {
                 </select>
               </div>
               <a
-                href="https://www.evolvianai.net/register"
+                href={DIRECT_LOGIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -785,20 +879,27 @@ export default function App() {
 
               <div className="hero-cta-row">
                 <a
-                  href="https://www.evolvianai.net/register"
+                  href={DIRECT_LOGIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-primary btn-large"
+                  className="btn btn-primary btn-large btn-evolvian-yellow"
                   onClick={() => trackEvent({ name: "Hero_StartFree_Click", category: "Hero", label: language })}
                 >
                   {t.hero.ctaPrimary}
                 </a>
                 <a
                   href="#contact"
-                  className="btn btn-ghost btn-large"
+                  className="btn btn-ghost btn-large btn-evolvian-yellow-outline"
                   onClick={() => trackEvent({ name: "Hero_BookDemo_Click", category: "Hero", label: language })}
                 >
                   {t.hero.ctaSecondary}
+                </a>
+                <a
+                  href="/demo"
+                  className="btn btn-secondary btn-large"
+                  onClick={() => trackEvent({ name: "Hero_Demo_Click", category: "Hero", label: language })}
+                >
+                  {t.hero.ctaDemo}
                 </a>
               </div>
 
@@ -843,12 +944,16 @@ export default function App() {
             </div>
 
             <div className="feature-grid">
-              {t.features.cards.map((feature) => (
-                <article key={feature.title} className="feature-card card-lift">
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                </article>
-              ))}
+              {t.features.cards.map((feature, index) => {
+                const imageSlot = FEATURE_ILLUSTRATION_SLOTS[index];
+                return (
+                  <article key={feature.title} className="feature-card card-lift">
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                    <FeatureIllustration imageSlot={imageSlot} featureTitle={feature.title} featureCopy={t.features} />
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -1094,6 +1199,25 @@ export default function App() {
             <a href="mailto:support@evolvianai.com" onClick={() => trackEvent({ name: "Footer_Contact_Click", category: "Footer", label: language })}>
               support@evolvianai.com
             </a>
+            <div className="footer-social-block">
+              <p className="footer-social-title">{t.footer.socialTitle}</p>
+              <div className="footer-social-row" aria-label={t.footer.socialTitle}>
+                {FOOTER_SOCIAL_LINKS.map((social) => (
+                  <a
+                    key={social.key}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footer-social-link"
+                    aria-label={social.label}
+                    title={social.label}
+                    onClick={() => trackEvent({ name: `Footer_${social.label}_Click`, category: "Footer", label: language })}
+                  >
+                    <FooterSocialIcon kind={social.key} />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div>
