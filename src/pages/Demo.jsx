@@ -6,6 +6,7 @@ import "./Demo.css";
 const DEMO_ACCESS_KEY = "evolvian_demo_access_v2";
 const DEMO_FEEDBACK_KEY = "evolvian_demo_feedback_v2";
 const THREE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
+const API_BASE = (import.meta.env.VITE_API_URL || "").trim();
 
 const LANGUAGE_OPTIONS = [
   { value: "en", label: "English" },
@@ -61,6 +62,7 @@ const COPY = {
       email: "Enter a valid email.",
       terms: "You must accept Terms & Conditions.",
       stars: "Please select a star rating before sending.",
+      consent: "We could not save your marketing consent. Please try again.",
     },
     steps: {
       widget_install: {
@@ -154,6 +156,7 @@ const COPY = {
       email: "Ingresa un email valido.",
       terms: "Debes aceptar Terminos y Condiciones.",
       stars: "Selecciona una calificacion antes de enviar.",
+      consent: "No pudimos guardar tu consentimiento de marketing. Intentalo de nuevo.",
     },
     steps: {
       widget_install: {
@@ -329,7 +332,7 @@ export default function Demo() {
     }));
   };
 
-  const handleLeadSubmit = (event) => {
+  const handleLeadSubmit = async (event) => {
     event.preventDefault();
     setLeadError("");
 
@@ -344,6 +347,30 @@ export default function Demo() {
     if (!leadForm.acceptedTerms) {
       setLeadError(t.errors.terms);
       return;
+    }
+
+    if (leadForm.acceptedMarketing && API_BASE) {
+      try {
+        const response = await fetch(`${API_BASE}/api/public/demo/lead`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: (leadForm.name || "").trim(),
+            email: (leadForm.email || "").trim().toLowerCase(),
+            phone: (leadForm.phone || "").trim() || null,
+            accepted_terms: true,
+            accepted_marketing: true,
+            consent_version: "2026-03",
+          }),
+        });
+        if (!response.ok) {
+          setLeadError(t.errors.consent);
+          return;
+        }
+      } catch {
+        setLeadError(t.errors.consent);
+        return;
+      }
     }
 
     const expiresAt = Date.now() + THREE_DAYS_MS;
