@@ -196,10 +196,10 @@ export default function BlogChrome({ children }) {
           <div>
             <h4>{t.footer.contact}</h4>
             <a
-              href="mailto:support@evolvianai.com"
+              href="mailto:sales@evolvianai.com"
               onClick={() => trackEvent({ name: "Footer_Contact_Click", category: "Footer", label: `Blog_${language}` })}
             >
-              support@evolvianai.com
+              sales@evolvianai.com
             </a>
           </div>
 

@@ -263,7 +263,7 @@ export default function Privacy() {
                       {section.title.includes("Contact") || section.title.includes("Contacto") ? (
                         <>
                           <a href="mailto:privacy@evolvianai.com">privacy@evolvianai.com</a> {language === "es" ? "o" : "or"}{" "}
-                          <a href="mailto:support@evolvianai.com">support@evolvianai.com</a>
+                          <a href="mailto:sales@evolvianai.com">sales@evolvianai.com</a>
                         </>
                       ) : null}
                     </p>

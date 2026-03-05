@@ -146,7 +146,7 @@ export default function Terms() {
                     <p>
                       {section.body}{" "}
                       {(section.title.includes("Account") || section.title.includes("Cuenta") || section.title.includes("Contact") || section.title.includes("Contacto")) ? (
-                        <a href="mailto:support@evolvianai.com">support@evolvianai.com</a>
+                        <a href="mailto:sales@evolvianai.com">sales@evolvianai.com</a>
                       ) : null}
                     </p>
                   ) : null}

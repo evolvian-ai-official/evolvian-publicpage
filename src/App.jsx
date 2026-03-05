@@ -285,7 +285,7 @@ const COPY = {
       termsRequired: "You must accept Terms & Conditions before sending the form.",
       privacyRequired: "You must accept the Privacy Policy before sending the form.",
       duplicate:
-        "We already have your email registered. Send us an email at support@evolvianai.com or chat with Evolvian Assistant using the icon on your right.",
+        "We already have your email registered. Send us an email at sales@evolvianai.com or chat with Evolvian Assistant using the icon on your right.",
       genericError: "We could not send your request. Please try again in a few minutes.",
       successTitle: "Request received",
       successBody: "Thanks for contacting us. We will reach out soon to learn more about what you need.",
@@ -494,7 +494,7 @@ const COPY = {
       termsRequired: "Debes aceptar los Terminos y Condiciones para enviar el formulario.",
       privacyRequired: "Debes aceptar la Politica de Privacidad para enviar el formulario.",
       duplicate:
-        "Ya tenemos tu email registrado. Mandanos un email a support@evolvianai.com o chatea con Evolvian Assistant abriendo el icono a tu derecha.",
+        "Ya tenemos tu email registrado. Mandanos un email a sales@evolvianai.com o chatea con Evolvian Assistant abriendo el icono a tu derecha.",
       genericError: "No pudimos enviar tu solicitud. Intentalo de nuevo en unos minutos.",
       successTitle: "Solicitud recibida",
       successBody: "Muchas gracias por contactarnos. Te escribiremos pronto para conocer mejor lo que necesitas.",
@@ -1196,8 +1196,8 @@ export default function App() {
 
           <div>
             <h4>{t.footer.contactTitle}</h4>
-            <a href="mailto:support@evolvianai.com" onClick={() => trackEvent({ name: "Footer_Contact_Click", category: "Footer", label: language })}>
-              support@evolvianai.com
+            <a href="mailto:sales@evolvianai.com" onClick={() => trackEvent({ name: "Footer_Contact_Click", category: "Footer", label: language })}>
+              sales@evolvianai.com
             </a>
             <div className="footer-social-block">
               <p className="footer-social-title">{t.footer.socialTitle}</p>
