@@ -269,6 +269,28 @@
   font-size: 0.84rem;
 }
 
+.demo-schedule-callout {
+  margin-top: 0.9rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(112, 153, 235, 0.34);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(24, 36, 59, 0.82), rgba(17, 24, 38, 0.72));
+}
+
+.demo-schedule-callout strong {
+  display: block;
+  color: #e8f0ff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.demo-schedule-callout p {
+  margin: 0.42rem 0 0;
+  color: #a4bbe3;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
 .demo-inline-tooltip {
   margin: 0.82rem 0 0;
   min-height: 1.3rem;

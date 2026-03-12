@@ -33,9 +33,12 @@ const COPY = {
     subtitle: "This assistant is trained on Evolvian's own data. Ask it anything.",
     guidance:
       "Start with the guided prompts below so you can quickly see pricing answers, channel capabilities, and human handoff behavior.",
-    outOfScopePrompt: "Ask a question out of Evolvian scope to test human handoff:",
+    outOfScopePrompt: "Ask something outside Evolvian scope to test human handoff:",
     askAnything:
       "Then ask whatever question you need so you can learn more about Evolvian.",
+    scheduleInstructionTitle: "Try the scheduling flow",
+    scheduleInstructionBody:
+      "Click Book in the top-right area of the chat to test scheduling. The calendar is for solution validation only.",
     progressLabel: "Question progress",
     status: {
       idle: "Pending",
@@ -92,7 +95,7 @@ const COPY = {
       "Does it work with WhatsApp?",
       "How long does setup take?",
       "How can I set up Slack with Evolvian?",
-      "Where is the link for that",
+      "Where can I find that link?",
     ],
   },
   es: {
@@ -105,12 +108,15 @@ const COPY = {
     },
     badge: "Demo en Vivo",
     title: "Ve Evolvian en accion",
-    subtitle: "Este asistente esta entrenado con los datos reales de Evolvian. Preguntale lo que quieras.",
+    subtitle: "Este asistente esta entrenado con los datos reales de Evolvian. Pregunta lo que quieras.",
     guidance:
-      "Empieza con estas preguntas guiadas para ver rapido precios, capacidades por canal y el comportamiento de handoff humano.",
-    outOfScopePrompt: "Haz una pregunta fuera del alcance de Evolvian para probar handoff humano:",
+      "Empieza con estas preguntas guiadas para ver rapido precios, capacidades por canal y como funciona el traspaso a una persona.",
+    outOfScopePrompt: "Haz una pregunta fuera del alcance de Evolvian para probar el traspaso a una persona:",
     askAnything:
       "Luego haz cualquier pregunta que necesites para conocer mejor Evolvian.",
+    scheduleInstructionTitle: "Prueba la funcionalidad de agendar",
+    scheduleInstructionBody:
+      "Haz clic en Agendar en la parte superior derecha del chat para probar el flujo de agenda. La agenda es solo para fines de validar la solucion.",
     progressLabel: "Progreso de preguntas",
     status: {
       idle: "Pendiente",
@@ -165,8 +171,8 @@ const COPY = {
       "Que planes ofrecen?",
       "Funciona con WhatsApp?",
       "Cuanto tarda la implementacion?",
-      "Como configuro Slack con Evolvian?",
-      "Donde esta el enlace para eso?",
+      "Como conecto Slack con Evolvian?",
+      "Donde encuentro ese enlace?",
     ],
   },
 };
@@ -445,6 +451,11 @@ export default function Demo() {
             </div>
 
             <p className="demo-anything-text">{t.askAnything}</p>
+
+            <div className="demo-schedule-callout" role="note" aria-label={t.scheduleInstructionTitle}>
+              <strong>{t.scheduleInstructionTitle}</strong>
+              <p>{t.scheduleInstructionBody}</p>
+            </div>
 
             {tooltip ? <p className="demo-inline-tooltip">{tooltip}</p> : <p className="demo-inline-tooltip spacer" />}
 
