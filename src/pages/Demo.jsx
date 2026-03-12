@@ -3,7 +3,7 @@ import { usePublicLanguage } from "../contexts/PublicLanguageContext";
 import "./Demo.css";
 
 const SALES_PUBLIC_CLIENT_ID = "9408uqymxsad";
-const WIDGET_IFRAME_URL = `https://evolvian-assistant.onrender.com/static/widget.html?public_client_id=${SALES_PUBLIC_CLIENT_ID}`;
+const WIDGET_BASE_URL = "https://evolvian-assistant.onrender.com/static/widget.html";
 
 const LANGUAGE_OPTIONS = [
   { value: "en", label: "English" },
@@ -13,6 +13,12 @@ const LANGUAGE_OPTIONS = [
 const COPY = {
   en: {
     languageLabel: "Lang",
+    nav: {
+      action: "See Evolvian in action",
+      home: "Home",
+      blog: "Blog",
+      cta: "Start free",
+    },
     badge: "Live Demo",
     title: "See Evolvian in action",
     subtitle: "This assistant is trained on Evolvian's own data. Ask it anything.",
@@ -28,12 +34,50 @@ const COPY = {
       copied: "Copied",
     },
     tooltipSent: "Sent to chat",
-    tooltipCopied: "Copied — paste it in the chat",
+    tooltipCopied: "Copied - paste it in the chat",
     tooltipCopyFailed: "Could not copy automatically",
-    pricingAnchor: "Plans from $0 — no credit card needed",
-    cta: "Set up yours free →",
+    pricingAnchor: "Plans from $0 - no credit card needed",
+    cta: "Set up yours free ->",
     ctaHref: "https://evolvianai.net",
     iframeTitle: "Evolvian live assistant",
+    features: {
+      kicker: "Why operations teams choose Evolvian",
+      title: "Built for daily execution, not just demos",
+      description:
+        "Every feature is designed to reduce repetitive workload and keep communication consistent across channels.",
+      cards: [
+        {
+          title: "AI assistant aligned to your business",
+          description:
+            "Upload your documents and instructions so each answer follows your policies and workflows.",
+        },
+        {
+          title: "Message history in one place",
+          description:
+            "Review previous chat, WhatsApp, and email interactions before replying to each contact.",
+        },
+        {
+          title: "Appointments and reminders",
+          description:
+            "Enable scheduling, reminder, and follow-up flows from the same assistant experience.",
+        },
+        {
+          title: "Conversation channels: widget, WhatsApp, and email",
+          description:
+            "Generate conversations through the Evolvian widget, WhatsApp, and email.",
+        },
+        {
+          title: "Capture key customer data",
+          description:
+            "Collect name, email, phone, and use-case details so your team can act faster.",
+        },
+        {
+          title: "Centralize customer communication with Evolvian",
+          description:
+            "Manage customer communication and captured data from Evolvian to support daily operations.",
+        },
+      ],
+    },
     questions: [
       "What plans do you offer?",
       "Does it work with WhatsApp?",
@@ -44,6 +88,12 @@ const COPY = {
   },
   es: {
     languageLabel: "Idioma",
+    nav: {
+      action: "Ver Evolvian en accion",
+      home: "Inicio",
+      blog: "Blog",
+      cta: "Empieza gratis",
+    },
     badge: "Demo en Vivo",
     title: "Ve Evolvian en accion",
     subtitle: "Este asistente esta entrenado con los datos reales de Evolvian. Preguntale lo que quieras.",
@@ -59,12 +109,49 @@ const COPY = {
       copied: "Copiado",
     },
     tooltipSent: "Enviado al chat",
-    tooltipCopied: "Copiado — pegalo en el chat",
+    tooltipCopied: "Copiado - pegalo en el chat",
     tooltipCopyFailed: "No se pudo copiar automaticamente",
-    pricingAnchor: "Planes desde $0 — sin tarjeta de credito",
-    cta: "Configura el tuyo gratis →",
+    pricingAnchor: "Planes desde $0 - sin tarjeta de credito",
+    cta: "Configura el tuyo gratis ->",
     ctaHref: "https://evolvianai.net",
     iframeTitle: "Asistente en vivo de Evolvian",
+    features: {
+      kicker: "Por que equipos operativos eligen Evolvian",
+      title: "Hecho para la operacion diaria, no solo para demos",
+      description:
+        "Cada funcion esta disenada para reducir trabajo repetitivo y mantener una atencion consistente entre canales.",
+      cards: [
+        {
+          title: "Asistente AI alineado a tu negocio",
+          description:
+            "Sube documentos e instrucciones para que cada respuesta siga tus politicas y flujos.",
+        },
+        {
+          title: "Historico unificado de mensajes",
+          description:
+            "Consulta interacciones previas de chat, WhatsApp y email antes de responder a cada contacto.",
+        },
+        {
+          title: "Citas y recordatorios",
+          description:
+            "Activa agendas, recordatorios y seguimiento desde la misma experiencia del asistente.",
+        },
+        {
+          title: "Canales de conversacion: widget, WhatsApp y email",
+          description:
+            "Genera conversaciones por Evolvian widget, WhatsApp y email.",
+        },
+        {
+          title: "Captura datos clave del cliente",
+          description: "Recolecta nombre, email y telefono para que tu equipo actue mas rapido.",
+        },
+        {
+          title: "Centraliza tu comunicacion con clientes con Evolvian",
+          description:
+            "Gestiona la comunicacion con clientes y los datos capturados desde Evolvian para tu operacion diaria.",
+        },
+      ],
+    },
     questions: [
       "What plans do you offer?",
       "Does it work with WhatsApp?",
@@ -177,6 +264,14 @@ export default function Demo() {
   const [questionStatuses, setQuestionStatuses] = useState(() => createInitialStatuses(COPY.en.questions.length));
   const [tooltip, setTooltip] = useState("");
 
+  const iframeSrc = useMemo(() => {
+    const params = new URLSearchParams({
+      public_client_id: SALES_PUBLIC_CLIENT_ID,
+      lang: language,
+    });
+    return `${WIDGET_BASE_URL}?${params.toString()}`;
+  }, [language]);
+
   const completedCount = useMemo(
     () => questionStatuses.filter((status) => status !== STATUS_IDLE).length,
     [questionStatuses]
@@ -189,6 +284,29 @@ export default function Demo() {
       }
     };
   }, []);
+
+  const sendLanguageMessage = () => {
+    const frame = iframeRef.current;
+    if (!frame?.contentWindow) return;
+
+    const payloads = [
+      { type: "EVOLVIAN_WIDGET_SET_LANGUAGE", language },
+      { type: "EVOLVIAN_WIDGET_LANGUAGE", language },
+      { type: "EVOLVIAN_WIDGET_CONTEXT", language },
+    ];
+
+    payloads.forEach((payload) => {
+      try {
+        frame.contentWindow.postMessage(payload, "*");
+      } catch {
+        // ignore cross-origin postMessage failures
+      }
+    });
+  };
+
+  useEffect(() => {
+    sendLanguageMessage();
+  }, [language]);
 
   const showTooltip = (message) => {
     setTooltip(message);
@@ -218,114 +336,152 @@ export default function Demo() {
   };
 
   return (
-    <main className="demo-live-page">
-      <div className="demo-live-shell">
-        <section className="demo-left-column">
-          <div className="demo-left-header">
-            <span className="demo-badge">{t.badge}</span>
-            <div className="demo-language-picker">
-              <label htmlFor="demo-live-lang">{t.languageLabel}</label>
-              <select
-                id="demo-live-lang"
-                value={language}
-                onChange={(event) => setLanguage(event.target.value)}
-              >
-                {LANGUAGE_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <h1>{t.title}</h1>
-          <p className="demo-subtitle">{t.subtitle}</p>
-          <p className="demo-guidance">{t.guidance}</p>
-
-          <div className="demo-progress-row" aria-label={t.progressLabel}>
-            <span>
-              {t.progressLabel}: {completedCount}/{t.questions.length}
-            </span>
-            <div className="demo-progress-track" role="presentation">
-              <div
-                className="demo-progress-fill"
-                style={{ width: `${(completedCount / t.questions.length) * 100}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="demo-question-list" role="list">
-            {t.questions.slice(0, 3).map((question, index) => {
-              const status = questionStatuses[index];
-              const isActive = activeQuestionIndex === index;
-              return (
-                <button
-                  key={question}
-                  type="button"
-                  className={`demo-question-btn ${isActive ? "is-active" : ""}`}
-                  onClick={() => handleQuestionClick(question, index)}
-                  role="listitem"
-                >
-                  <span className="demo-question-index">{index + 1}</span>
-                  <span className="demo-question-copy">{question}</span>
-                  <span className={`demo-question-status status-${status}`}>{t.status[status]}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          <p className="demo-out-of-scope">{t.outOfScopePrompt}</p>
-
-          <div className="demo-question-list" role="list">
-            {t.questions.slice(3).map((question, localIndex) => {
-              const index = localIndex + 3;
-              const status = questionStatuses[index];
-              const isActive = activeQuestionIndex === index;
-              return (
-                <button
-                  key={question}
-                  type="button"
-                  className={`demo-question-btn ${isActive ? "is-active" : ""}`}
-                  onClick={() => handleQuestionClick(question, index)}
-                  role="listitem"
-                >
-                  <span className="demo-question-index">{index + 1}</span>
-                  <span className="demo-question-copy">{question}</span>
-                  <span className={`demo-question-status status-${status}`}>{t.status[status]}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          <p className="demo-anything-text">{t.askAnything}</p>
-
-          {tooltip ? <p className="demo-inline-tooltip">{tooltip}</p> : <p className="demo-inline-tooltip spacer" />}
-
-          <hr className="demo-divider" />
-
-          <p className="demo-price-anchor">{t.pricingAnchor}</p>
-          <a
-            href={t.ctaHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="demo-cta"
-          >
-            {t.cta}
+    <>
+      <header className="demo-top-header">
+        <div className="demo-top-header-inner">
+          <a href="/" className="demo-brand-link" aria-label="Evolvian home">
+            <img src="/logo-evolvian.svg" alt="Evolvian logo" className="demo-brand-logo" />
           </a>
-        </section>
 
-        <section className="demo-right-column" aria-label={t.iframeTitle}>
-          <iframe
-            ref={iframeRef}
-            src={WIDGET_IFRAME_URL}
-            title={t.iframeTitle}
-            loading="lazy"
-            className="demo-live-iframe"
-            allow="clipboard-write; microphone"
-          />
+          <nav className="demo-top-nav" aria-label="Demo navigation">
+            <a href="/">{t.nav.home}</a>
+            <a href="/blog">{t.nav.blog}</a>
+            <a href="/demo" className="active">{t.nav.action}</a>
+          </nav>
+
+          <div className="demo-top-actions">
+            <label htmlFor="demo-live-lang">{t.languageLabel}</label>
+            <select
+              id="demo-live-lang"
+              value={language}
+              onChange={(event) => setLanguage(event.target.value)}
+            >
+              {LANGUAGE_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <a href="https://www.evolvianai.net/login" target="_blank" rel="noopener noreferrer" className="demo-top-cta">
+              {t.nav.cta}
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main className="demo-live-page">
+        <div className="demo-live-shell">
+          <section className="demo-left-column">
+            <div className="demo-left-header">
+              <span className="demo-badge">{t.badge}</span>
+            </div>
+
+            <h1>{t.title}</h1>
+            <p className="demo-subtitle">{t.subtitle}</p>
+            <p className="demo-guidance">{t.guidance}</p>
+
+            <div className="demo-progress-row" aria-label={t.progressLabel}>
+              <span>
+                {t.progressLabel}: {completedCount}/{t.questions.length}
+              </span>
+              <div className="demo-progress-track" role="presentation">
+                <div
+                  className="demo-progress-fill"
+                  style={{ width: `${(completedCount / t.questions.length) * 100}%` }}
+                />
+              </div>
+            </div>
+
+            <div className="demo-question-list" role="list">
+              {t.questions.slice(0, 3).map((question, index) => {
+                const status = questionStatuses[index];
+                const isActive = activeQuestionIndex === index;
+                return (
+                  <button
+                    key={question}
+                    type="button"
+                    className={`demo-question-btn ${isActive ? "is-active" : ""}`}
+                    onClick={() => handleQuestionClick(question, index)}
+                    role="listitem"
+                  >
+                    <span className="demo-question-index">{index + 1}</span>
+                    <span className="demo-question-copy">{question}</span>
+                    <span className={`demo-question-status status-${status}`}>{t.status[status]}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <p className="demo-out-of-scope">{t.outOfScopePrompt}</p>
+
+            <div className="demo-question-list" role="list">
+              {t.questions.slice(3).map((question, localIndex) => {
+                const index = localIndex + 3;
+                const status = questionStatuses[index];
+                const isActive = activeQuestionIndex === index;
+                return (
+                  <button
+                    key={question}
+                    type="button"
+                    className={`demo-question-btn ${isActive ? "is-active" : ""}`}
+                    onClick={() => handleQuestionClick(question, index)}
+                    role="listitem"
+                  >
+                    <span className="demo-question-index">{index + 1}</span>
+                    <span className="demo-question-copy">{question}</span>
+                    <span className={`demo-question-status status-${status}`}>{t.status[status]}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <p className="demo-anything-text">{t.askAnything}</p>
+
+            {tooltip ? <p className="demo-inline-tooltip">{tooltip}</p> : <p className="demo-inline-tooltip spacer" />}
+
+            <hr className="demo-divider" />
+
+            <p className="demo-price-anchor">{t.pricingAnchor}</p>
+            <a
+              href={t.ctaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="demo-cta"
+            >
+              {t.cta}
+            </a>
+          </section>
+
+          <section className="demo-right-column" aria-label={t.iframeTitle}>
+            <iframe
+              key={language}
+              ref={iframeRef}
+              src={iframeSrc}
+              title={t.iframeTitle}
+              loading="lazy"
+              className="demo-live-iframe"
+              allow="clipboard-write; microphone"
+              onLoad={sendLanguageMessage}
+            />
+          </section>
+        </div>
+
+        <section className="demo-features-section" id="features">
+          <div className="demo-features-heading">
+            <p>{t.features.kicker}</p>
+            <h2>{t.features.title}</h2>
+            <p>{t.features.description}</p>
+          </div>
+          <div className="demo-features-grid">
+            {t.features.cards.map((feature) => (
+              <article key={feature.title} className="demo-feature-card">
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </article>
+            ))}
+          </div>
         </section>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
