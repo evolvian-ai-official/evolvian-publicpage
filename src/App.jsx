@@ -82,7 +82,7 @@ function FeatureIllustration({ imageSlot, featureTitle, featureCopy }) {
 
 const COPY = {
   en: {
-    nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog", demo: "Demo" },
+    nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog", demo: "See Evolvian in action" },
     auth: { login: "Log in", startFree: "Start free" },
     hero: {
       kicker: "AI Operations Assistant for Growing Teams",
@@ -92,7 +92,7 @@ const COPY = {
         "Deploy an assistant trained on your own content to handle operational conversations, schedule appointments, send reminders, and keep message history in one place.",
       ctaPrimary: "Start free",
       ctaSecondary: "Talk to team",
-      ctaDemo: "Try demo",
+      ctaDemo: "See Evolvian in action",
       pills: ["No-code setup", "Appointments + reminders", "Message history included"],
       statLeadLabel: "Operational load",
       statLeadValue: "Less manual work",
@@ -293,7 +293,7 @@ const COPY = {
     },
   },
   es: {
-    nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog", demo: "Demo" },
+    nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog", demo: "Ver Evolvian en accion" },
     auth: { login: "Iniciar sesion", startFree: "Empieza gratis" },
     hero: {
       kicker: "Plataforma de Asistente AI Operativo",
@@ -303,7 +303,7 @@ const COPY = {
         "Despliega un asistente entrenado con tu contenido para atender la parte operativa: responder mensajes, agendar citas, enviar recordatorios y guardar historico de conversaciones.",
       ctaPrimary: "Empieza gratis",
       ctaSecondary: "Hablar con equipo",
-      ctaDemo: "Probar demo",
+      ctaDemo: "Ver Evolvian en accion",
       pills: ["Sin codigo", "Citas y recordatorios", "Historico de mensajes"],
       statLeadLabel: "Carga operativa",
       statLeadValue: "Menos trabajo manual",
