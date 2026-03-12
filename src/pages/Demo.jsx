@@ -10,6 +10,15 @@ const LANGUAGE_OPTIONS = [
   { value: "es", label: "Espanol" },
 ];
 
+const FEATURE_ILLUSTRATIONS = [
+  "/feature-boxes/feature-01-asistente-ai.png",
+  "/feature-boxes/feature-02-historico-unificado.png",
+  "/feature-boxes/feature-03-citas-recordatorios.png",
+  "/feature-boxes/feature-04-canales-conectados.png",
+  "/feature-boxes/feature-05-captura-datos.png",
+  "/feature-boxes/feature-06-visibilidad-operativa.png",
+];
+
 const COPY = {
   en: {
     languageLabel: "Lang",
@@ -473,8 +482,15 @@ export default function Demo() {
             <p>{t.features.description}</p>
           </div>
           <div className="demo-features-grid">
-            {t.features.cards.map((feature) => (
+            {t.features.cards.map((feature, index) => (
               <article key={feature.title} className="demo-feature-card">
+                <div className="demo-feature-media">
+                  <img
+                    src={FEATURE_ILLUSTRATIONS[index]}
+                    alt={feature.title}
+                    loading="lazy"
+                  />
+                </div>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
               </article>
