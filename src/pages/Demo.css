@@ -380,6 +380,11 @@
   display: block;
 }
 
+.demo-feature-media.is-wide img {
+  object-fit: contain;
+  background: rgba(5, 7, 10, 0.92);
+}
+
 .demo-feature-card h3 {
   margin: 0;
   font-size: 0.95rem;

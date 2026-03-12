@@ -46,7 +46,7 @@ const COPY = {
     tooltipCopied: "Copied - paste it in the chat",
     tooltipCopyFailed: "Could not copy automatically",
     pricingAnchor: "Plans from $0 - no credit card needed",
-    cta: "Set up yours free ->",
+    cta: "Set up yours for free ->",
     ctaHref: "https://evolvianai.net",
     iframeTitle: "Evolvian live assistant",
     features: {
@@ -91,7 +91,7 @@ const COPY = {
       "What plans do you offer?",
       "Does it work with WhatsApp?",
       "How long does setup take?",
-      "How can I setup my slack with Evolvian",
+      "How can I set up Slack with Evolvian?",
       "Where is the link for that",
     ],
   },
@@ -131,7 +131,7 @@ const COPY = {
         "Cada funcion esta disenada para reducir trabajo repetitivo y mantener una atencion consistente entre canales.",
       cards: [
         {
-          title: "Asistente AI alineado a tu negocio",
+      title: "Asistente IA alineado a tu negocio",
           description:
             "Sube documentos e instrucciones para que cada respuesta siga tus politicas y flujos.",
         },
@@ -146,9 +146,9 @@ const COPY = {
             "Activa agendas, recordatorios y seguimiento desde la misma experiencia del asistente.",
         },
         {
-          title: "Canales de conversacion: widget, WhatsApp y email",
+          title: "Canales de conversacion: chat web, WhatsApp y correo",
           description:
-            "Genera conversaciones por Evolvian widget, WhatsApp y email.",
+            "Genera conversaciones desde el chat web de Evolvian, WhatsApp y correo.",
         },
         {
           title: "Captura datos clave del cliente",
@@ -162,11 +162,11 @@ const COPY = {
       ],
     },
     questions: [
-      "What plans do you offer?",
-      "Does it work with WhatsApp?",
-      "How long does setup take?",
-      "How can I setup my slack with Evolvian",
-      "Where is the link for that",
+      "Que planes ofrecen?",
+      "Funciona con WhatsApp?",
+      "Cuanto tarda la implementacion?",
+      "Como configuro Slack con Evolvian?",
+      "Donde esta el enlace para eso?",
     ],
   },
 };
@@ -484,7 +484,7 @@ export default function Demo() {
           <div className="demo-features-grid">
             {t.features.cards.map((feature, index) => (
               <article key={feature.title} className="demo-feature-card">
-                <div className="demo-feature-media">
+                <div className={`demo-feature-media ${index === 4 ? "is-wide" : ""}`}>
                   <img
                     src={FEATURE_ILLUSTRATIONS[index]}
                     alt={feature.title}
