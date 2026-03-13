@@ -4,6 +4,7 @@ import "./Demo.css";
 
 const SALES_PUBLIC_CLIENT_ID = "9408uqymxsad";
 const WIDGET_BASE_URL = "https://evolvian-assistant.onrender.com/static/widget.html";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
 
 const LANGUAGE_OPTIONS = [
   { value: "en", label: "English" },
@@ -39,6 +40,23 @@ const COPY = {
     scheduleInstructionTitle: "Try the scheduling flow",
     scheduleInstructionBody:
       "Click Book in the top-right area of the chat to test scheduling. The calendar is for solution validation only.",
+    feedback: {
+      kicker: "Feedback",
+      title: "Tell us what worked and what felt unclear",
+      description:
+        "Share quick feedback about the demo. Email and phone are optional if you want us to follow up.",
+      messageLabel: "Feedback",
+      messagePlaceholder: "What should we improve or clarify in this demo?",
+      emailLabel: "Email (optional)",
+      emailPlaceholder: "you@company.com",
+      phoneLabel: "Phone (optional)",
+      phonePlaceholder: "+1 555 123 4567",
+      submit: "Send feedback",
+      sending: "Sending...",
+      success: "Thanks. Your feedback was saved.",
+      error: "We could not save your feedback. Please try again.",
+      minLength: "Please write at least 10 characters.",
+    },
     progressLabel: "Question progress",
     status: {
       idle: "Pending",
@@ -117,6 +135,23 @@ const COPY = {
     scheduleInstructionTitle: "Prueba la funcionalidad de agendar",
     scheduleInstructionBody:
       "Haz clic en Agendar en la parte superior derecha del chat para probar el flujo de agenda. La agenda es solo para fines de validar la solucion.",
+    feedback: {
+      kicker: "Feedback",
+      title: "Dinos que funciono y que se sintio poco claro",
+      description:
+        "Comparte feedback rapido sobre el demo. Email y telefono son opcionales si quieres que te contactemos.",
+      messageLabel: "Feedback",
+      messagePlaceholder: "Que deberiamos mejorar o aclarar en este demo?",
+      emailLabel: "Email (opcional)",
+      emailPlaceholder: "tu@empresa.com",
+      phoneLabel: "Telefono (opcional)",
+      phonePlaceholder: "+52 55 1234 5678",
+      submit: "Enviar feedback",
+      sending: "Enviando...",
+      success: "Gracias. Tu feedback fue guardado.",
+      error: "No pudimos guardar tu feedback. Intentalo de nuevo.",
+      minLength: "Escribe al menos 10 caracteres.",
+    },
     progressLabel: "Progreso de preguntas",
     status: {
       idle: "Pendiente",
@@ -178,6 +213,11 @@ const COPY = {
 };
 
 const STATUS_IDLE = "idle";
+const INITIAL_FEEDBACK_FORM = {
+  message: "",
+  email: "",
+  phone: "",
+};
 
 function createInitialStatuses(length) {
   return Array.from({ length }, () => STATUS_IDLE);
@@ -278,6 +318,9 @@ export default function Demo() {
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
   const [questionStatuses, setQuestionStatuses] = useState(() => createInitialStatuses(COPY.en.questions.length));
   const [tooltip, setTooltip] = useState("");
+  const [feedbackForm, setFeedbackForm] = useState(INITIAL_FEEDBACK_FORM);
+  const [feedbackState, setFeedbackState] = useState({ type: "idle", message: "" });
+  const [isFeedbackSubmitting, setIsFeedbackSubmitting] = useState(false);
 
   const iframeSrc = useMemo(() => {
     const params = new URLSearchParams({
@@ -348,6 +391,48 @@ export default function Demo() {
     const copied = await copyTextToClipboard(question);
     setQuestionStatus(index, "copied");
     showTooltip(copied ? t.tooltipCopied : t.tooltipCopyFailed);
+  };
+
+  const handleFeedbackChange = (event) => {
+    const { name, value } = event.target;
+    setFeedbackForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFeedbackSubmit = async (event) => {
+    event.preventDefault();
+
+    const trimmedMessage = feedbackForm.message.trim();
+    if (trimmedMessage.length < 10) {
+      setFeedbackState({ type: "error", message: t.feedback.minLength });
+      return;
+    }
+
+    setIsFeedbackSubmitting(true);
+    setFeedbackState({ type: "idle", message: "" });
+
+    try {
+      const response = await fetch(`${API_BASE}/api/public/demo/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: trimmedMessage,
+          email: feedbackForm.email.trim() || null,
+          phone: feedbackForm.phone.trim() || null,
+          language,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("feedback_failed");
+      }
+
+      setFeedbackForm(INITIAL_FEEDBACK_FORM);
+      setFeedbackState({ type: "success", message: t.feedback.success });
+    } catch {
+      setFeedbackState({ type: "error", message: t.feedback.error });
+    } finally {
+      setIsFeedbackSubmitting(false);
+    }
   };
 
   return (
@@ -507,6 +592,61 @@ export default function Demo() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section className="demo-feedback-section" id="feedback">
+          <div className="demo-feedback-heading">
+            <p>{t.feedback.kicker}</p>
+            <h2>{t.feedback.title}</h2>
+            <p>{t.feedback.description}</p>
+          </div>
+
+          <form className="demo-feedback-form" onSubmit={handleFeedbackSubmit}>
+            <label className="demo-feedback-field">
+              <span>{t.feedback.messageLabel}</span>
+              <textarea
+                name="message"
+                rows="5"
+                value={feedbackForm.message}
+                onChange={handleFeedbackChange}
+                placeholder={t.feedback.messagePlaceholder}
+                required
+                minLength={10}
+              />
+            </label>
+
+            <div className="demo-feedback-grid">
+              <label className="demo-feedback-field">
+                <span>{t.feedback.emailLabel}</span>
+                <input
+                  name="email"
+                  type="email"
+                  value={feedbackForm.email}
+                  onChange={handleFeedbackChange}
+                  placeholder={t.feedback.emailPlaceholder}
+                />
+              </label>
+
+              <label className="demo-feedback-field">
+                <span>{t.feedback.phoneLabel}</span>
+                <input
+                  name="phone"
+                  type="tel"
+                  value={feedbackForm.phone}
+                  onChange={handleFeedbackChange}
+                  placeholder={t.feedback.phonePlaceholder}
+                />
+              </label>
+            </div>
+
+            {feedbackState.message ? (
+              <p className={`demo-feedback-status is-${feedbackState.type}`}>{feedbackState.message}</p>
+            ) : null}
+
+            <button type="submit" className="demo-feedback-submit" disabled={isFeedbackSubmitting}>
+              {isFeedbackSubmitting ? t.feedback.sending : t.feedback.submit}
+            </button>
+          </form>
         </section>
       </main>
     </>

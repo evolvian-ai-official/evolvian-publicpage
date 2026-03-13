@@ -357,6 +357,114 @@
   padding: 1.4rem;
 }
 
+.demo-feedback-section {
+  max-width: 1220px;
+  margin: 1.2rem auto 0;
+  padding: 1.4rem;
+  border: 1px solid rgba(98, 145, 255, 0.2);
+  border-radius: 20px;
+  background: linear-gradient(160deg, rgba(19, 19, 23, 0.96), rgba(10, 11, 14, 0.98));
+  box-shadow: 0 26px 64px rgba(0, 0, 0, 0.42);
+}
+
+.demo-feedback-heading p {
+  margin: 0;
+  color: #9ab4df;
+  font-size: 0.93rem;
+}
+
+.demo-feedback-heading h2 {
+  margin: 0.52rem 0;
+  color: #f4f7ff;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+}
+
+.demo-feedback-heading > p:last-child {
+  color: #a8bcdf;
+}
+
+.demo-feedback-form {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.demo-feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.demo-feedback-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.demo-feedback-field span {
+  color: #dce7ff;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.demo-feedback-field input,
+.demo-feedback-field textarea {
+  width: 100%;
+  border: 1px solid rgba(104, 138, 213, 0.4);
+  border-radius: 12px;
+  background: rgba(17, 24, 38, 0.72);
+  color: #edf3ff;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+}
+
+.demo-feedback-field textarea {
+  resize: vertical;
+  min-height: 132px;
+}
+
+.demo-feedback-field input::placeholder,
+.demo-feedback-field textarea::placeholder {
+  color: #7f96bd;
+}
+
+.demo-feedback-field input:focus,
+.demo-feedback-field textarea:focus {
+  outline: none;
+  border-color: #86b2ff;
+  box-shadow: 0 0 0 1px rgba(134, 178, 255, 0.25) inset;
+}
+
+.demo-feedback-status {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.demo-feedback-status.is-success {
+  color: #95f2a0;
+}
+
+.demo-feedback-status.is-error {
+  color: #ff9f9f;
+}
+
+.demo-feedback-submit {
+  width: fit-content;
+  border: none;
+  border-radius: 12px;
+  padding: 0.82rem 1.15rem;
+  background: linear-gradient(130deg, #4a90e2, #7eaaff);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(74, 144, 226, 0.34);
+}
+
+.demo-feedback-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
 .demo-features-heading p {
   margin: 0;
   color: #9ab4df;
@@ -443,6 +551,10 @@
 
   .demo-features-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .demo-feedback-grid {
+    grid-template-columns: 1fr;
   }
 }
 
