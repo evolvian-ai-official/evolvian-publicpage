@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { usePublicLanguage } from "../contexts/PublicLanguageContext";
+import { trackConversion, trackEvent } from "../utils/tracking";
 import "./DemoLegacy.css";
 
 const DEMO_ACCESS_KEY = "evolvian_demo_access_v2";
@@ -313,14 +314,30 @@ export default function Demo() {
   const activeCopy = t.steps[activeStepConfig.id];
   const phase2Reached = activeStepConfig.phase === "phase2";
 
+  const handleLanguageChange = (event) => {
+    const nextLanguage = event.target.value;
+    setLanguage(nextLanguage);
+    trackEvent({ name: "Demo_Legacy_Language_Change", category: "Demo", label: nextLanguage });
+  };
+
   const handleSelectStep = (stepId) => {
     const step = STEPS.find((item) => item.id === stepId);
     if (!step) return;
     if (step.phase === "phase2" && !leadSubmitted) {
+      trackEvent({
+        name: "Demo_Legacy_Step_Locked",
+        category: "Demo",
+        label: `${stepId}_${language}`,
+      });
       setPendingStep(stepId);
       setShowLeadModal(true);
       return;
     }
+    trackEvent({
+      name: "Demo_Legacy_Step_Select",
+      category: "Demo",
+      label: `${stepId}_${language}`,
+    });
     setActiveStep(stepId);
   };
 
@@ -335,6 +352,11 @@ export default function Demo() {
   const handleLeadSubmit = async (event) => {
     event.preventDefault();
     setLeadError("");
+    trackEvent({
+      name: "Demo_Legacy_Lead_Attempt",
+      category: "Lead",
+      label: language,
+    });
 
     if ((leadForm.name || "").trim().length < 2) {
       setLeadError(t.errors.name);
@@ -388,6 +410,15 @@ export default function Demo() {
 
     setLeadSubmitted(true);
     setShowLeadModal(false);
+    trackEvent({
+      name: "Demo_Legacy_Lead_Submit",
+      category: "Lead",
+      label: `${language}_${leadForm.acceptedMarketing ? "marketing_opt_in" : "no_marketing_opt_in"}`,
+    });
+    trackConversion("Lead", {
+      currency: "USD",
+      value: 1,
+    });
 
     if (pendingStep) {
       setActiveStep(pendingStep);
@@ -398,6 +429,11 @@ export default function Demo() {
   const handleFeedbackSubmit = (event) => {
     event.preventDefault();
     setFeedbackError("");
+    trackEvent({
+      name: "Demo_Legacy_Feedback_Attempt",
+      category: "Demo",
+      label: language,
+    });
 
     if (!rating) {
       setFeedbackError(t.errors.stars);
@@ -416,6 +452,11 @@ export default function Demo() {
 
     setFeedbackSubmitted(true);
     setShowFeedbackModal(false);
+    trackEvent({
+      name: "Demo_Legacy_Feedback_Submit",
+      category: "Demo",
+      label: `${language}_${rating}`,
+    });
   };
 
   return (
@@ -431,14 +472,18 @@ export default function Demo() {
 
         <div className="demo-header-actions">
           <label htmlFor="demo-lang">{language === "es" ? "Idioma" : "Lang"}</label>
-          <select id="demo-lang" value={language} onChange={(event) => setLanguage(event.target.value)}>
+          <select id="demo-lang" value={language} onChange={handleLanguageChange}>
             {LANGUAGE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
           </select>
-          <Link to="/" className="demo-link-home">
+          <Link
+            to="/"
+            className="demo-link-home"
+            onClick={() => trackEvent({ name: "Demo_Legacy_Back_Home_Click", category: "Navigation", label: language })}
+          >
             {t.backHome}
           </Link>
         </div>
@@ -476,7 +521,13 @@ export default function Demo() {
             <article className="demo-phase-gate-card">
               <h3>{t.phase2GateTitle}</h3>
               <p>{t.phase2GateBody}</p>
-              <button type="button" onClick={() => setShowLeadModal(true)}>
+              <button
+                type="button"
+                onClick={() => {
+                  trackEvent({ name: "Demo_Legacy_Open_Lead_Gate", category: "Demo", label: language });
+                  setShowLeadModal(true);
+                }}
+              >
                 {t.phase2GateCta}
               </button>
             </article>
@@ -511,7 +562,13 @@ export default function Demo() {
 
           {phase2Reached && leadSubmitted ? (
             <div className="demo-footer-actions">
-              <button type="button" onClick={() => setShowFeedbackModal(true)}>
+              <button
+                type="button"
+                onClick={() => {
+                  trackEvent({ name: "Demo_Legacy_Open_Feedback", category: "Demo", label: language });
+                  setShowFeedbackModal(true);
+                }}
+              >
                 {t.finishDemo}
               </button>
             </div>
@@ -551,7 +608,10 @@ export default function Demo() {
                   required
                 />
                 <span>
-                  {t.formTerms} <a href="/terms">Terms</a>
+                  {t.formTerms}{" "}
+                  <a href="/terms" onClick={() => trackEvent({ name: "Demo_Legacy_Terms_Click", category: "Legal", label: language })}>
+                    Terms
+                  </a>
                 </span>
               </label>
 
@@ -592,7 +652,10 @@ export default function Demo() {
                     type="button"
                     aria-label={`Rate ${value}`}
                     className={value <= rating ? "star active" : "star"}
-                    onClick={() => setRating(value)}
+                    onClick={() => {
+                      setRating(value);
+                      trackEvent({ name: "Demo_Legacy_Rating_Select", category: "Demo", label: `${language}_${value}` });
+                    }}
                   >
                     ★
                   </button>

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { usePublicLanguage } from "../contexts/PublicLanguageContext";
+import { trackEvent } from "../utils/tracking";
 import "./Demo.css";
 
 const SALES_PUBLIC_CLIENT_ID = "9408uqymxsad";
@@ -378,18 +379,34 @@ export default function Demo() {
     setQuestionStatuses((prev) => prev.map((status, i) => (i === index ? value : status)));
   };
 
+  const handleLanguageChange = (event) => {
+    const nextLanguage = event.target.value;
+    setLanguage(nextLanguage);
+    trackEvent({ name: "Demo_Live_Language_Change", category: "Demo", label: nextLanguage });
+  };
+
   const handleQuestionClick = async (question, index) => {
     setActiveQuestionIndex(index);
 
     const didSend = tryDirectIframeSubmit(iframeRef.current, question);
     if (didSend) {
       setQuestionStatus(index, "sent");
+      trackEvent({
+        name: "Demo_Live_Question_Send",
+        category: "Demo",
+        label: `${language}_${index + 1}`,
+      });
       showTooltip(t.tooltipSent);
       return;
     }
 
     const copied = await copyTextToClipboard(question);
     setQuestionStatus(index, "copied");
+    trackEvent({
+      name: copied ? "Demo_Live_Question_Copy" : "Demo_Live_Question_Copy_Failed",
+      category: "Demo",
+      label: `${language}_${index + 1}`,
+    });
     showTooltip(copied ? t.tooltipCopied : t.tooltipCopyFailed);
   };
 
@@ -411,6 +428,12 @@ export default function Demo() {
     setFeedbackState({ type: "idle", message: "" });
 
     try {
+      trackEvent({
+        name: "Demo_Live_Feedback_Attempt",
+        category: "Demo",
+        label: language,
+      });
+
       const response = await fetch(`${API_BASE}/api/public/demo/feedback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -428,8 +451,18 @@ export default function Demo() {
 
       setFeedbackForm(INITIAL_FEEDBACK_FORM);
       setFeedbackState({ type: "success", message: t.feedback.success });
+      trackEvent({
+        name: "Demo_Live_Feedback_Submit",
+        category: "Demo",
+        label: `${language}_${feedbackForm.email.trim() || feedbackForm.phone.trim() ? "with_contact" : "anonymous"}`,
+      });
     } catch {
       setFeedbackState({ type: "error", message: t.feedback.error });
+      trackEvent({
+        name: "Demo_Live_Feedback_Error",
+        category: "Demo",
+        label: language,
+      });
     } finally {
       setIsFeedbackSubmitting(false);
     }
@@ -439,14 +472,25 @@ export default function Demo() {
     <>
       <header className="demo-top-header">
         <div className="demo-top-header-inner">
-          <a href="/" className="demo-brand-link" aria-label="Evolvian home">
+          <a
+            href="/"
+            className="demo-brand-link"
+            aria-label="Evolvian home"
+            onClick={() => trackEvent({ name: "Demo_Live_Logo_Click", category: "Navigation", label: language })}
+          >
             <img src="/logo-evolvian.svg" alt="Evolvian logo" className="demo-brand-logo" />
           </a>
 
           <nav className="demo-top-nav" aria-label="Demo navigation">
-            <a href="/">{t.nav.home}</a>
-            <a href="/blog">{t.nav.blog}</a>
-            <a href="/demo" className="active">{t.nav.action}</a>
+            <a href="/" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `home_${language}` })}>
+              {t.nav.home}
+            </a>
+            <a href="/blog" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `blog_${language}` })}>
+              {t.nav.blog}
+            </a>
+            <a href="/demo" className="active" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `demo_${language}` })}>
+              {t.nav.action}
+            </a>
           </nav>
 
           <div className="demo-top-actions">
@@ -454,7 +498,7 @@ export default function Demo() {
             <select
               id="demo-live-lang"
               value={language}
-              onChange={(event) => setLanguage(event.target.value)}
+              onChange={handleLanguageChange}
             >
               {LANGUAGE_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -462,7 +506,13 @@ export default function Demo() {
                 </option>
               ))}
             </select>
-            <a href="https://www.evolvianai.net/login" target="_blank" rel="noopener noreferrer" className="demo-top-cta">
+            <a
+              href="https://www.evolvianai.net/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="demo-top-cta"
+              onClick={() => trackEvent({ name: "Demo_Live_StartFree_Click", category: "Demo", label: `header_${language}` })}
+            >
               {t.nav.cta}
             </a>
           </div>
@@ -552,6 +602,7 @@ export default function Demo() {
               target="_blank"
               rel="noopener noreferrer"
               className="demo-cta"
+              onClick={() => trackEvent({ name: "Demo_Live_StartFree_Click", category: "Demo", label: `footer_${language}` })}
             >
               {t.cta}
             </a>

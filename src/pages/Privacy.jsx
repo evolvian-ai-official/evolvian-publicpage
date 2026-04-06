@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import BlogChrome from "../blog/BlogChrome";
 import { usePublicLanguage } from "../contexts/PublicLanguageContext";
 import { usePublicConsent, PUBLIC_CONSENT_VERSION } from "../contexts/PublicConsentContext";
+import { trackEvent } from "../utils/tracking";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
 
@@ -208,6 +209,12 @@ export default function Privacy() {
     setStatus({ type: "idle", message: "" });
 
     try {
+      trackEvent({
+        name: "Privacy_Request_Attempt",
+        category: "Legal",
+        label: `${requestType}_${language}`,
+      });
+
       const response = await fetch(`${API_BASE}/api/public/privacy/request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -228,9 +235,19 @@ export default function Privacy() {
 
       setStatus({ type: "success", message: t.success });
       setRequestForm(INITIAL_REQUEST);
+      trackEvent({
+        name: "Privacy_Request_Submit",
+        category: "Legal",
+        label: `${requestType}_${language}`,
+      });
     } catch (error) {
       console.error("Privacy request failed:", error);
       setStatus({ type: "error", message: t.error });
+      trackEvent({
+        name: "Privacy_Request_Error",
+        category: "Legal",
+        label: `${requestType}_${language}`,
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -262,8 +279,19 @@ export default function Privacy() {
                       {section.body}{" "}
                       {section.title.includes("Contact") || section.title.includes("Contacto") ? (
                         <>
-                          <a href="mailto:privacy@evolvianai.com">privacy@evolvianai.com</a> {language === "es" ? "o" : "or"}{" "}
-                          <a href="mailto:sales@evolvianai.com">sales@evolvianai.com</a>
+                          <a
+                            href="mailto:privacy@evolvianai.com"
+                            onClick={() => trackEvent({ name: "Privacy_Email_Click", category: "Legal", label: `privacy_${language}` })}
+                          >
+                            privacy@evolvianai.com
+                          </a>{" "}
+                          {language === "es" ? "o" : "or"}{" "}
+                          <a
+                            href="mailto:sales@evolvianai.com"
+                            onClick={() => trackEvent({ name: "Privacy_Email_Click", category: "Legal", label: `sales_${language}` })}
+                          >
+                            sales@evolvianai.com
+                          </a>
                         </>
                       ) : null}
                     </p>
@@ -280,7 +308,14 @@ export default function Privacy() {
 
               <h2>{t.choicesTitle}</h2>
               <p>{t.choicesBody}</p>
-              <button type="button" className="btn btn-secondary legal-choice-btn" onClick={openPreferences}>
+              <button
+                type="button"
+                className="btn btn-secondary legal-choice-btn"
+                onClick={() => {
+                  trackEvent({ name: "Privacy_Open_Choices_Click", category: "Legal", label: language });
+                  openPreferences();
+                }}
+              >
                 {t.openChoices}
               </button>
 

@@ -1,6 +1,7 @@
 import React from "react";
 import BlogChrome from "../blog/BlogChrome";
 import { usePublicLanguage } from "../contexts/PublicLanguageContext";
+import { trackEvent } from "../utils/tracking";
 
 const COPY = {
   en: {
@@ -146,7 +147,12 @@ export default function Terms() {
                     <p>
                       {section.body}{" "}
                       {(section.title.includes("Account") || section.title.includes("Cuenta") || section.title.includes("Contact") || section.title.includes("Contacto")) ? (
-                        <a href="mailto:sales@evolvianai.com">sales@evolvianai.com</a>
+                        <a
+                          href="mailto:sales@evolvianai.com"
+                          onClick={() => trackEvent({ name: "Terms_Email_Click", category: "Legal", label: language })}
+                        >
+                          sales@evolvianai.com
+                        </a>
                       ) : null}
                     </p>
                   ) : null}
