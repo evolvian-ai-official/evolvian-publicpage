@@ -13,9 +13,40 @@ const DEFAULT_PREFERENCES = {
   saleShareOptOut: false,
 };
 
+const CONSENT_SOURCE_PARAM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid", "msclkid"];
+const MAX_CONSENT_SOURCE_PATH_LENGTH = 250;
+
 function detectGpc() {
   if (typeof navigator === "undefined") return false;
   return navigator.globalPrivacyControl === true;
+}
+
+function buildConsentSourcePath() {
+  if (typeof window === "undefined") return "/";
+
+  try {
+    const url = new URL(window.location.href);
+    const query = new URLSearchParams();
+
+    for (const key of CONSENT_SOURCE_PARAM_KEYS) {
+      const value = url.searchParams.get(key);
+      if (value) query.set(key, value.slice(0, 80));
+    }
+
+    if (typeof document !== "undefined" && document.referrer) {
+      try {
+        const referrer = new URL(document.referrer);
+        if (referrer.hostname) query.set("ref", referrer.hostname.slice(0, 80));
+      } catch {
+        // Ignore malformed referrers and keep the consent log moving.
+      }
+    }
+
+    const sourcePath = `${url.pathname}${query.toString() ? `?${query.toString()}` : ""}`;
+    return sourcePath.slice(0, MAX_CONSENT_SOURCE_PATH_LENGTH) || "/";
+  } catch {
+    return typeof window.location?.pathname === "string" ? window.location.pathname.slice(0, MAX_CONSENT_SOURCE_PATH_LENGTH) || "/" : "/";
+  }
 }
 
 function getInitialConsentState() {
@@ -88,7 +119,7 @@ async function logConsentRecord(consent) {
         marketing: consent.preferences.marketing,
         sale_share_opt_out: consent.preferences.saleShareOptOut,
         global_privacy_control: consent.globalPrivacyControl,
-        source_path: typeof window !== "undefined" ? window.location.pathname : "/",
+        source_path: buildConsentSourcePath(),
       }),
     });
   } catch (error) {
