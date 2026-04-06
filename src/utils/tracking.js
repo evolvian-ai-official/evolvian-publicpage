@@ -5,8 +5,10 @@ const GOOGLE_ADS_LEAD_LABEL = import.meta.env.VITE_GOOGLE_ADS_LEAD_LABEL || "";
 const ENABLE_ANALYTICS = import.meta.env.VITE_ENABLE_ANALYTICS;
 const CONSENT_STORAGE_KEY = "evolvian_public_consent_v1";
 
-let lastPageViewPath = "";
-let lastPageViewAt = 0;
+const pageViewState = {
+  analytics: { path: "", at: 0 },
+  marketing: { path: "", at: 0 },
+};
 
 function isLocalHost() {
   const hostname = globalThis?.location?.hostname || "";
@@ -49,12 +51,17 @@ function isMarketingAllowed() {
   return Boolean(consent?.preferences?.marketing) && !Boolean(consent?.preferences?.saleShareOptOut);
 }
 
-function shouldSkipDuplicatePageView(path) {
-  const now = Date.now();
-  if (lastPageViewPath === path && now - lastPageViewAt < 1200) return true;
-  lastPageViewPath = path;
-  lastPageViewAt = now;
-  return false;
+function shouldSkipDuplicatePageView(channel, path) {
+  const previous = pageViewState[channel];
+  return previous.path === path && Date.now() - previous.at < 1200;
+}
+
+function markPageViewTracked(channel, path) {
+  pageViewState[channel] = { path, at: Date.now() };
+}
+
+function getNumericEventValue(value) {
+  return typeof value === "number" && Number.isFinite(value) ? value : undefined;
 }
 
 export function trackEvent({ name, category = "interaction", label = "", value = "" }) {
@@ -63,45 +70,63 @@ export function trackEvent({ name, category = "interaction", label = "", value =
 
     const gtagFn = globalThis?.gtag;
     const fbqFn = globalThis?.fbq;
+    const numericValue = getNumericEventValue(value);
+    const eventPayload = {
+      event_category: category,
+      event_label: label,
+    };
+    const metaPayload = {
+      category,
+      label,
+    };
+
+    if (numericValue !== undefined) {
+      eventPayload.value = numericValue;
+      metaPayload.value = numericValue;
+    }
 
     if (typeof gtagFn === "function") {
-      gtagFn("event", name, {
-        event_category: category,
-        event_label: label,
-        value,
-      });
+      gtagFn("event", name, eventPayload);
     }
 
     if (typeof fbqFn === "function") {
-      fbqFn("trackCustom", name, { category, label, value });
+      fbqFn("trackCustom", name, metaPayload);
     }
   } catch (error) {
     console.warn("Tracking error:", error);
   }
 }
 
-export function trackPageView(path = "") {
+export function trackPageView(path = "", { forceAnalytics = false, forceMarketing = false } = {}) {
   try {
     if (!shouldTrack()) return;
 
     const safePath = path || globalThis?.location?.pathname || "/";
-    if (shouldSkipDuplicatePageView(safePath)) return;
-
     const gtagFn = globalThis?.gtag;
     const fbqFn = globalThis?.fbq;
     const safeLocation = globalThis?.location?.href || "";
     const safeTitle = globalThis?.document?.title || "Evolvian";
 
-    if (isAnalyticsAllowed() && typeof gtagFn === "function") {
+    if (
+      isAnalyticsAllowed() &&
+      typeof gtagFn === "function" &&
+      (forceAnalytics || !shouldSkipDuplicatePageView("analytics", safePath))
+    ) {
       gtagFn("event", "page_view", {
         page_path: safePath,
         page_location: safeLocation,
         page_title: safeTitle,
       });
+      markPageViewTracked("analytics", safePath);
     }
 
-    if (isMarketingAllowed() && typeof fbqFn === "function") {
+    if (
+      isMarketingAllowed() &&
+      typeof fbqFn === "function" &&
+      (forceMarketing || !shouldSkipDuplicatePageView("marketing", safePath))
+    ) {
       fbqFn("track", "PageView");
+      markPageViewTracked("marketing", safePath);
     }
   } catch (error) {
     console.warn("Page view tracking error:", error);

@@ -686,7 +686,6 @@ export default function App() {
         name: "Contact_Form_Attempt",
         category: "Lead",
         label: `${contactForm.plan}_${language}`,
-        value: contactForm.email,
       });
 
       const response = await fetch(`${API_BASE}/api/public/contact`, {
@@ -714,7 +713,6 @@ export default function App() {
             name: "Contact_Form_Duplicate_Email",
             category: "Lead",
             label: `${contactForm.plan}_${language}`,
-            value: contactForm.email,
           });
           setContactStatus({
             type: "warning",
@@ -735,7 +733,6 @@ export default function App() {
         name: "Contact_Form_Submit",
         category: "Lead",
         label: `${contactForm.plan}_${language}`,
-        value: contactForm.email,
       });
       trackConversion("Lead", {
         currency: "USD",

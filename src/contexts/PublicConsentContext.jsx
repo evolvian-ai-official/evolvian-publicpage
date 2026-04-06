@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { syncThirdPartyConsent } from "../utils/thirdPartyScripts";
+import { trackPageView } from "../utils/tracking";
 
 const CONSENT_STORAGE_KEY = "evolvian_public_consent_v1";
 const CONSENT_VERSION = "2026-02";
@@ -99,6 +100,8 @@ export function PublicConsentProvider({ children }) {
   const [consent, setConsent] = useState(getInitialConsentState);
   const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
   const [isBannerOpen, setIsBannerOpen] = useState(!consent.hasConsent);
+  const previousAnalyticsEnabledRef = useRef(false);
+  const analyticsBootstrapTrackedRef = useRef(false);
 
   const persistConsent = (nextConsent) => {
     setConsent(nextConsent);
@@ -185,7 +188,28 @@ export function PublicConsentProvider({ children }) {
   }, [consent]);
 
   useEffect(() => {
-    syncThirdPartyConsent(consent);
+    let cancelled = false;
+    const analyticsEnabled = Boolean(consent.preferences.analytics);
+    const shouldReplayCurrentPageView =
+      analyticsEnabled && (!analyticsBootstrapTrackedRef.current || !previousAnalyticsEnabledRef.current);
+
+    async function syncConsent() {
+      await syncThirdPartyConsent(consent);
+
+      if (!cancelled && shouldReplayCurrentPageView) {
+        const currentPath = typeof window !== "undefined" ? `${window.location.pathname}${window.location.search || ""}` : "/";
+        trackPageView(currentPath);
+        analyticsBootstrapTrackedRef.current = true;
+      }
+
+      previousAnalyticsEnabledRef.current = analyticsEnabled;
+    }
+
+    syncConsent();
+
+    return () => {
+      cancelled = true;
+    };
   }, [consent]);
 
   const contextValue = useMemo(
