@@ -2,6 +2,7 @@ const GA4_ID = import.meta.env.VITE_GA4_ID || "G-44VLLPV4F5";
 const GOOGLE_ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID || "AW-17638350094";
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || "805104092211918";
 const ENABLE_ANALYTICS = import.meta.env.VITE_ENABLE_ANALYTICS;
+const GOOGLE_TAG_BOOTSTRAP_ID = import.meta.env.VITE_GOOGLE_TAG_BOOTSTRAP_ID || GOOGLE_ADS_ID || GA4_ID;
 
 let googleInitialized = false;
 let metaInitialized = false;
@@ -40,7 +41,7 @@ function addScriptOnce(id, src) {
 async function ensureGoogleTag() {
   if (googleInitialized || typeof window === "undefined") return;
 
-  await addScriptOnce("evolvian-gtag", `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`);
+  await addScriptOnce("evolvian-gtag", `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GOOGLE_TAG_BOOTSTRAP_ID)}`);
 
   window.dataLayer = window.dataLayer || [];
   window.gtag =
