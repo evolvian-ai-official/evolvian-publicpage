@@ -4,6 +4,8 @@ import { trackConversion, trackEvent } from "./utils/tracking";
 import { usePublicLanguage } from "./contexts/PublicLanguageContext";
 import { usePublicConsent, PUBLIC_CONSENT_VERSION } from "./contexts/PublicConsentContext";
 import HealthcareSection from "./components/HealthcareSection";
+import LandingPage from "./pages/LandingPage";
+import { getPublicLandingVariant } from "./lib/publicLandingVariant";
 import "./App.css";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
@@ -541,7 +543,7 @@ function formatMonthlyPrice(priceUsd) {
   return Number.isInteger(price) ? `$${price.toFixed(0)} USD/mo` : `$${price.toFixed(2)} USD/mo`;
 }
 
-export default function App() {
+function GenericLandingPage() {
   const [openMenu, setOpenMenu] = useState(false);
   const { language, setLanguage } = usePublicLanguage();
   const { openPreferences } = usePublicConsent();
@@ -1268,4 +1270,14 @@ export default function App() {
       ) : null}
     </>
   );
+}
+
+export default function App() {
+  const landingVariant = getPublicLandingVariant();
+
+  if (landingVariant === "generic") {
+    return <GenericLandingPage />;
+  }
+
+  return <LandingPage />;
 }
