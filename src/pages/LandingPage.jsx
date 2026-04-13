@@ -1,4 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { usePublicLanguage } from "../contexts/PublicLanguageContext";
+import PublicPricingSection from "../components/PublicPricingSection";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { cn } from "../lib/utils";
@@ -8,115 +10,461 @@ const START_TRIAL_URL = "https://www.evolvianai.net/register";
 const DEMO_URL = "/demo";
 const MotionDiv = motion.div;
 
-const PRIMARY_CTA_LABEL = "Start Free Trial";
-const SECONDARY_CTA_LABEL = "View Demo";
-
-const CHANNELS = ["WhatsApp", "Web chat", "Email"];
-const SPECIALTIES = ["Dentists", "Psychologists", "General practitioners"];
-
-const PROBLEM_POINTS = [
-  {
-    title: "Slow responses = lost patients",
-    description: "Patients message the first clinic that feels available. If replies take hours, they book elsewhere.",
-  },
-  {
-    title: "Manual booking = wasted time",
-    description: "Front-desk work steals attention from care, follow-up, and growth when every inquiry needs manual handling.",
-  },
-  {
-    title: "Missed follow-ups = lost revenue",
-    description: "No replies, forgotten reminders, and unclosed conversations leave appointments and repeat visits on the table.",
-  },
+const LANGUAGE_OPTIONS = [
+  { value: "en", label: "English" },
+  { value: "es", label: "Espanol" },
 ];
 
-const SOLUTION_COLUMNS = [
-  {
-    title: "Instant Replies",
-    description: "Respond in seconds across WhatsApp, web chat, and email with answers that feel helpful and human.",
-    points: ["Reply after hours", "Handle repetitive questions", "Keep every lead warm"],
-    icon: MessageIcon,
+const COPY = {
+  en: {
+    cta: {
+      primary: "Start Free Trial",
+      secondary: "View Demo",
+    },
+    header: {
+      brand: "Evolvian AI",
+      subtitle: "For modern clinics",
+      trusted: "Trusted by modern clinics",
+      langLabel: "Lang",
+      nav: {
+        problem: "Problem",
+        solution: "Solution",
+        howItWorks: "How it works",
+        pricing: "Pricing",
+        proof: "Proof",
+      },
+    },
+    hero: {
+      specialties: ["Dentists", "Psychologists", "General practitioners"],
+      title: "Turn every patient inquiry into a booked appointment — automatically.",
+      description: "Capture, qualify and schedule patients 24/7 without needing an assistant.",
+      channels: ["WhatsApp", "Web chat", "Email"],
+      metrics: [
+        { value: "24/7", label: "capture" },
+        { value: "3", label: "channels" },
+        { value: "0", label: "extra hires" },
+      ],
+      conversionLabel: "Conversion focus",
+      conversionValue: "More bookings",
+      cardTitle: "WhatsApp intake",
+      cardSubtitle: "Live response preview",
+      online: "Online now",
+      conversationTitle: "Patient conversation",
+      conversationSubtitle: "Captured from web and WhatsApp",
+      messageCount: "2 messages",
+      patientLabel: "Patient",
+      patientMessage: "Do you have appointments tomorrow?",
+      aiLabel: "Evolvian AI",
+      aiMessage: "Yes, we have availability at 10am and 2pm. Would you like to book?",
+      suggestedTitle: "Suggested next step",
+      suggestedDescription: "Offer times, confirm contact details, and reserve the slot instantly.",
+      slots: ["10am", "2pm"],
+      automationLabel: "Automation",
+      automationValue: "Less manual work",
+    },
+    problem: {
+      eyebrow: "The problem",
+      title: "You're losing patients every day",
+      description:
+        "Most clinics do not lose demand because people are not interested. They lose it between the first message and the confirmed appointment.",
+      items: [
+        {
+          title: "Slow responses = lost patients",
+          description: "Patients message the first clinic that feels available. If replies take hours, they book elsewhere.",
+        },
+        {
+          title: "Manual booking = wasted time",
+          description: "Front-desk work steals attention from care, follow-up, and growth when every inquiry needs manual handling.",
+        },
+        {
+          title: "Missed follow-ups = lost revenue",
+          description: "No replies, forgotten reminders, and unclosed conversations leave appointments and repeat visits on the table.",
+        },
+      ],
+    },
+    solution: {
+      eyebrow: "The solution",
+      title: "Evolvian fixes this automatically",
+      description:
+        "Every incoming inquiry gets an immediate next step: a fast answer, the right qualification flow, and a clear path to a confirmed appointment.",
+      items: [
+        {
+          icon: "message",
+          title: "Instant Replies",
+          description: "Respond in seconds across WhatsApp, web chat, and email with answers that feel helpful and human.",
+          points: ["Reply after hours", "Handle repetitive questions", "Keep every lead warm"],
+        },
+        {
+          icon: "spark",
+          title: "Smart Qualification",
+          description: "Collect symptoms, intent, specialty, insurance, and preferred timing before your team gets involved.",
+          points: ["Ask the right questions", "Capture lead details", "Route each patient correctly"],
+        },
+        {
+          icon: "calendar",
+          title: "Automatic Booking",
+          description: "Offer available slots, confirm the visit, and keep the calendar moving without back-and-forth messages.",
+          points: ["Share live availability", "Confirm faster", "Reduce admin work"],
+        },
+      ],
+    },
+    howItWorks: {
+      eyebrow: "How it works",
+      title: "From first inquiry to confirmed visit",
+      description: "A simple patient journey with no inbox juggling, no missed follow-ups, and no manual scheduling bottlenecks.",
+      items: [
+        {
+          step: "01",
+          title: "Patient sends message",
+          description: "A new inquiry arrives through WhatsApp, web chat, or email.",
+        },
+        {
+          step: "02",
+          title: "Evolvian responds instantly",
+          description: "The assistant answers, qualifies the lead, and offers the next best step in real time.",
+        },
+        {
+          step: "03",
+          title: "Evolvian books appointment",
+          description: "The patient picks a time and the appointment gets confirmed automatically.",
+        },
+      ],
+      stepLabel: "Step",
+    },
+    benefits: {
+      eyebrow: "Benefits",
+      title: "Results your clinic feels immediately",
+      description:
+        "The product is not the AI. The product is a fuller calendar, faster patient response times, and less admin work for your team.",
+      items: [
+        {
+          title: "More patients without ads",
+          description: "Convert the demand you already have instead of paying for more traffic first.",
+        },
+        {
+          title: "No need for assistants",
+          description: "Keep the front desk lean while still replying quickly and consistently.",
+        },
+        {
+          title: "24/7 availability",
+          description: "Capture inquiries late at night, during consultations, and on weekends.",
+        },
+        {
+          title: "Reduce no-shows",
+          description: "Automated confirmations and reminder flows keep the calendar tighter.",
+        },
+      ],
+    },
+    pricing: {
+      kicker: "Pricing",
+      title: "Choose the plan that matches your current operations",
+      description: "Start free and upgrade as conversation volume and automation needs grow.",
+      mostPopular: "Most popular",
+      customPriceLabel: "Custom",
+      ctas: {
+        free: "Start for free",
+        starter: "Get Starter",
+        premium: "Get Premium",
+        white_label: "Talk to sales",
+      },
+      descriptions: {
+        free: "Try Evolvian at no cost.",
+        starter: "Perfect for small businesses that need real automation.",
+        premium: "Best value for teams handling recurring operational conversations.",
+        white_label: "Enterprise and agency solution with tailored implementation.",
+      },
+      highlights: {
+        free: [
+          "500 messages / month",
+          "Upload documents",
+          "Basic dashboard",
+          "Website chat widget integration",
+        ],
+        starter: [
+          "2,000 messages / month",
+          "Upload documents",
+          "Basic dashboard",
+          "Website chat widget integration",
+          "WhatsApp AI setup support",
+        ],
+        premium: [
+          "Everything in Starter",
+          "5,000 messages / month",
+          "Upload documents",
+          "Advanced widget customization",
+          "Custom assistant prompt",
+          "WhatsApp appointments and reminders",
+        ],
+        white_label: ["Unlimited messages", "Unlimited documents", "Dedicated onboarding", "Priority support"],
+      },
+    },
+    proof: {
+      eyebrow: "Social proof",
+      title: "Trusted by modern clinics",
+      description: "Placeholder proof blocks for rollout. Swap these with real names, logos, and outcome metrics once case studies are approved.",
+      stats: [
+        { value: "92%", label: "reply rate" },
+        { value: "3x", label: "faster intake" },
+        { value: "24/7", label: "coverage" },
+      ],
+      testimonials: [
+        {
+          quote: "We stopped losing WhatsApp inquiries after hours. Patients now get answers and book before my team even opens the clinic.",
+          name: "Dr. Sofia Ramirez",
+          role: "Testimonial - Dental clinic",
+        },
+        {
+          quote: "The biggest win is speed. Evolvian qualifies the patient and offers times instantly, so we spend less time on routine admin.",
+          name: "Dr. Ethan Brooks",
+          role: "Testimonial - Psychology practice",
+        },
+        {
+          quote: "It feels like having a reliable receptionist that never misses a lead, even when the whole staff is busy with consultations.",
+          name: "Dr. Valeria Torres",
+          role: "Testimonial - General practice",
+        },
+      ],
+    },
+    finalCta: {
+      eyebrow: "Final CTA",
+      title: "Start capturing more patients today",
+      description: "Set up once, stay available across channels, and let every inquiry move toward a booked appointment.",
+    },
+    footer: {
+      description: "Multi-channel patient capture and booking for modern clinics.",
+      terms: "Terms",
+      privacy: "Privacy",
+      demo: "Demo",
+    },
   },
-  {
-    title: "Smart Qualification",
-    description: "Collect symptoms, intent, specialty, insurance, and preferred timing before your team gets involved.",
-    points: ["Ask the right questions", "Capture lead details", "Route each patient correctly"],
-    icon: SparkIcon,
+  es: {
+    cta: {
+      primary: "Empieza prueba gratis",
+      secondary: "Ver demo",
+    },
+    header: {
+      brand: "Evolvian AI",
+      subtitle: "Para clinicas modernas",
+      trusted: "Confiado por clinicas modernas",
+      langLabel: "Lang",
+      nav: {
+        problem: "Problema",
+        solution: "Solucion",
+        howItWorks: "Como funciona",
+        pricing: "Planes",
+        proof: "Prueba social",
+      },
+    },
+    hero: {
+      specialties: ["Dentistas", "Psicologos", "Medicos generales"],
+      title: "Convierte cada consulta de paciente en una cita agendada, automaticamente.",
+      description: "Captura, califica y agenda pacientes 24/7 sin necesitar una asistente.",
+      channels: ["WhatsApp", "Chat web", "Email"],
+      metrics: [
+        { value: "24/7", label: "captura" },
+        { value: "3", label: "canales" },
+        { value: "0", label: "contrataciones" },
+      ],
+      conversionLabel: "Enfoque de conversion",
+      conversionValue: "Mas citas",
+      cardTitle: "Captacion por WhatsApp",
+      cardSubtitle: "Vista previa de respuesta",
+      online: "En linea ahora",
+      conversationTitle: "Conversacion con paciente",
+      conversationSubtitle: "Capturado desde web y WhatsApp",
+      messageCount: "2 mensajes",
+      patientLabel: "Paciente",
+      patientMessage: "Tienen citas disponibles manana?",
+      aiLabel: "Evolvian AI",
+      aiMessage: "Si, tenemos disponibilidad a las 10am y 2pm. Te gustaria agendar?",
+      suggestedTitle: "Siguiente paso sugerido",
+      suggestedDescription: "Ofrece horarios, confirma datos de contacto y reserva el espacio al instante.",
+      slots: ["10am", "2pm"],
+      automationLabel: "Automatizacion",
+      automationValue: "Menos trabajo manual",
+    },
+    problem: {
+      eyebrow: "El problema",
+      title: "Estas perdiendo pacientes todos los dias",
+      description:
+        "La mayoria de las clinicas no pierde demanda por falta de interes. La pierde entre el primer mensaje y la cita confirmada.",
+      items: [
+        {
+          title: "Respuestas lentas = pacientes perdidos",
+          description: "Los pacientes escriben a la primera clinica que parece disponible. Si tardas horas en responder, reservan en otro lado.",
+        },
+        {
+          title: "Agenda manual = tiempo desperdiciado",
+          description: "El trabajo de recepcion le quita tiempo a la atencion, al seguimiento y al crecimiento cuando cada consulta se gestiona a mano.",
+        },
+        {
+          title: "Seguimientos perdidos = ingresos perdidos",
+          description: "Mensajes sin responder, recordatorios olvidados y conversaciones inconclusas dejan citas y visitas repetidas sobre la mesa.",
+        },
+      ],
+    },
+    solution: {
+      eyebrow: "La solucion",
+      title: "Evolvian resuelve esto automaticamente",
+      description:
+        "Cada consulta entrante recibe un siguiente paso claro: una respuesta rapida, la calificacion correcta y un camino directo a la cita confirmada.",
+      items: [
+        {
+          icon: "message",
+          title: "Respuestas instantaneas",
+          description: "Responde en segundos por WhatsApp, chat web y email con mensajes utiles y naturales.",
+          points: ["Responde fuera de horario", "Atiende preguntas repetitivas", "Mantiene caliente cada lead"],
+        },
+        {
+          icon: "spark",
+          title: "Calificacion inteligente",
+          description: "Recoge sintomas, intencion, especialidad, seguro y horario preferido antes de que intervenga tu equipo.",
+          points: ["Hace las preguntas correctas", "Captura datos del lead", "Enruta cada paciente correctamente"],
+        },
+        {
+          icon: "calendar",
+          title: "Agendamiento automatico",
+          description: "Ofrece horarios disponibles, confirma la visita y mueve la agenda sin ida y vuelta manual.",
+          points: ["Comparte disponibilidad real", "Confirma mas rapido", "Reduce trabajo administrativo"],
+        },
+      ],
+    },
+    howItWorks: {
+      eyebrow: "Como funciona",
+      title: "Del primer mensaje a la visita confirmada",
+      description: "Un recorrido simple para el paciente, sin perseguir inboxes, sin seguimientos perdidos y sin cuellos de botella al agendar.",
+      items: [
+        {
+          step: "01",
+          title: "Paciente envia mensaje",
+          description: "Una nueva consulta llega por WhatsApp, chat web o email.",
+        },
+        {
+          step: "02",
+          title: "Evolvian responde al instante",
+          description: "El asistente responde, califica al lead y propone el siguiente paso en tiempo real.",
+        },
+        {
+          step: "03",
+          title: "Evolvian agenda la cita",
+          description: "El paciente elige una hora y la cita queda confirmada automaticamente.",
+        },
+      ],
+      stepLabel: "Paso",
+    },
+    benefits: {
+      eyebrow: "Beneficios",
+      title: "Resultados que tu clinica siente de inmediato",
+      description:
+        "El producto no es la AI. El producto es una agenda mas llena, respuestas mas rapidas para pacientes y menos trabajo administrativo para tu equipo.",
+      items: [
+        {
+          title: "Mas pacientes sin anuncios",
+          description: "Convierte la demanda que ya tienes antes de gastar en mas trafico.",
+        },
+        {
+          title: "Sin necesidad de asistentes",
+          description: "Mantiene una recepcion ligera mientras sigues respondiendo rapido y de forma consistente.",
+        },
+        {
+          title: "Disponibilidad 24/7",
+          description: "Captura consultas de noche, durante consulta y en fines de semana.",
+        },
+        {
+          title: "Reduce no-shows",
+          description: "Confirmaciones y recordatorios automaticos mantienen la agenda mas firme.",
+        },
+      ],
+    },
+    pricing: {
+      kicker: "Planes",
+      title: "Elige el plan segun tu operacion actual",
+      description: "Empieza gratis y sube de plan cuando aumenten tus conversaciones y automatizacion.",
+      mostPopular: "Mas popular",
+      customPriceLabel: "A medida",
+      ctas: {
+        free: "Empieza gratis",
+        starter: "Obtener Starter",
+        premium: "Obtener Premium",
+        white_label: "Hablar con ventas",
+      },
+      descriptions: {
+        free: "Prueba Evolvian sin costo.",
+        starter: "Ideal para negocios pequenos que necesitan automatizar.",
+        premium: "Mejor opcion para equipos con conversaciones operativas recurrentes.",
+        white_label: "Solucion empresarial y agencias con implementacion a medida.",
+      },
+      highlights: {
+        free: [
+          "500 mensajes / mes",
+          "Upload documents",
+          "Dashboard basico",
+          "Integracion de chat widget en web",
+        ],
+        starter: [
+          "2,000 mensajes / mes",
+          "Upload documents",
+          "Dashboard basico",
+          "Integracion de chat widget en web",
+          "Soporte de configuracion AI para WhatsApp",
+        ],
+        premium: [
+          "Todo lo de Starter",
+          "5,000 mensajes / mes",
+          "Upload documents",
+          "Personalizacion avanzada de widget",
+          "Prompt personalizado",
+          "Citas y recordatorios por WhatsApp",
+        ],
+        white_label: ["Mensajes ilimitados", "Documentos ilimitados", "Onboarding dedicado", "Soporte prioritario"],
+      },
+    },
+    proof: {
+      eyebrow: "Prueba social",
+      title: "Confiado por clinicas modernas",
+      description: "Bloques de prueba para esta version. Sustituyelos por nombres, logos y metricas reales cuando los casos de estudio esten aprobados.",
+      stats: [
+        { value: "92%", label: "tasa de respuesta" },
+        { value: "3x", label: "captacion mas rapida" },
+        { value: "24/7", label: "cobertura" },
+      ],
+      testimonials: [
+        {
+          quote: "Dejamos de perder consultas de WhatsApp fuera de horario. Ahora los pacientes reciben respuesta y agendan antes de que el equipo abra la clinica.",
+          name: "Dra. Sofia Ramirez",
+          role: "Testimonial - Clinica dental",
+        },
+        {
+          quote: "La mayor ganancia es la velocidad. Evolvian califica al paciente y ofrece horarios al instante, asi pasamos menos tiempo en administracion rutinaria.",
+          name: "Dr. Ethan Brooks",
+          role: "Testimonial - Consultorio de psicologia",
+        },
+        {
+          quote: "Se siente como tener una recepcionista confiable que nunca deja escapar un lead, incluso cuando todo el personal esta ocupado en consulta.",
+          name: "Dra. Valeria Torres",
+          role: "Testimonial - Medicina general",
+        },
+      ],
+    },
+    finalCta: {
+      eyebrow: "CTA final",
+      title: "Empieza a captar mas pacientes hoy",
+      description: "Configura una vez, mantente disponible en todos tus canales y haz que cada consulta avance hacia una cita agendada.",
+    },
+    footer: {
+      description: "Captacion y agendamiento de pacientes en multiples canales para clinicas modernas.",
+      terms: "Terminos",
+      privacy: "Privacidad",
+      demo: "Demo",
+    },
   },
-  {
-    title: "Automatic Booking",
-    description: "Offer available slots, confirm the visit, and keep the calendar moving without back-and-forth messages.",
-    points: ["Share live availability", "Confirm faster", "Reduce admin work"],
-    icon: CalendarIcon,
-  },
-];
+};
 
-const WORKFLOW_STEPS = [
-  {
-    step: "01",
-    title: "Patient sends message",
-    description: "A new inquiry arrives through WhatsApp, web chat, or email.",
-  },
-  {
-    step: "02",
-    title: "Evolvian responds instantly",
-    description: "The assistant answers, qualifies the lead, and offers the next best step in real time.",
-  },
-  {
-    step: "03",
-    title: "Evolvian books appointment",
-    description: "The patient picks a time and the appointment gets confirmed automatically.",
-  },
-];
-
-const BENEFITS = [
-  {
-    title: "More patients without ads",
-    description: "Convert the demand you already have instead of paying for more traffic first.",
-  },
-  {
-    title: "No need for assistants",
-    description: "Keep the front desk lean while still replying quickly and consistently.",
-  },
-  {
-    title: "24/7 availability",
-    description: "Capture inquiries late at night, during consultations, and on weekends.",
-  },
-  {
-    title: "Reduce no-shows",
-    description: "Automated confirmations and reminder flows keep the calendar tighter.",
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    quote: "We stopped losing WhatsApp inquiries after hours. Patients now get answers and book before my team even opens the clinic.",
-    name: "Dr. Sofia Ramirez",
-    role: "Placeholder testimonial · Dental clinic",
-  },
-  {
-    quote: "The biggest win is speed. Evolvian qualifies the patient and offers times instantly, so we spend less time on routine admin.",
-    name: "Dr. Ethan Brooks",
-    role: "Placeholder testimonial · Psychology practice",
-  },
-  {
-    quote: "It feels like having a reliable receptionist that never misses a lead, even when the whole staff is busy with consultations.",
-    name: "Dr. Valeria Torres",
-    role: "Placeholder testimonial · General practice",
-  },
-];
-
-const NAV_LINKS = [
-  { href: "#problem", label: "Problem" },
-  { href: "#solution", label: "Solution" },
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#proof", label: "Proof" },
-];
-
-const HERO_METRICS = [
-  { value: "24/7", label: "capture" },
-  { value: "3", label: "channels" },
-  { value: "0", label: "extra hires" },
-];
+function getSolutionIcon(icon) {
+  if (icon === "spark") return SparkIcon;
+  if (icon === "calendar") return CalendarIcon;
+  return MessageIcon;
+}
 
 function Container({ className, children }) {
   return <div className={cn("mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className)}>{children}</div>;
@@ -146,9 +494,7 @@ function SectionHeading({ eyebrow, title, description, align = "left" }) {
   return (
     <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
       <p className="font-sans text-sm font-semibold uppercase tracking-[0.24em] text-[#4a90e2]">{eyebrow}</p>
-      <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.04em] text-[#274472] sm:text-4xl">
-        {title}
-      </h2>
+      <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.04em] text-[#274472] sm:text-4xl">{title}</h2>
       {description ? <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{description}</p> : null}
     </div>
   );
@@ -167,24 +513,32 @@ function IconBadge({ className, children }) {
   );
 }
 
-function Header() {
+function Header({ t, language, onLanguageChange }) {
+  const navLinks = [
+    { href: "#problem", label: t.header.nav.problem },
+    { href: "#solution", label: t.header.nav.solution },
+    { href: "#how-it-works", label: t.header.nav.howItWorks },
+    { href: "#plans", label: t.header.nav.pricing },
+    { href: "#proof", label: t.header.nav.proof },
+  ];
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/70 bg-white/80 backdrop-blur-xl">
-      <Container className="flex h-20 items-center justify-between gap-4">
+      <Container className="flex h-20 items-center justify-between gap-3">
         <a
           href="/"
-          className="flex items-center gap-3"
+          className="flex min-w-0 items-center gap-3"
           onClick={() => trackEvent({ name: "Healthcare_Landing_Logo_Click", category: "Navigation", label: "Header" })}
         >
-          <img src="/logo-evolvian.svg" alt="Evolvian AI" className="h-11 w-11 rounded-2xl border border-white bg-white p-1.5 shadow-sm" />
-          <div>
-            <p className="font-display text-lg font-semibold tracking-[-0.03em] text-[#274472]">Evolvian AI</p>
-            <p className="text-xs font-medium uppercase tracking-[0.24em] text-slate-500">For modern clinics</p>
+          <img src="/logo-evolvian.svg" alt={t.header.brand} className="h-11 w-11 rounded-2xl border border-white bg-white p-1.5 shadow-sm" />
+          <div className="min-w-0">
+            <p className="truncate font-display text-lg font-semibold tracking-[-0.03em] text-[#274472]">{t.header.brand}</p>
+            <p className="truncate text-xs font-medium uppercase tracking-[0.24em] text-slate-500">{t.header.subtitle}</p>
           </div>
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -196,23 +550,41 @@ function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 sm:flex">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 rounded-2xl border border-[#d8e4ef] bg-white/90 px-3 py-2 shadow-sm">
+            <span className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 sm:inline">{t.header.langLabel}</span>
+            <select
+              aria-label={t.header.langLabel}
+              value={language}
+              onChange={onLanguageChange}
+              className="bg-transparent text-sm font-semibold text-[#274472] focus:outline-none"
+            >
+              {LANGUAGE_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <Button
             href={DEMO_URL}
             variant="secondary"
+            className="hidden md:inline-flex"
             onClick={() => trackEvent({ name: "Healthcare_Landing_Header_Demo_Click", category: "CTA", label: "Header" })}
           >
-            {SECONDARY_CTA_LABEL}
+            {t.cta.secondary}
           </Button>
+
           <Button
             href={START_TRIAL_URL}
             target="_blank"
             rel="noopener noreferrer"
-            size="lg"
-            className="px-5"
+            size="sm"
+            className="px-4 sm:px-5"
             onClick={() => trackEvent({ name: "Healthcare_Landing_Header_Trial_Click", category: "CTA", label: "Header" })}
           >
-            {PRIMARY_CTA_LABEL}
+            {t.cta.primary}
           </Button>
         </div>
       </Container>
@@ -220,7 +592,7 @@ function Header() {
   );
 }
 
-function HeroSection() {
+function HeroSection({ t }) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -232,12 +604,12 @@ function HeroSection() {
         <SectionReveal className="max-w-xl" delay={0.05}>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-sm font-medium text-slate-600 shadow-[0_18px_45px_-34px_rgba(39,68,114,0.8)] backdrop-blur">
             <span className="h-2.5 w-2.5 rounded-full bg-[#a3d9b1]" />
-            Trusted by modern clinics
+            {t.header.trusted}
           </div>
 
           <div className="mt-8 space-y-6">
             <div className="flex flex-wrap gap-2">
-              {SPECIALTIES.map((specialty) => (
+              {t.hero.specialties.map((specialty) => (
                 <span
                   key={specialty}
                   className="rounded-full border border-[#dce7ef] bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500"
@@ -248,12 +620,10 @@ function HeroSection() {
             </div>
 
             <h1 className="font-display text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-[#274472] sm:text-5xl lg:text-6xl">
-              Turn every patient inquiry into a booked appointment — automatically.
+              {t.hero.title}
             </h1>
 
-            <p className="max-w-lg text-lg leading-8 text-slate-600">
-              Capture, qualify and schedule patients 24/7 without needing an assistant.
-            </p>
+            <p className="max-w-lg text-lg leading-8 text-slate-600">{t.hero.description}</p>
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button
@@ -264,7 +634,7 @@ function HeroSection() {
                 className="w-full sm:w-auto"
                 onClick={() => trackEvent({ name: "Healthcare_Landing_Hero_Trial_Click", category: "CTA", label: "Hero" })}
               >
-                {PRIMARY_CTA_LABEL}
+                {t.cta.primary}
                 <ArrowUpRightIcon className="h-4 w-4" />
               </Button>
               <Button
@@ -274,12 +644,12 @@ function HeroSection() {
                 className="w-full sm:w-auto"
                 onClick={() => trackEvent({ name: "Healthcare_Landing_Hero_Demo_Click", category: "CTA", label: "Hero" })}
               >
-                {SECONDARY_CTA_LABEL}
+                {t.cta.secondary}
               </Button>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
-              {CHANNELS.map((channel) => (
+              {t.hero.channels.map((channel) => (
                 <span key={channel} className="inline-flex items-center gap-2 rounded-full bg-white/75 px-3 py-2 ring-1 ring-[#e1ebf3]">
                   <CheckIcon className="h-3.5 w-3.5 text-[#4a90e2]" />
                   {channel}
@@ -288,7 +658,7 @@ function HeroSection() {
             </div>
 
             <div className="grid max-w-md grid-cols-3 gap-3 pt-3">
-              {HERO_METRICS.map((metric) => (
+              {t.hero.metrics.map((metric) => (
                 <Card key={metric.label} className="border-[#dce7ef] bg-white/85">
                   <CardContent className="p-4">
                     <p className="font-display text-2xl font-semibold tracking-[-0.04em] text-[#274472]">{metric.value}</p>
@@ -302,8 +672,8 @@ function HeroSection() {
 
         <SectionReveal className="relative" delay={0.15}>
           <div className="absolute -left-4 top-10 hidden rounded-2xl border border-[#d4e7da] bg-white/90 px-4 py-3 shadow-[0_24px_60px_-36px_rgba(39,68,114,0.55)] md:block">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Conversion focus</p>
-            <p className="mt-1 font-display text-2xl font-semibold tracking-[-0.04em] text-[#274472]">More bookings</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{t.hero.conversionLabel}</p>
+            <p className="mt-1 font-display text-2xl font-semibold tracking-[-0.04em] text-[#274472]">{t.hero.conversionValue}</p>
           </div>
 
           <Card className="relative overflow-hidden border-[#dce7ef] bg-white/90 p-5">
@@ -315,13 +685,13 @@ function HeroSection() {
                   <MessageIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-display text-lg font-semibold tracking-[-0.03em] text-[#274472]">WhatsApp intake</p>
-                  <p className="text-sm text-slate-500">Live response preview</p>
+                  <p className="font-display text-lg font-semibold tracking-[-0.03em] text-[#274472]">{t.hero.cardTitle}</p>
+                  <p className="text-sm text-slate-500">{t.hero.cardSubtitle}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 rounded-full bg-[#f4faf6] px-3 py-1.5 text-xs font-semibold text-[#274472]">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#a3d9b1]" />
-                Online now
+                {t.hero.online}
               </div>
             </div>
 
@@ -333,11 +703,11 @@ function HeroSection() {
             >
               <div className="flex items-center justify-between border-b border-[#e2ebf2] pb-3">
                 <div>
-                  <p className="text-sm font-semibold text-[#274472]">Patient conversation</p>
-                  <p className="text-xs text-slate-500">Captured from web and WhatsApp</p>
+                  <p className="text-sm font-semibold text-[#274472]">{t.hero.conversationTitle}</p>
+                  <p className="text-xs text-slate-500">{t.hero.conversationSubtitle}</p>
                 </div>
                 <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-500 ring-1 ring-[#e3edf4]">
-                  2 messages
+                  {t.hero.messageCount}
                 </span>
               </div>
 
@@ -348,8 +718,8 @@ function HeroSection() {
                   transition={{ delay: 0.2, duration: 0.45 }}
                   className="max-w-[82%] rounded-[22px] rounded-bl-md bg-white px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm ring-1 ring-[#e3edf4]"
                 >
-                  <p className="font-medium text-slate-500">Patient</p>
-                  <p className="mt-1">Do you have appointments tomorrow?</p>
+                  <p className="font-medium text-slate-500">{t.hero.patientLabel}</p>
+                  <p className="mt-1">{t.hero.patientMessage}</p>
                 </MotionDiv>
 
                 <MotionDiv
@@ -358,27 +728,27 @@ function HeroSection() {
                   transition={{ delay: 0.35, duration: 0.45 }}
                   className="ml-auto max-w-[88%] rounded-[22px] rounded-br-md bg-[#dcf3e4] px-4 py-3 text-sm leading-6 text-[#24445d] shadow-sm ring-1 ring-[#cbe8d5]"
                 >
-                  <p className="font-medium text-[#366383]">Evolvian AI</p>
-                  <p className="mt-1">Yes, we have availability at 10am and 2pm. Would you like to book?</p>
+                  <p className="font-medium text-[#366383]">{t.hero.aiLabel}</p>
+                  <p className="mt-1">{t.hero.aiMessage}</p>
                 </MotionDiv>
               </div>
 
               <div className="grid gap-3 rounded-3xl bg-white p-4 ring-1 ring-[#e3edf4] sm:grid-cols-[1fr_auto] sm:items-center">
                 <div>
-                  <p className="text-sm font-semibold text-[#274472]">Suggested next step</p>
-                  <p className="mt-1 text-sm text-slate-500">Offer times, confirm contact details, and reserve the slot instantly.</p>
+                  <p className="text-sm font-semibold text-[#274472]">{t.hero.suggestedTitle}</p>
+                  <p className="mt-1 text-sm text-slate-500">{t.hero.suggestedDescription}</p>
                 </div>
                 <div className="flex gap-2">
-                  <span className="rounded-full bg-[#eef6fb] px-3 py-2 text-sm font-semibold text-[#274472]">10am</span>
-                  <span className="rounded-full bg-[#fff5e6] px-3 py-2 text-sm font-semibold text-[#7a5410]">2pm</span>
+                  <span className="rounded-full bg-[#eef6fb] px-3 py-2 text-sm font-semibold text-[#274472]">{t.hero.slots[0]}</span>
+                  <span className="rounded-full bg-[#fff5e6] px-3 py-2 text-sm font-semibold text-[#7a5410]">{t.hero.slots[1]}</span>
                 </div>
               </div>
             </MotionDiv>
           </Card>
 
           <div className="absolute -bottom-4 right-2 hidden rounded-2xl border border-[#e9d9b6] bg-white/95 px-4 py-3 shadow-[0_24px_60px_-36px_rgba(39,68,114,0.55)] md:block">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Automation</p>
-            <p className="mt-1 font-display text-2xl font-semibold tracking-[-0.04em] text-[#274472]">Less manual work</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{t.hero.automationLabel}</p>
+            <p className="mt-1 font-display text-2xl font-semibold tracking-[-0.04em] text-[#274472]">{t.hero.automationValue}</p>
           </div>
         </SectionReveal>
       </Container>
@@ -386,20 +756,16 @@ function HeroSection() {
   );
 }
 
-function ProblemSection() {
+function ProblemSection({ t }) {
   return (
     <section id="problem" className="border-y border-[#e4edf3] bg-white py-16 sm:py-20">
       <Container>
         <SectionReveal>
-          <SectionHeading
-            eyebrow="The problem"
-            title="You're losing patients every day"
-            description="Most clinics do not lose demand because people are not interested. They lose it between the first message and the confirmed appointment."
-          />
+          <SectionHeading eyebrow={t.problem.eyebrow} title={t.problem.title} description={t.problem.description} />
         </SectionReveal>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {PROBLEM_POINTS.map((item, index) => (
+          {t.problem.items.map((item, index) => (
             <SectionReveal key={item.title} delay={index * 0.08}>
               <Card className="h-full border-[#e4edf3] bg-[#fbfcfe]">
                 <CardHeader>
@@ -422,22 +788,19 @@ function ProblemSection() {
   );
 }
 
-function SolutionSection() {
+function SolutionSection({ t }) {
   return (
     <section id="solution" className="relative overflow-hidden py-16 sm:py-20">
       <div className="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_top,_rgba(74,144,226,0.12),_transparent_55%)]" />
       <Container className="relative">
         <SectionReveal>
-          <SectionHeading
-            eyebrow="The solution"
-            title="Evolvian fixes this automatically"
-            description="Every incoming inquiry gets an immediate next step: a fast answer, the right qualification flow, and a clear path to a confirmed appointment."
-          />
+          <SectionHeading eyebrow={t.solution.eyebrow} title={t.solution.title} description={t.solution.description} />
         </SectionReveal>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {SOLUTION_COLUMNS.map((item, index) => {
-            const Icon = item.icon;
+          {t.solution.items.map((item, index) => {
+            const Icon = getSolutionIcon(item.icon);
+
             return (
               <SectionReveal key={item.title} delay={index * 0.08}>
                 <Card className="h-full border-[#dce7ef]">
@@ -468,27 +831,23 @@ function SolutionSection() {
   );
 }
 
-function HowItWorksSection() {
+function HowItWorksSection({ t }) {
   return (
     <section id="how-it-works" className="bg-[#f6fafc] py-16 sm:py-20">
       <Container>
         <SectionReveal>
-          <SectionHeading
-            eyebrow="How it works"
-            title="From first inquiry to confirmed visit"
-            description="A simple patient journey with no inbox juggling, no missed follow-ups, and no manual scheduling bottlenecks."
-          />
+          <SectionHeading eyebrow={t.howItWorks.eyebrow} title={t.howItWorks.title} description={t.howItWorks.description} />
         </SectionReveal>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {WORKFLOW_STEPS.map((item, index) => (
+          {t.howItWorks.items.map((item, index) => (
             <SectionReveal key={item.step} delay={index * 0.08}>
               <Card className="relative h-full border-[#dce7ef] bg-white">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <span className="font-display text-4xl font-semibold tracking-[-0.05em] text-[#274472]">{item.step}</span>
                     <span className="rounded-full bg-[#e9f6ec] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#274472]">
-                      Step {index + 1}
+                      {t.howItWorks.stepLabel} {index + 1}
                     </span>
                   </div>
                   <CardTitle className="mt-2">{item.title}</CardTitle>
@@ -503,20 +862,16 @@ function HowItWorksSection() {
   );
 }
 
-function BenefitsSection() {
+function BenefitsSection({ t }) {
   return (
     <section className="py-16 sm:py-20">
       <Container>
         <SectionReveal>
-          <SectionHeading
-            eyebrow="Benefits"
-            title="Results your clinic feels immediately"
-            description="The product is not the AI. The product is a fuller calendar, faster patient response times, and less admin work for your team."
-          />
+          <SectionHeading eyebrow={t.benefits.eyebrow} title={t.benefits.title} description={t.benefits.description} />
         </SectionReveal>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {BENEFITS.map((item, index) => (
+          {t.benefits.items.map((item, index) => (
             <SectionReveal key={item.title} delay={index * 0.07}>
               <Card className="h-full border-[#dce7ef] bg-white">
                 <CardHeader>
@@ -535,39 +890,29 @@ function BenefitsSection() {
   );
 }
 
-function SocialProofSection() {
+function SocialProofSection({ t }) {
   return (
     <section id="proof" className="border-y border-[#e4edf3] bg-white py-16 sm:py-20">
       <Container>
         <SectionReveal>
-          <SectionHeading
-            eyebrow="Social proof"
-            title="Trusted by modern clinics"
-            description="Placeholder proof blocks for rollout. Swap these with real names, logos, and outcome metrics once case studies are approved."
-          />
+          <SectionHeading eyebrow={t.proof.eyebrow} title={t.proof.title} description={t.proof.description} />
         </SectionReveal>
 
         <SectionReveal delay={0.08} className="mt-8 grid gap-4 md:grid-cols-3">
           <Card className="border-[#dce7ef] bg-[linear-gradient(180deg,_#f9fcfb_0%,_#ffffff_100%)]">
             <CardContent className="grid grid-cols-3 gap-4 p-6 text-center">
-              <div>
-                <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#274472]">92%</p>
-                <p className="mt-1 text-sm text-slate-500">reply rate</p>
-              </div>
-              <div>
-                <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#274472]">3x</p>
-                <p className="mt-1 text-sm text-slate-500">faster intake</p>
-              </div>
-              <div>
-                <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#274472]">24/7</p>
-                <p className="mt-1 text-sm text-slate-500">coverage</p>
-              </div>
+              {t.proof.stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#274472]">{stat.value}</p>
+                  <p className="mt-1 text-sm text-slate-500">{stat.label}</p>
+                </div>
+              ))}
             </CardContent>
           </Card>
         </SectionReveal>
 
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
-          {TESTIMONIALS.map((testimonial, index) => (
+          {t.proof.testimonials.map((testimonial, index) => (
             <SectionReveal key={testimonial.name} delay={index * 0.08}>
               <Card className="h-full border-[#dce7ef] bg-[#fbfcfe]">
                 <CardHeader>
@@ -586,7 +931,7 @@ function SocialProofSection() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-base leading-7 text-slate-700">“{testimonial.quote}”</p>
+                  <p className="text-base leading-7 text-slate-700">"{testimonial.quote}"</p>
                 </CardContent>
               </Card>
             </SectionReveal>
@@ -597,7 +942,7 @@ function SocialProofSection() {
   );
 }
 
-function FinalCtaSection() {
+function FinalCtaSection({ t }) {
   return (
     <section className="py-16 sm:py-20">
       <Container>
@@ -605,13 +950,9 @@ function FinalCtaSection() {
           <Card className="overflow-hidden border-[#d6e7de] bg-[linear-gradient(135deg,_#274472_0%,_#345d8f_55%,_#4a90e2_100%)]">
             <div className="grid gap-8 p-8 text-white sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/70">Final CTA</p>
-                <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
-                  Start capturing more patients today
-                </h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/80 sm:text-lg">
-                  Set up once, stay available across channels, and let every inquiry move toward a booked appointment.
-                </p>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/70">{t.finalCta.eyebrow}</p>
+                <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">{t.finalCta.title}</h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-white/80 sm:text-lg">{t.finalCta.description}</p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
@@ -624,7 +965,7 @@ function FinalCtaSection() {
                   className="w-full lg:w-auto"
                   onClick={() => trackEvent({ name: "Healthcare_Landing_Final_Trial_Click", category: "CTA", label: "Footer" })}
                 >
-                  {PRIMARY_CTA_LABEL}
+                  {t.cta.primary}
                 </Button>
                 <Button
                   href={DEMO_URL}
@@ -633,7 +974,7 @@ function FinalCtaSection() {
                   className="w-full border-white/20 bg-white/15 text-white ring-1 ring-white/25 hover:bg-white/20 lg:w-auto"
                   onClick={() => trackEvent({ name: "Healthcare_Landing_Final_Demo_Click", category: "CTA", label: "Footer" })}
                 >
-                  {SECONDARY_CTA_LABEL}
+                  {t.cta.secondary}
                 </Button>
               </div>
             </div>
@@ -644,24 +985,24 @@ function FinalCtaSection() {
   );
 }
 
-function Footer() {
+function Footer({ t }) {
   return (
     <footer className="border-t border-[#e4edf3] bg-white py-8">
       <Container className="flex flex-col gap-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-medium text-[#274472]">Evolvian AI</p>
-          <p>Multi-channel patient capture and booking for modern clinics.</p>
+          <p className="font-medium text-[#274472]">{t.header.brand}</p>
+          <p>{t.footer.description}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-4">
           <a className="transition-colors hover:text-[#274472]" href="/terms">
-            Terms
+            {t.footer.terms}
           </a>
           <a className="transition-colors hover:text-[#274472]" href="/privacy">
-            Privacy
+            {t.footer.privacy}
           </a>
           <a className="transition-colors hover:text-[#274472]" href={DEMO_URL}>
-            Demo
+            {t.footer.demo}
           </a>
         </div>
       </Container>
@@ -670,19 +1011,29 @@ function Footer() {
 }
 
 export default function LandingPage() {
+  const { language, setLanguage } = usePublicLanguage();
+  const t = COPY[language] || COPY.en;
+
+  const handleLanguageChange = (event) => {
+    const nextLanguage = event.target.value;
+    setLanguage(nextLanguage);
+    trackEvent({ name: "Healthcare_Landing_Language_Change", category: "UX", label: nextLanguage });
+  };
+
   return (
     <div className="min-h-screen bg-[#f7fafc] text-slate-900">
-      <Header />
+      <Header t={t} language={language} onLanguageChange={handleLanguageChange} />
       <main>
-        <HeroSection />
-        <ProblemSection />
-        <SolutionSection />
-        <HowItWorksSection />
-        <BenefitsSection />
-        <SocialProofSection />
-        <FinalCtaSection />
+        <HeroSection t={t} />
+        <ProblemSection t={t} />
+        <SolutionSection t={t} />
+        <HowItWorksSection t={t} />
+        <BenefitsSection t={t} />
+        <PublicPricingSection copy={t.pricing} language={language} />
+        <SocialProofSection t={t} />
+        <FinalCtaSection t={t} />
       </main>
-      <Footer />
+      <Footer t={t} />
     </div>
   );
 }

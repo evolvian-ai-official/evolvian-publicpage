@@ -4,18 +4,12 @@ import { trackConversion, trackEvent } from "./utils/tracking";
 import { usePublicLanguage } from "./contexts/PublicLanguageContext";
 import { usePublicConsent, PUBLIC_CONSENT_VERSION } from "./contexts/PublicConsentContext";
 import HealthcareSection from "./components/HealthcareSection";
+import PublicPricingSection from "./components/PublicPricingSection";
 import LandingPage from "./pages/LandingPage";
 import { getPublicLandingVariant } from "./lib/publicLandingVariant";
 import "./App.css";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
-
-const FALLBACK_PLAN_PRICES = {
-  free: "$0 USD/mo",
-  starter: "$19 USD/mo",
-  premium: "$49 USD/mo",
-  white_label: null,
-};
 
 const INITIAL_CONTACT_FORM = {
   name: "",
@@ -537,17 +531,10 @@ function FooterSocialIcon({ kind }) {
   );
 }
 
-function formatMonthlyPrice(priceUsd) {
-  const price = Number(priceUsd);
-  if (!Number.isFinite(price)) return null;
-  return Number.isInteger(price) ? `$${price.toFixed(0)} USD/mo` : `$${price.toFixed(2)} USD/mo`;
-}
-
 function GenericLandingPage() {
   const [openMenu, setOpenMenu] = useState(false);
   const { language, setLanguage } = usePublicLanguage();
   const { openPreferences } = usePublicConsent();
-  const [planPrices, setPlanPrices] = useState(FALLBACK_PLAN_PRICES);
   const [contactForm, setContactForm] = useState(INITIAL_CONTACT_FORM);
   const [contactStatus, setContactStatus] = useState({ type: "idle", message: "" });
   const [isContactSubmitting, setIsContactSubmitting] = useState(false);
@@ -567,93 +554,11 @@ function GenericLandingPage() {
     [t]
   );
 
-  const planCards = useMemo(
-    () => [
-      {
-        id: "free",
-        title: "Free",
-        description: t.plans.descriptions.free,
-        highlights: t.plans.highlights.free,
-        ctaLabel: t.plans.ctas.free,
-        ctaHref: DIRECT_LOGIN_URL,
-        ctaEvent: "StartForFree_Click",
-        theme: "soft",
-      },
-      {
-        id: "starter",
-        title: "Starter",
-        description: t.plans.descriptions.starter,
-        highlights: t.plans.highlights.starter,
-        ctaLabel: t.plans.ctas.starter,
-        ctaHref: "https://www.evolvianai.net/settings",
-        ctaEvent: "StarterPlan_Click",
-        theme: "dark",
-      },
-      {
-        id: "premium",
-        title: "Premium",
-        description: t.plans.descriptions.premium,
-        highlights: t.plans.highlights.premium,
-        ctaLabel: t.plans.ctas.premium,
-        ctaHref: "https://www.evolvianai.net/settings",
-        ctaEvent: "PremiumPlan_Click",
-        theme: "premium",
-        badge: t.plans.mostPopular,
-      },
-      {
-        id: "white_label",
-        title: "White Label",
-        description: t.plans.descriptions.white_label,
-        highlights: t.plans.highlights.white_label,
-        ctaLabel: t.plans.ctas.white_label,
-        ctaHref: "#contact",
-        ctaEvent: "WhiteLabel_Click",
-        theme: "soft",
-        customPrice: "Custom",
-      },
-    ],
-    [t]
-  );
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const loadPlanPrices = async () => {
-      try {
-        const res = await fetch(`${API_BASE}/api/public/plans`);
-        if (!res.ok) throw new Error(`status ${res.status}`);
-
-        const data = await res.json();
-        const nextPrices = { ...FALLBACK_PLAN_PRICES };
-
-        for (const plan of data?.plans || []) {
-          const rawId = String(plan?.id || "").trim().toLowerCase();
-          const id = rawId === "enterprise" ? "white_label" : rawId;
-          if (!id || id === "white_label") continue;
-
-          const formatted = formatMonthlyPrice(plan?.price_usd);
-          if (formatted) nextPrices[id] = formatted;
-        }
-
-        if (!cancelled) setPlanPrices(nextPrices);
-      } catch (error) {
-        console.error("Failed to load public plan prices:", error);
-      }
-    };
-
-    loadPlanPrices();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   useEffect(() => {
     if (!showContactSuccessModal) return undefined;
     const timeoutId = setTimeout(() => setShowContactSuccessModal(false), 5000);
     return () => clearTimeout(timeoutId);
   }, [showContactSuccessModal]);
-
-  const getPlanPrice = (planId) => planPrices[planId] ?? FALLBACK_PLAN_PRICES[planId] ?? null;
 
   const handleLanguageChange = (event) => {
     const nextLanguage = event.target.value;
@@ -960,50 +865,7 @@ function GenericLandingPage() {
           </div>
         </section>
 
-        <section id="plans" className="section-base section-muted">
-          <div className="section-shell">
-            <div className="section-heading">
-              <p className="section-kicker">{t.plans.kicker}</p>
-              <h2>{t.plans.title}</h2>
-              <p>{t.plans.description}</p>
-            </div>
-
-            <div className="plan-grid">
-              {planCards.map((plan) => {
-                const price = plan.customPrice || getPlanPrice(plan.id);
-                const cardClass = `plan-card card-lift ${plan.theme === "premium" ? "plan-card-premium" : ""}`;
-
-                return (
-                  <article key={plan.id} className={cardClass}>
-                    <div>
-                      <div className="plan-header">
-                        <h3>{plan.title}</h3>
-                        {plan.badge ? <span className="plan-badge">{plan.badge}</span> : null}
-                      </div>
-                      <p className="plan-price">{price || "Custom"}</p>
-                      <p className="plan-description">{plan.description}</p>
-                      <ul>
-                        {plan.highlights.map((highlight) => (
-                          <li key={highlight}>{highlight}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <a
-                      href={plan.ctaHref}
-                      target={plan.ctaHref.startsWith("http") ? "_blank" : undefined}
-                      rel={plan.ctaHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className={`btn ${plan.theme === "premium" ? "btn-primary" : "btn-secondary"}`}
-                      onClick={() => trackEvent({ name: plan.ctaEvent, category: "Pricing", label: `${plan.title}_${language}` })}
-                    >
-                      {plan.ctaLabel}
-                    </a>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <PublicPricingSection copy={t.plans} language={language} />
 
         <section className="section-base" id="process">
           <div className="section-shell">
