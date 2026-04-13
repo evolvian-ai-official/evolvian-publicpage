@@ -2,7 +2,7 @@ const GA4_ID = import.meta.env.VITE_GA4_ID || "G-44VLLPV4F5";
 const GOOGLE_ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID || "AW-17638350094";
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || "805104092211918";
 const ENABLE_ANALYTICS = import.meta.env.VITE_ENABLE_ANALYTICS;
-const GOOGLE_TAG_BOOTSTRAP_ID = import.meta.env.VITE_GOOGLE_TAG_BOOTSTRAP_ID || GOOGLE_ADS_ID || GA4_ID;
+const GOOGLE_TAG_BOOTSTRAP_ID = import.meta.env.VITE_GOOGLE_TAG_BOOTSTRAP_ID || GA4_ID || GOOGLE_ADS_ID;
 
 let googleInitialized = false;
 let metaInitialized = false;
@@ -108,7 +108,7 @@ export async function syncThirdPartyConsent(consent) {
     if (!shouldLoadThirdPartyScripts()) return;
 
     const analytics = Boolean(consent?.preferences?.analytics);
-    const marketing = Boolean(consent?.preferences?.marketing) && !Boolean(consent?.preferences?.saleShareOptOut);
+    const marketing = Boolean(consent?.preferences?.marketing) && !consent?.preferences?.saleShareOptOut;
     await ensureGoogleTag();
     updateGoogleConsent({ analytics, marketing });
 
