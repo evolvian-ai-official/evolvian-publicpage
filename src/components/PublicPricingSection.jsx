@@ -31,7 +31,6 @@ export default function PublicPricingSection({
         title: "Free",
         position: copy.positions?.free,
         description: copy.descriptions.free,
-        message: copy.messages?.free,
         highlights: copy.highlights.free,
         ctaLabel: copy.ctas.free,
         ctaHref: "https://www.evolvianai.net/register",
@@ -43,7 +42,6 @@ export default function PublicPricingSection({
         title: "Starter",
         position: copy.positions?.starter,
         description: copy.descriptions.starter,
-        message: copy.messages?.starter,
         highlights: copy.highlights.starter,
         ctaLabel: copy.ctas.starter,
         ctaHref: "https://www.evolvianai.net/settings",
@@ -54,7 +52,6 @@ export default function PublicPricingSection({
         id: "premium",
         title: "Premium",
         description: copy.descriptions.premium,
-        message: copy.messages?.premium,
         highlights: copy.highlights.premium,
         ctaLabel: copy.ctas.premium,
         ctaHref: "https://www.evolvianai.net/settings",
@@ -67,7 +64,6 @@ export default function PublicPricingSection({
         title: "White Label",
         position: copy.positions?.white_label,
         description: copy.descriptions.white_label,
-        message: copy.messages?.white_label,
         highlights: copy.highlights.white_label,
         ctaLabel: copy.ctas.white_label,
         ctaHref: "#contact",
@@ -140,7 +136,6 @@ export default function PublicPricingSection({
                   </div>
                   <p className="plan-price">{price || copy.customPriceLabel || "Custom"}</p>
                   <p className="plan-description">{plan.description}</p>
-                  {plan.message ? <p className="plan-supporting-copy">{plan.message}</p> : null}
                   <ul>
                     {plan.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
