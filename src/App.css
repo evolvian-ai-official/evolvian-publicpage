@@ -592,6 +592,15 @@ a {
   gap: 1rem;
 }
 
+.plan-positioning {
+  margin: 0 0 0.35rem;
+  color: #5b6d84;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .plan-card-premium {
   background: linear-gradient(160deg, #ffffff, #ecf5ff 70%);
   border-color: #94b9e2;
@@ -631,6 +640,14 @@ a {
   font-size: 0.95rem;
 }
 
+.plan-supporting-copy {
+  margin: 0.55rem 0 0;
+  color: #16324f;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
 .plan-card ul {
   list-style: none;
   margin: 1rem 0 0;
@@ -656,6 +673,65 @@ a {
   background: var(--brand);
   left: 0;
   top: 0.44rem;
+}
+
+.plan-secondary-cta {
+  margin: 0.45rem 0 0;
+  color: #5b6d84;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.pricing-comparison {
+  margin-top: 1.5rem;
+}
+
+.pricing-comparison-title {
+  margin: 0 0 0.75rem;
+  color: var(--brand-deep);
+  font-size: 1.15rem;
+}
+
+.pricing-comparison-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.pricing-comparison-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.pricing-comparison-table th,
+.pricing-comparison-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #dbe7f5;
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.pricing-comparison-table th:first-child,
+.pricing-comparison-table td:first-child {
+  text-align: left;
+  font-weight: 700;
+  color: #16324f;
+  min-width: 220px;
+}
+
+.pricing-comparison-table thead th {
+  background: #f8fbff;
+  color: var(--brand-deep);
+}
+
+.pricing-comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-column-premium {
+  background: rgba(74, 144, 226, 0.08);
 }
 
 .process-grid {

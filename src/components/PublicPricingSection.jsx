@@ -7,7 +7,7 @@ const FALLBACK_PLAN_PRICES = {
   free: "$0 USD/mo",
   starter: "$19 USD/mo",
   premium: "$49 USD/mo",
-  white_label: null,
+  white_label: "$199 USD/mo",
 };
 
 function formatMonthlyPrice(priceUsd) {
@@ -29,17 +29,21 @@ export default function PublicPricingSection({
       {
         id: "free",
         title: "Free",
+        position: copy.positions?.free,
         description: copy.descriptions.free,
+        message: copy.messages?.free,
         highlights: copy.highlights.free,
         ctaLabel: copy.ctas.free,
-        ctaHref: "https://www.evolvianai.net/login",
+        ctaHref: "https://www.evolvianai.net/register",
         ctaEvent: "StartForFree_Click",
         theme: "soft",
       },
       {
         id: "starter",
         title: "Starter",
+        position: copy.positions?.starter,
         description: copy.descriptions.starter,
+        message: copy.messages?.starter,
         highlights: copy.highlights.starter,
         ctaLabel: copy.ctas.starter,
         ctaHref: "https://www.evolvianai.net/settings",
@@ -50,6 +54,7 @@ export default function PublicPricingSection({
         id: "premium",
         title: "Premium",
         description: copy.descriptions.premium,
+        message: copy.messages?.premium,
         highlights: copy.highlights.premium,
         ctaLabel: copy.ctas.premium,
         ctaHref: "https://www.evolvianai.net/settings",
@@ -60,13 +65,16 @@ export default function PublicPricingSection({
       {
         id: "white_label",
         title: "White Label",
+        position: copy.positions?.white_label,
         description: copy.descriptions.white_label,
+        message: copy.messages?.white_label,
         highlights: copy.highlights.white_label,
         ctaLabel: copy.ctas.white_label,
         ctaHref: "#contact",
         ctaEvent: "WhiteLabel_Click",
         theme: "soft",
-        customPrice: copy.customPriceLabel || "Custom",
+        customPrice: copy.whiteLabelPriceLabel || copy.customPriceLabel || "Custom",
+        secondaryCta: copy.secondaryCta,
       },
     ],
     [copy]
@@ -106,6 +114,7 @@ export default function PublicPricingSection({
   }, []);
 
   const getPlanPrice = (planId) => planPrices[planId] ?? FALLBACK_PLAN_PRICES[planId] ?? null;
+  const comparisonRows = Array.isArray(copy.comparisonRows) ? copy.comparisonRows : [];
 
   return (
     <section id={id} className={sectionClassName}>
@@ -124,12 +133,14 @@ export default function PublicPricingSection({
             return (
               <article key={plan.id} className={cardClass}>
                 <div>
+                  {plan.position ? <p className="plan-positioning">{plan.position}</p> : null}
                   <div className="plan-header">
                     <h3>{plan.title}</h3>
                     {plan.badge ? <span className="plan-badge">{plan.badge}</span> : null}
                   </div>
                   <p className="plan-price">{price || copy.customPriceLabel || "Custom"}</p>
                   <p className="plan-description">{plan.description}</p>
+                  {plan.message ? <p className="plan-supporting-copy">{plan.message}</p> : null}
                   <ul>
                     {plan.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
@@ -146,10 +157,43 @@ export default function PublicPricingSection({
                 >
                   {plan.ctaLabel}
                 </a>
+                {plan.secondaryCta ? <p className="plan-secondary-cta">{plan.secondaryCta}</p> : null}
               </article>
             );
           })}
         </div>
+
+        {comparisonRows.length > 0 ? (
+          <div className="pricing-comparison">
+            <h3 className="pricing-comparison-title">{copy.comparisonTitle || "Compare plans"}</h3>
+            <div className="pricing-comparison-wrapper">
+              <table className="pricing-comparison-table">
+                <thead>
+                  <tr>
+                    <th>{copy.comparisonFeatureLabel || "Feature"}</th>
+                    {planCards.map((plan) => (
+                      <th key={`comparison-${plan.id}`} className={plan.id === "premium" ? "comparison-column-premium" : ""}>
+                        {plan.title}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row) => (
+                    <tr key={row.label}>
+                      <td>{row.label}</td>
+                      {planCards.map((plan) => (
+                        <td key={`${row.label}-${plan.id}`} className={plan.id === "premium" ? "comparison-column-premium" : ""}>
+                          {row.values?.[plan.id] ?? "—"}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );

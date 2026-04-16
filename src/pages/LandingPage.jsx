@@ -1,8 +1,10 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { usePublicConsent } from "../contexts/PublicConsentContext";
 import { usePublicLanguage } from "../contexts/PublicLanguageContext";
 import PublicPricingSection from "../components/PublicPricingSection";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { PUBLIC_PRICING_COPY } from "../lib/publicPricingContent";
 import { cn } from "../lib/utils";
 import { trackEvent } from "../utils/tracking";
 
@@ -13,6 +15,12 @@ const MotionDiv = motion.div;
 const LANGUAGE_OPTIONS = [
   { value: "en", label: "English" },
   { value: "es", label: "Espanol" },
+];
+
+const FOOTER_SOCIAL_LINKS = [
+  { key: "whatsapp", label: "WhatsApp", href: "https://www.whatsapp.com/" },
+  { key: "instagram", label: "Instagram", href: "https://www.instagram.com/" },
+  { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/" },
 ];
 
 const COPY = {
@@ -156,47 +164,7 @@ const COPY = {
       ],
     },
     pricing: {
-      kicker: "Pricing",
-      title: "Choose the plan that matches your current operations",
-      description: "Start free and upgrade as conversation volume and automation needs grow.",
-      mostPopular: "Most popular",
-      customPriceLabel: "Custom",
-      ctas: {
-        free: "Start for free",
-        starter: "Get Starter",
-        premium: "Get Premium",
-        white_label: "Talk to sales",
-      },
-      descriptions: {
-        free: "Try Evolvian at no cost.",
-        starter: "Perfect for small businesses that need real automation.",
-        premium: "Best value for teams handling recurring operational conversations.",
-        white_label: "Enterprise and agency solution with tailored implementation.",
-      },
-      highlights: {
-        free: [
-          "500 messages / month",
-          "Upload documents",
-          "Basic dashboard",
-          "Website chat widget integration",
-        ],
-        starter: [
-          "2,000 messages / month",
-          "Upload documents",
-          "Basic dashboard",
-          "Website chat widget integration",
-          "WhatsApp AI setup support",
-        ],
-        premium: [
-          "Everything in Starter",
-          "5,000 messages / month",
-          "Upload documents",
-          "Advanced widget customization",
-          "Custom assistant prompt",
-          "WhatsApp appointments and reminders",
-        ],
-        white_label: ["Unlimited messages", "Unlimited documents", "Dedicated onboarding", "Priority support"],
-      },
+      ...PUBLIC_PRICING_COPY.en,
     },
     proof: {
       eyebrow: "Social proof",
@@ -232,9 +200,19 @@ const COPY = {
     },
     footer: {
       description: "Multi-channel patient capture and booking for modern clinics.",
-      terms: "Terms",
-      privacy: "Privacy",
+      locationTitle: "Location",
+      locationLine1: "1001 S Main St Ste 500",
+      locationLine2: "Kalispell, MT 59901",
+      contactTitle: "Contact",
+      socialTitle: "Social",
+      legalTitle: "Legal",
+      getStarted: "Get started",
+      createAccount: "Create your account",
+      terms: "Terms & Conditions",
+      privacy: "Privacy Policy",
+      privacyChoices: "Privacy choices / Do not sell or share",
       demo: "Demo",
+      rights: "All rights reserved.",
     },
   },
   es: {
@@ -377,47 +355,7 @@ const COPY = {
       ],
     },
     pricing: {
-      kicker: "Planes",
-      title: "Elige el plan segun tu operacion actual",
-      description: "Empieza gratis y sube de plan cuando aumenten tus conversaciones y automatizacion.",
-      mostPopular: "Mas popular",
-      customPriceLabel: "A medida",
-      ctas: {
-        free: "Empieza gratis",
-        starter: "Obtener Starter",
-        premium: "Obtener Premium",
-        white_label: "Hablar con ventas",
-      },
-      descriptions: {
-        free: "Prueba Evolvian sin costo.",
-        starter: "Ideal para negocios pequenos que necesitan automatizar.",
-        premium: "Mejor opcion para equipos con conversaciones operativas recurrentes.",
-        white_label: "Solucion empresarial y agencias con implementacion a medida.",
-      },
-      highlights: {
-        free: [
-          "500 mensajes / mes",
-          "Upload documents",
-          "Dashboard basico",
-          "Integracion de chat widget en web",
-        ],
-        starter: [
-          "2,000 mensajes / mes",
-          "Upload documents",
-          "Dashboard basico",
-          "Integracion de chat widget en web",
-          "Soporte de configuracion AI para WhatsApp",
-        ],
-        premium: [
-          "Todo lo de Starter",
-          "5,000 mensajes / mes",
-          "Upload documents",
-          "Personalizacion avanzada de widget",
-          "Prompt personalizado",
-          "Citas y recordatorios por WhatsApp",
-        ],
-        white_label: ["Mensajes ilimitados", "Documentos ilimitados", "Onboarding dedicado", "Soporte prioritario"],
-      },
+      ...PUBLIC_PRICING_COPY.es,
     },
     proof: {
       eyebrow: "Prueba social",
@@ -453,9 +391,19 @@ const COPY = {
     },
     footer: {
       description: "Captacion y agendamiento de pacientes en multiples canales para clinicas modernas.",
-      terms: "Terminos",
-      privacy: "Privacidad",
+      locationTitle: "Ubicacion",
+      locationLine1: "1001 S Main St Ste 500",
+      locationLine2: "Kalispell, MT 59901",
+      contactTitle: "Contacto",
+      socialTitle: "Redes",
+      legalTitle: "Legal",
+      getStarted: "Comenzar",
+      createAccount: "Crear tu cuenta",
+      terms: "Terminos y Condiciones",
+      privacy: "Politica de Privacidad",
+      privacyChoices: "Preferencias de privacidad / No vender ni compartir",
       demo: "Demo",
+      rights: "Todos los derechos reservados.",
     },
   },
 };
@@ -985,33 +933,117 @@ function FinalCtaSection({ t }) {
   );
 }
 
-function Footer({ t }) {
+function FooterSocialIcon({ kind }) {
+  if (kind === "instagram") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
+
+  if (kind === "linkedin") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="4" />
+        <circle cx="8" cy="8" r="1" fill="currentColor" stroke="none" />
+        <path d="M8 11v5" />
+        <path d="M12 16v-5" />
+        <path d="M12 13.2c0-1.2.8-2.2 2-2.2s2 .9 2 2.3V16" />
+      </svg>
+    );
+  }
+
   return (
-    <footer className="border-t border-[#e4edf3] bg-white py-8">
-      <Container className="flex flex-col gap-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.1A8.5 8.5 0 1 1 21 11.5Z" />
+      <path d="M9.2 9.3c.3-.6.7-.7 1-.7h.3c.1 0 .3.1.4.3l.7 1.5c.1.2.1.4 0 .6l-.5.6c-.1.1-.2.2-.1.4.4.8 1.1 1.5 1.9 2 .2.1.3 0 .4-.1l.6-.5c.2-.1.4-.2.6-.1l1.4.7c.2.1.3.2.3.4v.3c0 .3-.1.7-.7 1-.4.2-1 .2-1.7 0-1.8-.6-4.2-2.8-4.9-4.9-.2-.7-.2-1.4.1-1.8Z" />
+    </svg>
+  );
+}
+
+function Footer({ t, language, onOpenPrivacyPreferences }) {
+  return (
+    <footer className="main-footer">
+      <Container className="footer-grid">
         <div>
-          <p className="font-medium text-[#274472]">{t.header.brand}</p>
           <p>{t.footer.description}</p>
+          <h4>{t.footer.locationTitle}</h4>
+          <p>{t.footer.locationLine1}</p>
+          <p>{t.footer.locationLine2}</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <a className="transition-colors hover:text-[#274472]" href="/terms">
+        <div>
+          <h4>{t.footer.contactTitle}</h4>
+          <a href="mailto:sales@evolvianai.com" onClick={() => trackEvent({ name: "Healthcare_Footer_Contact_Click", category: "Footer", label: language })}>
+            sales@evolvianai.com
+          </a>
+          <div className="footer-social-block">
+            <p className="footer-social-title">{t.footer.socialTitle}</p>
+            <div className="footer-social-row" aria-label={t.footer.socialTitle}>
+              {FOOTER_SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.key}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-social-link"
+                  aria-label={social.label}
+                  title={social.label}
+                  onClick={() => trackEvent({ name: `Healthcare_Footer_${social.label}_Click`, category: "Footer", label: language })}
+                >
+                  <FooterSocialIcon kind={social.key} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4>{t.footer.legalTitle}</h4>
+          <a href="/terms" onClick={() => trackEvent({ name: "Healthcare_Footer_Terms_Click", category: "Footer", label: language })}>
             {t.footer.terms}
           </a>
-          <a className="transition-colors hover:text-[#274472]" href="/privacy">
+          <a href="/privacy" onClick={() => trackEvent({ name: "Healthcare_Footer_Privacy_Click", category: "Footer", label: language })}>
             {t.footer.privacy}
           </a>
-          <a className="transition-colors hover:text-[#274472]" href={DEMO_URL}>
+          <button
+            type="button"
+            className="footer-privacy-btn"
+            onClick={() => {
+              trackEvent({ name: "Healthcare_Footer_Privacy_Choices_Click", category: "Footer", label: language });
+              onOpenPrivacyPreferences();
+            }}
+          >
+            {t.footer.privacyChoices}
+          </button>
+        </div>
+
+        <div>
+          <h4>{t.footer.getStarted}</h4>
+          <a
+            href={START_TRIAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent({ name: "Healthcare_Footer_Register_Click", category: "Footer", label: language })}
+          >
+            {t.footer.createAccount}
+          </a>
+          <a href={DEMO_URL} onClick={() => trackEvent({ name: "Healthcare_Footer_Demo_Click", category: "Footer", label: language })}>
             {t.footer.demo}
           </a>
         </div>
       </Container>
+      <p className="footer-bottom">© {new Date().getFullYear()} Evolvian AI. {t.footer.rights}</p>
     </footer>
   );
 }
 
 export default function LandingPage() {
   const { language, setLanguage } = usePublicLanguage();
+  const { openPreferences } = usePublicConsent();
   const t = COPY[language] || COPY.en;
 
   const handleLanguageChange = (event) => {
@@ -1033,7 +1065,7 @@ export default function LandingPage() {
         <SocialProofSection t={t} />
         <FinalCtaSection t={t} />
       </main>
-      <Footer t={t} />
+      <Footer t={t} language={language} onOpenPrivacyPreferences={openPreferences} />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import HealthcareSection from "./components/HealthcareSection";
 import PublicPricingSection from "./components/PublicPricingSection";
 import LandingPage from "./pages/LandingPage";
 import { getPublicLandingVariant } from "./lib/publicLandingVariant";
+import { PUBLIC_PRICING_COPY } from "./lib/publicPricingContent";
 import "./App.css";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
@@ -144,46 +145,7 @@ const COPY = {
       ],
     },
     plans: {
-      kicker: "Pricing",
-      title: "Choose the plan that matches your current operations",
-      description: "Start free and upgrade as conversation volume and automation needs grow.",
-      mostPopular: "Most popular",
-      ctas: {
-        free: "Start for free",
-        starter: "Get Starter",
-        premium: "Get Premium",
-        white_label: "Talk to sales",
-      },
-      descriptions: {
-        free: "Try Evolvian at no cost.",
-        starter: "Perfect for small businesses that need real automation.",
-        premium: "Best value for teams handling recurring operational conversations.",
-        white_label: "Enterprise and agency solution with tailored implementation.",
-      },
-      highlights: {
-        free: [
-          "500 messages / month",
-          "Upload documents",
-          "Basic dashboard",
-          "Website chat widget integration",
-        ],
-        starter: [
-          "2,000 messages / month",
-          "Upload documents",
-          "Basic dashboard",
-          "Website chat widget integration",
-          "WhatsApp AI setup support",
-        ],
-        premium: [
-          "Everything in Starter",
-          "5,000 messages / month",
-          "Upload documents",
-          "Advanced widget customization",
-          "Custom assistant prompt",
-          "WhatsApp appointments and reminders",
-        ],
-        white_label: ["Unlimited messages", "Unlimited documents", "Dedicated onboarding", "Priority support"],
-      },
+      ...PUBLIC_PRICING_COPY.en,
     },
     process: {
       kicker: "Implementation flow",
@@ -354,46 +316,7 @@ const COPY = {
       ],
     },
     plans: {
-      kicker: "Planes",
-      title: "Elige el plan segun tu operacion actual",
-      description: "Empieza gratis y sube de plan cuando aumenten tus conversaciones y automatizacion.",
-      mostPopular: "Mas popular",
-      ctas: {
-        free: "Empieza gratis",
-        starter: "Obtener Starter",
-        premium: "Obtener Premium",
-        white_label: "Hablar con ventas",
-      },
-      descriptions: {
-        free: "Prueba Evolvian sin costo.",
-        starter: "Ideal para negocios pequenos que necesitan automatizar.",
-        premium: "Mejor opcion para equipos con conversaciones operativas recurrentes.",
-        white_label: "Solucion empresarial y agencias con implementacion a medida.",
-      },
-      highlights: {
-        free: [
-          "500 mensajes / mes",
-          "Upload documents",
-          "Dashboard basico",
-          "Integracion de chat widget en web",
-        ],
-        starter: [
-          "2,000 mensajes / mes",
-          "Upload documents",
-          "Dashboard basico",
-          "Integracion de chat widget en web",
-          "Soporte de configuracion AI para WhatsApp",
-        ],
-        premium: [
-          "Todo lo de Starter",
-          "5,000 mensajes / mes",
-          "Upload documents",
-          "Personalizacion avanzada de widget",
-          "Prompt personalizado",
-          "Citas y recordatorios por WhatsApp",
-        ],
-        white_label: ["Mensajes ilimitados", "Documentos ilimitados", "Onboarding dedicado", "Soporte prioritario"],
-      },
+      ...PUBLIC_PRICING_COPY.es,
     },
     process: {
       kicker: "Flujo de implementacion",
