@@ -18,9 +18,13 @@ const LANGUAGE_OPTIONS = [
 ];
 
 const FOOTER_SOCIAL_LINKS = [
-  { key: "whatsapp", label: "WhatsApp", href: "https://www.whatsapp.com/" },
-  { key: "instagram", label: "Instagram", href: "https://www.instagram.com/" },
-  { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/" },
+  { key: "whatsapp", label: "WhatsApp", href: "https://wa.me/5215542503251" },
+  { key: "instagram", label: "Instagram", href: "https://www.instagram.com/evolvianai/" },
+  {
+    key: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/109046205/admin/dashboard/",
+  },
 ];
 
 const COPY = {
