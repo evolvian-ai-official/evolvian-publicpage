@@ -27,6 +27,15 @@ const FOOTER_SOCIAL_LINKS = [
   },
 ];
 
+const OPERATIONS_FEATURE_ILLUSTRATIONS = [
+  "/feature-boxes/feature-01-asistente-ai.png",
+  "/feature-boxes/feature-02-historico-unificado.png",
+  "/feature-boxes/feature-03-citas-recordatorios.png",
+  "/feature-boxes/feature-04-canales-conectados.png",
+  "/feature-boxes/feature-05-captura-datos.png",
+  "/feature-boxes/feature-06-visibilidad-operativa.png",
+];
+
 const COPY = {
   en: {
     cta: {
@@ -169,6 +178,44 @@ const COPY = {
     },
     pricing: {
       ...PUBLIC_PRICING_COPY.en,
+    },
+    operations: {
+      eyebrow: "Why operations teams choose Evolvian",
+      title: "Built for daily execution, not just demos",
+      description:
+        "Every feature is designed to reduce repetitive workload and keep communication consistent across channels.",
+      cards: [
+        {
+          title: "AI assistant aligned to your business",
+          description:
+            "Upload your documents and instructions so each answer follows your policies and workflows.",
+        },
+        {
+          title: "Message history in one place",
+          description:
+            "Review previous chat, WhatsApp, and email interactions before replying to each contact.",
+        },
+        {
+          title: "Appointments and reminders",
+          description:
+            "Enable scheduling, reminder, and follow-up flows from the same assistant experience.",
+        },
+        {
+          title: "Conversation channels: widget, WhatsApp, and email",
+          description:
+            "Generate conversations through the Evolvian widget, WhatsApp, and email.",
+        },
+        {
+          title: "Capture key customer data",
+          description:
+            "Collect name, email, and phone so your team can act faster.",
+        },
+        {
+          title: "Centralize customer communication with Evolvian",
+          description:
+            "Manage customer communication and captured data from Evolvian for daily operations.",
+        },
+      ],
     },
     proof: {
       eyebrow: "Social proof",
@@ -360,6 +407,44 @@ const COPY = {
     },
     pricing: {
       ...PUBLIC_PRICING_COPY.es,
+    },
+    operations: {
+      eyebrow: "Por que equipos operativos eligen Evolvian",
+      title: "Hecho para la operacion diaria, no solo para demos",
+      description:
+        "Cada funcion esta disenada para reducir trabajo repetitivo y mantener una atencion consistente entre canales.",
+      cards: [
+        {
+          title: "Asistente IA alineado a tu negocio",
+          description:
+            "Sube documentos e instrucciones para que cada respuesta siga tus politicas y flujos.",
+        },
+        {
+          title: "Historico unificado de mensajes",
+          description:
+            "Consulta interacciones previas de chat, WhatsApp y email antes de responder a cada contacto.",
+        },
+        {
+          title: "Citas y recordatorios",
+          description:
+            "Activa agendas, recordatorios y seguimiento desde la misma experiencia del asistente.",
+        },
+        {
+          title: "Canales de conversacion: chat web, WhatsApp y correo",
+          description:
+            "Genera conversaciones desde el chat web de Evolvian, WhatsApp y correo.",
+        },
+        {
+          title: "Captura datos clave del cliente",
+          description:
+            "Recolecta nombre, email y telefono para que tu equipo actue mas rapido.",
+        },
+        {
+          title: "Centraliza tu comunicacion con clientes con Evolvian",
+          description:
+            "Gestiona la comunicacion con clientes y los datos capturados desde Evolvian para tu operacion diaria.",
+        },
+      ],
     },
     proof: {
       eyebrow: "Prueba social",
@@ -894,6 +979,39 @@ function SocialProofSection({ t }) {
   );
 }
 
+function OperationsSection({ t }) {
+  return (
+    <section className="border-b border-[#e4edf3] bg-[linear-gradient(180deg,_#ffffff_0%,_#f6fafc_100%)] py-16 sm:py-20">
+      <Container>
+        <SectionReveal>
+          <SectionHeading eyebrow={t.operations.eyebrow} title={t.operations.title} description={t.operations.description} />
+        </SectionReveal>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {t.operations.cards.map((feature, index) => (
+            <SectionReveal key={feature.title} delay={index * 0.07}>
+              <Card className="h-full overflow-hidden border-[#dce7ef] bg-white">
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-[#e6eef5] bg-[linear-gradient(135deg,_#eef6fb_0%,_#f9fcfb_100%)]">
+                  <img
+                    src={OPERATIONS_FEATURE_ILLUSTRATIONS[index]}
+                    alt={feature.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <CardHeader>
+                  <CardTitle>{feature.title}</CardTitle>
+                  <CardDescription className="text-base leading-7">{feature.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            </SectionReveal>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function FinalCtaSection({ t }) {
   return (
     <section className="py-16 sm:py-20">
@@ -1066,6 +1184,7 @@ export default function LandingPage() {
         <HowItWorksSection t={t} />
         <BenefitsSection t={t} />
         <PublicPricingSection copy={t.pricing} language={language} />
+        <OperationsSection t={t} />
         <SocialProofSection t={t} />
         <FinalCtaSection t={t} />
       </main>
