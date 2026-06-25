@@ -502,32 +502,6 @@ a {
   color: var(--muted);
 }
 
-.industries-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.industry-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 1.1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.industry-card h3 {
-  margin: 0;
-  font-size: 1.06rem;
-  color: var(--brand-deep);
-}
-
-.industry-card p {
-  margin: 0.6rem 0 0;
-  color: var(--muted);
-}
-
 .feature-image-frame {
   margin-top: 0.9rem;
   border-radius: 12px;
@@ -1659,8 +1633,7 @@ textarea.form-control {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .feature-grid,
-  .industries-grid {
+  .feature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1720,8 +1693,7 @@ textarea.form-control {
 
   .feature-grid,
   .trust-grid,
-  .plan-grid,
-  .industries-grid {
+  .plan-grid {
     grid-template-columns: 1fr;
   }
 

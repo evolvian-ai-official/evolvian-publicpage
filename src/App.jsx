@@ -155,38 +155,6 @@ const COPY = {
         },
       ],
     },
-    industries: {
-      kicker: "Industries",
-      title: "Built for the businesses that live on appointments",
-      description:
-        "Evolvian adapts to your industry's vocabulary, services, and booking flow so every conversation feels like it came from your own front desk.",
-      items: [
-        {
-          name: "Medical clinics",
-          description: "Answer patient questions, confirm appointments, and send pre-visit reminders automatically.",
-        },
-        {
-          name: "Psychology & therapy",
-          description: "Handle intake questions with care, schedule sessions, and reduce no-shows with timely reminders.",
-        },
-        {
-          name: "Veterinary clinics",
-          description: "Book check-ups and vaccinations, answer pet-care questions, and follow up after visits.",
-        },
-        {
-          name: "Orthodontics & dental",
-          description: "Qualify new patients, schedule consultations, and remind them before every appointment.",
-        },
-        {
-          name: "Aesthetics & wellness",
-          description: "Convert inquiries into booked treatments and keep clients coming back with automated follow-ups.",
-        },
-        {
-          name: "Legal & professional services",
-          description: "Capture new case inquiries, schedule consultations, and keep clients informed automatically.",
-        },
-      ],
-    },
     plans: {
       kicker: "Pricing",
       title: "Choose the plan that helps you respond faster, book more appointments, and grow your business.",
@@ -437,38 +405,6 @@ const COPY = {
         },
       ],
     },
-    industries: {
-      kicker: "Industrias",
-      title: "Hecho para negocios que viven de las citas",
-      description:
-        "Evolvian se adapta al vocabulario, servicios y flujo de agendamiento de tu industria, para que cada conversacion se sienta como si viniera de tu propia recepcion.",
-      items: [
-        {
-          name: "Clinicas medicas",
-          description: "Responde preguntas de pacientes, confirma citas y envia recordatorios antes de cada visita, automaticamente.",
-        },
-        {
-          name: "Psicologia y terapia",
-          description: "Atiende preguntas de admision con cuidado, agenda sesiones y reduce ausencias con recordatorios oportunos.",
-        },
-        {
-          name: "Clinicas veterinarias",
-          description: "Agenda chequeos y vacunas, responde preguntas sobre el cuidado de mascotas y da seguimiento despues de cada visita.",
-        },
-        {
-          name: "Ortodoncia y dental",
-          description: "Califica nuevos pacientes, agenda consultas y recuerdales cada cita.",
-        },
-        {
-          name: "Estetica y bienestar",
-          description: "Convierte consultas en tratamientos agendados y haz que los clientes regresen con seguimiento automatizado.",
-        },
-        {
-          name: "Servicios legales y profesionales",
-          description: "Captura nuevas consultas de casos, agenda reuniones y mantiene informados a tus clientes automaticamente.",
-        },
-      ],
-    },
     plans: {
       kicker: "Planes",
       title: "Elige el plan que te ayude a responder mas rapido, agendar mas citas y crecer tu negocio.",
@@ -699,7 +635,7 @@ export default function App() {
   const navLinks = useMemo(
     () => [
       { href: "#hero", label: t.nav.home },
-      { href: "#industries", label: t.nav.industries },
+      { href: "/industries", label: t.nav.industries },
       { href: "/demo", label: t.nav.demo },
     ],
     [t]
@@ -1095,25 +1031,6 @@ export default function App() {
                   </article>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        <section id="industries" className="section-base">
-          <div className="section-shell">
-            <div className="section-heading">
-              <p className="section-kicker">{t.industries.kicker}</p>
-              <h2>{t.industries.title}</h2>
-              <p>{t.industries.description}</p>
-            </div>
-
-            <div className="industries-grid">
-              {t.industries.items.map((item) => (
-                <article key={item.name} className="industry-card card-lift">
-                  <h3>{item.name}</h3>
-                  <p>{item.description}</p>
-                </article>
-              ))}
             </div>
           </div>
         </section>

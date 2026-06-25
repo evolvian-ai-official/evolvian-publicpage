@@ -485,7 +485,7 @@ export default function Demo() {
             <a href="/" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `home_${language}` })}>
               {t.nav.home}
             </a>
-            <a href="/#industries" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `industries_${language}` })}>
+            <a href="/industries" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `industries_${language}` })}>
               {t.nav.industries}
             </a>
             <a href="/demo" className="active" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `demo_${language}` })}>

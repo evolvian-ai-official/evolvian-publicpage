@@ -10,7 +10,7 @@ const LANGUAGE_OPTIONS = [
 
 const COPY = {
   en: {
-    nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog" },
+    nav: { home: "Home", industries: "Industries", demo: "See Evolvian in action" },
     auth: { login: "Log in", startFree: "Start free" },
     footer: {
       location: "Location",
@@ -25,7 +25,7 @@ const COPY = {
     },
   },
   es: {
-    nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog" },
+    nav: { home: "Inicio", industries: "Industrias", demo: "Ver Evolvian en accion" },
     auth: { login: "Iniciar sesion", startFree: "Empieza gratis" },
     footer: {
       location: "Ubicacion",
@@ -49,11 +49,9 @@ export default function BlogChrome({ children }) {
 
   const navLinks = useMemo(
     () => [
-      { href: "/#features", label: t.nav.features },
-      { href: "/#plans", label: t.nav.plans },
-      { href: "/#contact", label: t.nav.contact },
-      { href: "/#about-us", label: t.nav.about },
-      { href: "/blog", label: t.nav.blog },
+      { href: "/", label: t.nav.home },
+      { href: "/industries", label: t.nav.industries },
+      { href: "/demo", label: t.nav.demo },
     ],
     [t]
   );
