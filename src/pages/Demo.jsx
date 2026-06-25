@@ -27,7 +27,7 @@ const COPY = {
     nav: {
       action: "See Evolvian in action",
       home: "Home",
-      blog: "Blog",
+      industries: "Industries",
       cta: "Start free",
     },
     badge: "Live Demo",
@@ -122,7 +122,7 @@ const COPY = {
     nav: {
       action: "Ver Evolvian en accion",
       home: "Inicio",
-      blog: "Blog",
+      industries: "Industrias",
       cta: "Empieza gratis",
     },
     badge: "Demo en Vivo",
@@ -485,8 +485,8 @@ export default function Demo() {
             <a href="/" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `home_${language}` })}>
               {t.nav.home}
             </a>
-            <a href="/blog" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `blog_${language}` })}>
-              {t.nav.blog}
+            <a href="/#industries" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `industries_${language}` })}>
+              {t.nav.industries}
             </a>
             <a href="/demo" className="active" onClick={() => trackEvent({ name: "Demo_Live_Nav_Click", category: "Navigation", label: `demo_${language}` })}>
               {t.nav.action}
