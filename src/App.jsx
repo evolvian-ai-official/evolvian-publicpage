@@ -82,7 +82,16 @@ function FeatureIllustration({ imageSlot, featureTitle, featureCopy }) {
 
 const COPY = {
   en: {
-    nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog", demo: "See Evolvian in action" },
+    nav: {
+      home: "Home",
+      industries: "Industries",
+      features: "Features",
+      plans: "Plans",
+      contact: "Contact",
+      about: "About",
+      blog: "Blog",
+      demo: "See Evolvian in action",
+    },
     auth: { login: "Log in", startFree: "Start free" },
     hero: {
       kicker: "AI Operations Assistant for Growing Teams",
@@ -143,6 +152,38 @@ const COPY = {
         {
           title: "Centralize customer communication with Evolvian",
           description: "Manage customer communication and captured data from Evolvian to support daily operations.",
+        },
+      ],
+    },
+    industries: {
+      kicker: "Industries",
+      title: "Built for the businesses that live on appointments",
+      description:
+        "Evolvian adapts to your industry's vocabulary, services, and booking flow so every conversation feels like it came from your own front desk.",
+      items: [
+        {
+          name: "Medical clinics",
+          description: "Answer patient questions, confirm appointments, and send pre-visit reminders automatically.",
+        },
+        {
+          name: "Psychology & therapy",
+          description: "Handle intake questions with care, schedule sessions, and reduce no-shows with timely reminders.",
+        },
+        {
+          name: "Veterinary clinics",
+          description: "Book check-ups and vaccinations, answer pet-care questions, and follow up after visits.",
+        },
+        {
+          name: "Orthodontics & dental",
+          description: "Qualify new patients, schedule consultations, and remind them before every appointment.",
+        },
+        {
+          name: "Aesthetics & wellness",
+          description: "Convert inquiries into booked treatments and keep clients coming back with automated follow-ups.",
+        },
+        {
+          name: "Legal & professional services",
+          description: "Capture new case inquiries, schedule consultations, and keep clients informed automatically.",
         },
       ],
     },
@@ -324,7 +365,16 @@ const COPY = {
     },
   },
   es: {
-    nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog", demo: "Ver Evolvian en accion" },
+    nav: {
+      home: "Inicio",
+      industries: "Industrias",
+      features: "Funciones",
+      plans: "Planes",
+      contact: "Contacto",
+      about: "Nosotros",
+      blog: "Blog",
+      demo: "Ver Evolvian en accion",
+    },
     auth: { login: "Iniciar sesion", startFree: "Empieza gratis" },
     hero: {
       kicker: "Plataforma de Asistente AI Operativo",
@@ -384,6 +434,38 @@ const COPY = {
         {
           title: "Centraliza tu comunicacion con clientes con Evolvian",
           description: "Gestiona la comunicacion con clientes y los datos capturados desde Evolvian para tu operacion diaria.",
+        },
+      ],
+    },
+    industries: {
+      kicker: "Industrias",
+      title: "Hecho para negocios que viven de las citas",
+      description:
+        "Evolvian se adapta al vocabulario, servicios y flujo de agendamiento de tu industria, para que cada conversacion se sienta como si viniera de tu propia recepcion.",
+      items: [
+        {
+          name: "Clinicas medicas",
+          description: "Responde preguntas de pacientes, confirma citas y envia recordatorios antes de cada visita, automaticamente.",
+        },
+        {
+          name: "Psicologia y terapia",
+          description: "Atiende preguntas de admision con cuidado, agenda sesiones y reduce ausencias con recordatorios oportunos.",
+        },
+        {
+          name: "Clinicas veterinarias",
+          description: "Agenda chequeos y vacunas, responde preguntas sobre el cuidado de mascotas y da seguimiento despues de cada visita.",
+        },
+        {
+          name: "Ortodoncia y dental",
+          description: "Califica nuevos pacientes, agenda consultas y recuerdales cada cita.",
+        },
+        {
+          name: "Estetica y bienestar",
+          description: "Convierte consultas en tratamientos agendados y haz que los clientes regresen con seguimiento automatizado.",
+        },
+        {
+          name: "Servicios legales y profesionales",
+          description: "Captura nuevas consultas de casos, agenda reuniones y mantiene informados a tus clientes automaticamente.",
         },
       ],
     },
@@ -616,11 +698,8 @@ export default function App() {
 
   const navLinks = useMemo(
     () => [
-      { href: "#features", label: t.nav.features },
-      { href: "#plans", label: t.nav.plans },
-      { href: "#contact", label: t.nav.contact },
-      { href: "#about-us", label: t.nav.about },
-      { href: "/blog", label: t.nav.blog },
+      { href: "#hero", label: t.nav.home },
+      { href: "#industries", label: t.nav.industries },
       { href: "/demo", label: t.nav.demo },
     ],
     [t]
@@ -928,7 +1007,7 @@ export default function App() {
       </header>
 
       <main>
-        <section className="hero-section">
+        <section id="hero" className="hero-section">
           <div className="hero-glow hero-glow-left" />
           <div className="hero-glow hero-glow-right" />
           <div className="section-shell hero-grid">
@@ -1016,6 +1095,25 @@ export default function App() {
                   </article>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section id="industries" className="section-base">
+          <div className="section-shell">
+            <div className="section-heading">
+              <p className="section-kicker">{t.industries.kicker}</p>
+              <h2>{t.industries.title}</h2>
+              <p>{t.industries.description}</p>
+            </div>
+
+            <div className="industries-grid">
+              {t.industries.items.map((item) => (
+                <article key={item.name} className="industry-card card-lift">
+                  <h3>{item.name}</h3>
+                  <p>{item.description}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
