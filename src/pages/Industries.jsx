@@ -17,7 +17,7 @@ const COPY = {
       {
         id: "medical",
         name: "Medical clinics",
-        image: "/industries/medical.svg",
+        image: "/industries/medical.jpg",
         description:
           "Answer patient questions, confirm appointments, and send pre-visit reminders automatically.",
         bullets: [
@@ -29,7 +29,7 @@ const COPY = {
       {
         id: "psychology",
         name: "Psychology & therapy",
-        image: "/industries/psychology.svg",
+        image: "/industries/psychology.jpg",
         description:
           "Handle intake questions with care, schedule sessions, and reduce no-shows with timely reminders.",
         bullets: [
@@ -41,7 +41,7 @@ const COPY = {
       {
         id: "veterinary",
         name: "Veterinary clinics",
-        image: "/industries/veterinary.svg",
+        image: "/industries/veterinary.jpg",
         description:
           "Book check-ups and vaccinations, answer pet-care questions, and follow up after visits.",
         bullets: [
@@ -53,7 +53,7 @@ const COPY = {
       {
         id: "orthodontics",
         name: "Orthodontics & dental",
-        image: "/industries/orthodontics.svg",
+        image: "/industries/orthodontics.jpg",
         description:
           "Qualify new patients, schedule consultations, and remind them before every appointment.",
         bullets: [
@@ -65,7 +65,7 @@ const COPY = {
       {
         id: "aesthetics",
         name: "Aesthetics & wellness",
-        image: "/industries/aesthetics.svg",
+        image: "/industries/aesthetics.jpg",
         description:
           "Convert inquiries into booked treatments and keep clients coming back with automated follow-ups.",
         bullets: [
@@ -77,7 +77,7 @@ const COPY = {
       {
         id: "legal",
         name: "Legal & professional services",
-        image: "/industries/legal.svg",
+        image: "/industries/legal.jpg",
         description:
           "Capture new case inquiries, schedule consultations, and keep clients informed automatically.",
         bullets: [
@@ -98,7 +98,7 @@ const COPY = {
       {
         id: "medical",
         name: "Clinicas medicas",
-        image: "/industries/medical.svg",
+        image: "/industries/medical.jpg",
         description:
           "Responde preguntas de pacientes, confirma citas y envia recordatorios antes de cada visita, automaticamente.",
         bullets: [
@@ -110,7 +110,7 @@ const COPY = {
       {
         id: "psychology",
         name: "Psicologia y terapia",
-        image: "/industries/psychology.svg",
+        image: "/industries/psychology.jpg",
         description:
           "Atiende preguntas de admision con cuidado, agenda sesiones y reduce ausencias con recordatorios oportunos.",
         bullets: [
@@ -122,7 +122,7 @@ const COPY = {
       {
         id: "veterinary",
         name: "Clinicas veterinarias",
-        image: "/industries/veterinary.svg",
+        image: "/industries/veterinary.jpg",
         description:
           "Agenda chequeos y vacunas, responde preguntas sobre el cuidado de mascotas y da seguimiento despues de cada visita.",
         bullets: [
@@ -134,7 +134,7 @@ const COPY = {
       {
         id: "orthodontics",
         name: "Ortodoncia y dental",
-        image: "/industries/orthodontics.svg",
+        image: "/industries/orthodontics.jpg",
         description:
           "Califica nuevos pacientes, agenda consultas y recuerdales cada cita.",
         bullets: [
@@ -146,7 +146,7 @@ const COPY = {
       {
         id: "aesthetics",
         name: "Estetica y bienestar",
-        image: "/industries/aesthetics.svg",
+        image: "/industries/aesthetics.jpg",
         description:
           "Convierte consultas en tratamientos agendados y haz que los clientes regresen con seguimiento automatizado.",
         bullets: [
@@ -158,7 +158,7 @@ const COPY = {
       {
         id: "legal",
         name: "Servicios legales y profesionales",
-        image: "/industries/legal.svg",
+        image: "/industries/legal.jpg",
         description:
           "Captura nuevas consultas de casos, agenda reuniones y mantiene informados a tus clientes automaticamente.",
         bullets: [
