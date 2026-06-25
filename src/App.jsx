@@ -85,137 +85,169 @@ const COPY = {
     nav: { features: "Features", plans: "Plans", contact: "Contact", about: "About", blog: "Blog", demo: "See Evolvian in action" },
     auth: { login: "Log in", startFree: "Start free" },
     hero: {
-      kicker: "AI Receptionist for Health & Service Businesses",
-      titleBefore: "Stop losing patients to",
-      titleEmphasis: "unanswered WhatsApp messages",
+      kicker: "AI Operations Assistant for Growing Teams",
+      titleBefore: "Automate daily operations with",
+      titleEmphasis: "one assistant for chat, WhatsApp, and email",
       description:
-        "Evolvian is an AI receptionist that answers patient questions, books appointments, and sends reminders — automatically, 24/7, via WhatsApp. No extra staff needed.",
+        "Deploy an assistant trained on your own content to handle operational conversations, schedule appointments, send reminders, and keep message history in one place.",
       ctaPrimary: "Start free",
       ctaSecondary: "Talk to team",
       ctaDemo: "See Evolvian in action",
-      pills: ["WhatsApp + appointments", "No missed bookings", "Ready in 15 min"],
-      statLeadLabel: "Patient coverage",
-      statLeadValue: "24/7 automatic",
-      statSetupLabel: "Setup time",
-      statSetupValue: "< 15 min",
+      pills: ["No-code setup", "Appointments + reminders", "Message history included"],
+      statLeadLabel: "Operational load",
+      statLeadValue: "Less manual work",
+      statSetupLabel: "Go-live time",
+      statSetupValue: "< 1 day",
     },
     trust: [
-      { title: "Answer WhatsApp 24/7", description: "Respond to every patient question, even at night and on weekends, without missing a message." },
-      { title: "Book appointments automatically", description: "The AI checks your real-time availability and confirms bookings directly in the conversation." },
-      { title: "Reminders that reduce no-shows", description: "Send automatic WhatsApp reminders before each appointment to keep your schedule full." },
-      { title: "Full patient history", description: "Every conversation saved in one place so your team always has context before responding." },
+      { title: "Operational assistant", description: "Resolve repetitive daily requests with AI guided by your process." },
+      { title: "Connected channels", description: "Website chat, WhatsApp, and email in one unified conversation flow." },
+      { title: "Appointments and reminders", description: "Automate scheduling confirmations and reminder messages." },
+      { title: "History by contact", description: "Keep message history so your team always has full context." },
     ],
     features: {
-      kicker: "Why clinics and health businesses choose Evolvian",
-      title: "Your AI receptionist works while you treat patients",
+      kicker: "Why operations teams choose Evolvian",
+      title: "Built for daily execution, not just demos",
       description:
-        "Every feature is built to eliminate the friction between a patient question and a confirmed appointment.",
+        "Every feature is designed to reduce repetitive workload and keep communication consistent across channels.",
       imageSlotTitle: "Illustrative image space",
       imageSlotPathLabel: "Suggested URL path",
       imageSlotFileLabel: "Suggested file name",
       imageSlotHint: "Add the file in public/feature-boxes with this name to show the illustration here.",
       cards: [
         {
-          title: "AI trained on your clinic's information",
+          title: "AI assistant aligned to your business",
           description:
-            "Upload your services, pricing, and policies so every answer reflects your clinic — not a generic chatbot.",
+            "Upload your documents and instructions so each answer follows your policies and workflows.",
         },
         {
-          title: "Patient conversation history",
+          title: "Message history in one place",
           description:
-            "See every previous interaction before your team responds, whether from WhatsApp, web, or email.",
+            "Review previous chat, WhatsApp, and email interactions before replying to each contact.",
         },
         {
-          title: "Appointment booking and reminders",
+          title: "Appointments and reminders",
           description:
-            "The assistant books appointments, syncs with your Google Calendar, and sends reminders to reduce no-shows.",
+            "Enable scheduling, reminder, and follow-up flows from the same assistant experience.",
         },
         {
-          title: "WhatsApp, web widget, and email",
+          title: "Conversation channels: widget, WhatsApp, and email",
           description:
-            "Meet patients where they already are. WhatsApp is the primary channel — supported from day one.",
+            "Generate conversations through the Evolvian widget, WhatsApp, and email. These channels are not unified yet.",
         },
         {
-          title: "Capture patient contact data",
+          title: "Capture key customer data",
           description:
-            "Automatically collect name, email, and phone from every conversation so nothing falls through the cracks.",
+            "Collect name, email, phone, and use-case details so your team can act faster.",
         },
         {
-          title: "Hand off to your team when needed",
-          description: "When a case needs a human touch, the AI escalates the conversation with full context to your staff.",
+          title: "Centralize customer communication with Evolvian",
+          description: "Manage customer communication and captured data from Evolvian to support daily operations.",
         },
       ],
     },
     plans: {
       kicker: "Pricing",
-      title: "Start free, grow as you book more appointments",
-      description: "No contracts. Cancel anytime. Designed for clinics and service businesses in LATAM.",
+      title: "Choose the plan that helps you respond faster, book more appointments, and grow your business.",
+      description:
+        "We help health professionals never miss a client by automating responses, bookings, and follow-ups 24/7.",
+      tryIt: "Try it",
       mostPopular: "Most popular",
       ctas: {
-        free: "Start for free",
-        starter: "Get Starter",
+        free: "Try it free",
+        starter: "Start automating",
         premium: "Get Premium",
-        white_label: "Talk to sales",
+        premiumSecondary: "Contact sales",
+        white_label: "Contact sales",
       },
+      whiteLabelNote: "Talk to us about what you need.",
       descriptions: {
-        free: "Test with your clinic — free, no card required.",
-        starter: "For clinics answering patient questions on WhatsApp.",
-        premium: "For active clinics: WhatsApp + auto-booking + reminders.",
-        white_label: "Multi-location clinics and agencies with custom setup.",
+        free: "To test the value of your AI assistant",
+        starter: "To start capturing and responding to clients automatically",
+        premium: "To fill your calendar and grow faster",
+        white_label: "For clinics, groups, or partners that want to scale",
       },
       highlights: {
-        free: [
-          "100 conversations / month",
-          "1 knowledge document",
-          "Web chat widget",
-          "AI answers patient questions",
-        ],
+        free: ["500 messages / month", "Web chat widget", "Appointment booking"],
         starter: [
-          "1,000 conversations / month",
-          "1 knowledge document",
-          "Web chat + WhatsApp",
-          "AI answers via WhatsApp 24/7",
+          "Everything in Free",
+          "2,000 messages / month",
+          "Active WhatsApp AI",
+          "Appointment reminders",
         ],
         premium: [
           "Everything in Starter",
-          "5,000 conversations / month",
-          "3 knowledge documents",
-          "Appointment booking + Google Calendar sync",
-          "Automatic reminders before appointments",
-          "Custom AI prompt for your clinic",
+          "5,000 messages / month",
+          "Client insights",
+          "Custom assistant behavior",
+          "Branded chat experience",
+          "Google Calendar sync",
+          "Human handoff",
+          "Marketing campaigns",
+          "Automated follow-ups",
         ],
-        white_label: ["Unlimited conversations", "Unlimited documents", "Dedicated onboarding", "Priority support"],
+        white_label: [
+          "Everything in Premium",
+          "Unlimited messages",
+          "White label",
+          "Dedicated onboarding",
+          "Priority support",
+          "Custom configuration",
+          "Multi-location setup",
+        ],
+      },
+      compare: {
+        title: "Compare plans",
+        feature: "Feature",
+        rows: [
+          { feature: "Messages / month", free: "500", starter: "2,000", premium: "5,000", white_label: "Unlimited" },
+          { feature: "Web chat widget", free: true, starter: true, premium: true, white_label: true },
+          { feature: "Appointment booking", free: true, starter: true, premium: true, white_label: true },
+          { feature: "Active WhatsApp AI", free: false, starter: true, premium: true, white_label: true },
+          { feature: "Appointment reminders", free: false, starter: true, premium: true, white_label: true },
+          { feature: "Client insights", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Custom assistant behavior", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Branded chat experience", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Google Calendar sync", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Human handoff", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Marketing campaigns", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Automated follow-ups", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Dedicated onboarding", free: false, starter: false, premium: false, white_label: true },
+          { feature: "Priority support", free: false, starter: false, premium: false, white_label: true },
+          { feature: "White label", free: false, starter: false, premium: false, white_label: true },
+          { feature: "Multi-location setup", free: false, starter: false, premium: false, white_label: true },
+        ],
       },
     },
     process: {
-      kicker: "How it works",
-      title: "From setup to your first booked appointment in 3 steps",
+      kicker: "Implementation flow",
+      title: "From setup to automated operations in 3 steps",
       items: [
         {
           step: "01",
-          title: "Upload your clinic's information",
-          description: "Services, pricing, FAQs, and policies — the AI learns from your own content.",
+          title: "Define your use case",
+          description: "Tell us your goals, channels, and what your users ask the most.",
         },
         {
           step: "02",
-          title: "Connect your WhatsApp Business",
-          description: "Link your number and activate the AI. Patients can start chatting immediately.",
+          title: "Upload your context",
+          description: "Train the assistant with your docs, FAQs, and service details.",
         },
         {
           step: "03",
-          title: "Your AI receptionist starts working",
-          description: "It answers questions, books appointments, and sends reminders — automatically, 24/7.",
+          title: "Launch and optimize",
+          description: "Deploy to your channels and improve daily execution with live data.",
         },
       ],
     },
     contact: {
       kicker: "Contact",
-      title: "Tell us about your clinic or business",
+      title: "Tell us what you want to automate",
       description:
-        "Share your current setup and we will propose the best Evolvian configuration for your needs. Our team usually responds in less than 24 hours.",
+        "Share your current process and we will propose the best setup for your business. Our team usually responds in less than 24 hours.",
       metrics: [
-        { value: "< 15 min", label: "To set up your AI receptionist" },
-        { value: "WhatsApp-first", label: "LATAM's preferred channel" },
+        { value: "<24h", label: "Average response time" },
+        { value: "3 channels", label: "Web, WhatsApp, email" },
         { value: "Bilingual", label: "English and Spanish support" },
       ],
       labels: {
@@ -229,7 +261,7 @@ const COPY = {
         name: "Your full name",
         email: "you@company.com",
         subject: "What do you want to improve?",
-        usage: "Example: We run a dental clinic. We want patients to book appointments via WhatsApp without having to call.",
+        usage: "Example: We need to automate first response, appointments, and reminders from WhatsApp.",
       },
       terms: "I accept the Terms & Conditions.",
       termsPrefix: "I accept the",
@@ -257,13 +289,13 @@ const COPY = {
     },
     about: {
       kicker: "About Evolvian",
-      title: "We help clinics and service businesses in LATAM never miss a patient again",
+      title: "We help teams scale support and customer communication with AI",
       description:
-        "Evolvian gives health and service businesses an AI receptionist that works around the clock — answering questions, booking appointments, and keeping patients engaged, all via WhatsApp.",
+        "Evolvian empowers businesses to deploy assistants aligned with their own policies and knowledge base. The result is faster response times, consistent follow-up, and smoother day-to-day operations.",
       bullets: [
-        "Trained on your clinic's own information",
-        "WhatsApp-first, designed for LATAM businesses",
-        "Transparent setup and bilingual support",
+        "Custom prompts by business",
+        "Customer data capture connected to operations",
+        "Transparent setup and support",
       ],
     },
     footer: {
@@ -295,137 +327,169 @@ const COPY = {
     nav: { features: "Funciones", plans: "Planes", contact: "Contacto", about: "Nosotros", blog: "Blog", demo: "Ver Evolvian en accion" },
     auth: { login: "Iniciar sesion", startFree: "Empieza gratis" },
     hero: {
-      kicker: "La Recepcionista AI para Clínicas y Negocios de Salud",
-      titleBefore: "Deja de perder pacientes por",
-      titleEmphasis: "mensajes sin respuesta en WhatsApp",
+      kicker: "Plataforma de Asistente AI Operativo",
+      titleBefore: "Automatiza tu operacion diaria con",
+      titleEmphasis: "un asistente para chat, WhatsApp y email",
       description:
-        "Evolvian atiende a tus pacientes por WhatsApp las 24 horas, agenda citas en tiempo real y envía recordatorios automáticos. Sin contratar personal extra.",
+        "Despliega un asistente entrenado con tu contenido para atender la parte operativa: responder mensajes, agendar citas, enviar recordatorios y guardar historico de conversaciones.",
       ctaPrimary: "Empieza gratis",
       ctaSecondary: "Hablar con equipo",
-      ctaDemo: "Ver Evolvian en acción",
-      pills: ["WhatsApp + citas", "Sin citas perdidas", "Listo en 15 min"],
-      statLeadLabel: "Atención a pacientes",
-      statLeadValue: "24/7 automático",
-      statSetupLabel: "Tiempo de setup",
-      statSetupValue: "< 15 min",
+      ctaDemo: "Ver Evolvian en accion",
+      pills: ["Sin codigo", "Citas y recordatorios", "Historico de mensajes"],
+      statLeadLabel: "Carga operativa",
+      statLeadValue: "Menos trabajo manual",
+      statSetupLabel: "Tiempo de lanzamiento",
+      statSetupValue: "< 1 dia",
     },
     trust: [
-      { title: "Responde WhatsApp las 24 horas", description: "Atiende cada pregunta de tus pacientes, incluso de noche y fines de semana, sin perder un mensaje." },
-      { title: "Agenda citas automáticamente", description: "La IA revisa tu disponibilidad en tiempo real y confirma reservas directamente en la conversación." },
-      { title: "Recordatorios que reducen no-shows", description: "Envía recordatorios automáticos por WhatsApp antes de cada cita para mantener tu agenda llena." },
-      { title: "Historial completo de pacientes", description: "Cada conversación guardada en un solo lugar para que tu equipo siempre tenga contexto al responder." },
+      { title: "Asistente operativo", description: "Resuelve solicitudes repetitivas del dia a dia con AI guiada por tu proceso." },
+      { title: "Canales conectados", description: "Web chat, WhatsApp y email en un solo flujo de conversacion." },
+      { title: "Citas y recordatorios", description: "Automatiza confirmaciones de agenda y mensajes de recordatorio." },
+      { title: "Historico por contacto", description: "Conserva el historico de mensajes para responder con contexto completo." },
     ],
     features: {
-      kicker: "Por qué clínicas en LATAM eligen Evolvian",
-      title: "Tu recepcionista AI trabaja mientras tú atiendes pacientes",
+      kicker: "Por que equipos operativos eligen Evolvian",
+      title: "Hecho para la operacion diaria, no solo para demos",
       description:
-        "Cada función está diseñada para eliminar la fricción entre la pregunta de un paciente y una cita confirmada.",
+        "Cada funcion esta disenada para reducir trabajo repetitivo y mantener una atencion consistente entre canales.",
       imageSlotTitle: "Espacio para imagen ilustrativa",
       imageSlotPathLabel: "Ruta sugerida",
       imageSlotFileLabel: "Nombre sugerido",
-      imageSlotHint: "Coloca el archivo en public/feature-boxes con este nombre y la imagen se mostrará aquí.",
+      imageSlotHint: "Coloca el archivo en public/feature-boxes con este nombre y la imagen se mostrara aqui.",
       cards: [
         {
-          title: "IA entrenada con la información de tu clínica",
+          title: "Asistente AI alineado a tu negocio",
           description:
-            "Sube tus servicios, precios y políticas para que cada respuesta refleje tu clínica, no un chatbot genérico.",
+            "Sube documentos e instrucciones para que cada respuesta siga tus politicas y flujos.",
         },
         {
-          title: "Historial de conversaciones por paciente",
+          title: "Historico unificado de mensajes",
           description:
-            "Consulta cada interacción anterior antes de responder, ya sea por WhatsApp, web o email.",
+            "Consulta interacciones previas de chat, WhatsApp y email antes de responder a cada contacto.",
         },
         {
-          title: "Citas y recordatorios automáticos",
+          title: "Citas y recordatorios",
           description:
-            "El asistente agenda citas, sincroniza con tu Google Calendar y envía recordatorios para reducir ausencias.",
+            "Activa agendas, recordatorios y seguimiento desde la misma experiencia del asistente.",
         },
         {
-          title: "WhatsApp, widget web y email",
+          title: "Canales de conversacion: widget, WhatsApp y email",
           description:
-            "Atiende a tus pacientes donde ya están. WhatsApp es el canal principal, disponible desde el primer día.",
+            "Genera conversaciones por Evolvian widget, WhatsApp y email.",
         },
         {
-          title: "Captura los datos de contacto del paciente",
-          description: "Recolecta nombre, email y teléfono automáticamente de cada conversación para que no se pierda nada.",
+          title: "Captura datos clave del cliente",
+          description: "Recolecta nombre, email y telefono para que tu equipo actue mas rapido.",
         },
         {
-          title: "Transfiere al equipo cuando sea necesario",
-          description: "Cuando un caso requiere atención humana, la IA escala la conversación con contexto completo a tu equipo.",
+          title: "Centraliza tu comunicacion con clientes con Evolvian",
+          description: "Gestiona la comunicacion con clientes y los datos capturados desde Evolvian para tu operacion diaria.",
         },
       ],
     },
     plans: {
       kicker: "Planes",
-      title: "Empieza gratis, crece conforme agendas más citas",
-      description: "Sin contratos. Cancela cuando quieras. Diseñado para clínicas y negocios de servicio en LATAM.",
-      mostPopular: "Más popular",
+      title: "Elige el plan que te ayude a responder mas rapido, agendar mas citas y crecer tu negocio.",
+      description:
+        "Ayudamos a profesionales de la salud a nunca perder un cliente automatizando respuestas, agendamiento y seguimiento las 24 horas.",
+      tryIt: "Probar",
+      mostPopular: "Mas popular",
       ctas: {
-        free: "Empieza gratis",
-        starter: "Obtener Starter",
+        free: "Probar gratis",
+        starter: "Empezar a automatizar",
         premium: "Obtener Premium",
+        premiumSecondary: "Hablar con ventas",
         white_label: "Hablar con ventas",
       },
+      whiteLabelNote: "Cuentanos que necesitas.",
       descriptions: {
-        free: "Prueba con tu clínica — gratis, sin tarjeta.",
-        starter: "Para clínicas que responden consultas de pacientes por WhatsApp.",
-        premium: "Para clínicas activas: WhatsApp + citas automáticas + recordatorios.",
-        white_label: "Clínicas con múltiples sucursales y agencias con implementación a medida.",
+        free: "Para probar el valor de tu asistente AI",
+        starter: "Para empezar a capturar y responder clientes automaticamente",
+        premium: "Para llenar tu agenda y crecer mas rapido",
+        white_label: "Para clinicas, grupos o socios que quieren escalar",
       },
       highlights: {
-        free: [
-          "100 conversaciones / mes",
-          "1 documento de conocimiento",
-          "Widget de chat en web",
-          "IA responde preguntas de pacientes",
-        ],
+        free: ["500 mensajes / mes", "Web chat widget", "Agendamiento de citas"],
         starter: [
-          "1,000 conversaciones / mes",
-          "1 documento de conocimiento",
-          "Web chat + WhatsApp",
-          "IA atiende por WhatsApp las 24 horas",
+          "Todo lo de Free",
+          "2,000 mensajes / mes",
+          "WhatsApp AI activo",
+          "Recordatorios de citas",
         ],
         premium: [
           "Todo lo de Starter",
-          "5,000 conversaciones / mes",
-          "3 documentos de conocimiento",
-          "Agendamiento de citas + sincronización con Google Calendar",
-          "Recordatorios automáticos antes de cada cita",
-          "Prompt personalizado para tu clínica",
+          "5,000 mensajes / mes",
+          "Insights de clientes",
+          "Comportamiento personalizado del asistente",
+          "Experiencia de chat con tu marca",
+          "Sincronizacion con Google Calendar",
+          "Transferencia a humano",
+          "Campanas de marketing",
+          "Seguimiento automatizado",
         ],
-        white_label: ["Conversaciones ilimitadas", "Documentos ilimitados", "Onboarding dedicado", "Soporte prioritario"],
+        white_label: [
+          "Todo lo de Premium",
+          "Mensajes ilimitados",
+          "White label",
+          "Onboarding dedicado",
+          "Soporte prioritario",
+          "Configuracion personalizada",
+          "Configuracion multi-sucursal",
+        ],
+      },
+      compare: {
+        title: "Compara los planes",
+        feature: "Funcion",
+        rows: [
+          { feature: "Mensajes / mes", free: "500", starter: "2,000", premium: "5,000", white_label: "Ilimitados" },
+          { feature: "Web chat widget", free: true, starter: true, premium: true, white_label: true },
+          { feature: "Agendamiento de citas", free: true, starter: true, premium: true, white_label: true },
+          { feature: "WhatsApp AI activo", free: false, starter: true, premium: true, white_label: true },
+          { feature: "Recordatorios de citas", free: false, starter: true, premium: true, white_label: true },
+          { feature: "Insights de clientes", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Comportamiento personalizado del asistente", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Experiencia de chat con tu marca", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Sincronizacion con Google Calendar", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Transferencia a humano", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Campanas de marketing", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Seguimiento automatizado", free: false, starter: false, premium: true, white_label: true },
+          { feature: "Onboarding dedicado", free: false, starter: false, premium: false, white_label: true },
+          { feature: "Soporte prioritario", free: false, starter: false, premium: false, white_label: true },
+          { feature: "White label", free: false, starter: false, premium: false, white_label: true },
+          { feature: "Configuracion multi-sucursal", free: false, starter: false, premium: false, white_label: true },
+        ],
       },
     },
     process: {
-      kicker: "Cómo funciona",
-      title: "De la configuración a tu primera cita agendada en 3 pasos",
+      kicker: "Flujo de implementacion",
+      title: "De setup a operacion automatizada en 3 pasos",
       items: [
         {
           step: "01",
-          title: "Sube la información de tu clínica",
-          description: "Servicios, precios, preguntas frecuentes y políticas — la IA aprende de tu contenido.",
+          title: "Define tu caso de uso",
+          description: "Comparte objetivos, canales y preguntas mas frecuentes de tus usuarios.",
         },
         {
           step: "02",
-          title: "Conecta tu WhatsApp Business",
-          description: "Vincula tu número y activa la IA. Los pacientes pueden empezar a chatear de inmediato.",
+          title: "Sube tu contexto",
+          description: "Entrena al asistente con documentos, FAQs y detalles de servicio.",
         },
         {
           step: "03",
-          title: "Tu recepcionista AI empieza a trabajar",
-          description: "Responde preguntas, agenda citas y envía recordatorios — automáticamente, las 24 horas.",
+          title: "Lanza y optimiza",
+          description: "Publica en tus canales y mejora la ejecucion diaria con datos reales.",
         },
       ],
     },
     contact: {
       kicker: "Contacto",
-      title: "Cuéntanos sobre tu clínica o negocio",
+      title: "Cuentanos que quieres automatizar",
       description:
-        "Comparte cómo funciona hoy y te propondremos la mejor configuración de Evolvian para tus necesidades. Respondemos normalmente en menos de 24 horas.",
+        "Comparte tu proceso actual y te propondremos la mejor configuracion para tu negocio. Respondemos normalmente en menos de 24 horas.",
       metrics: [
-        { value: "< 15 min", label: "Para configurar tu recepcionista AI" },
-        { value: "WhatsApp primero", label: "El canal favorito de LATAM" },
-        { value: "Bilingüe", label: "Soporte en inglés y español" },
+        { value: "<24h", label: "Tiempo promedio de respuesta" },
+        { value: "3 canales", label: "Web, WhatsApp, email" },
+        { value: "Bilingue", label: "Soporte en ingles y espanol" },
       ],
       labels: {
         name: "Nombre",
@@ -438,7 +502,7 @@ const COPY = {
         name: "Tu nombre completo",
         email: "tu@empresa.com",
         subject: "Que te gustaria mejorar?",
-        usage: "Ej: Tenemos una clínica dental. Queremos que los pacientes puedan agendar citas por WhatsApp sin necesidad de llamar.",
+        usage: "Ejemplo: Necesitamos automatizar primera respuesta, citas y recordatorios por WhatsApp.",
       },
       terms: "Acepto los Terminos y Condiciones.",
       termsPrefix: "Acepto los",
@@ -464,14 +528,14 @@ const COPY = {
       ],
     },
     about: {
-      kicker: "Nosotros",
-      title: "Ayudamos a clínicas y negocios de servicio en LATAM a nunca perder un paciente",
+      kicker: "Sobre Evolvian",
+      title: "Ayudamos a escalar soporte y comunicacion con clientes con AI",
       description:
-        "Evolvian le da a clínicas y negocios de servicio una recepcionista AI que trabaja las 24 horas — responde preguntas, agenda citas y mantiene a los pacientes activos, todo por WhatsApp.",
+        "Evolvian permite desplegar asistentes alineados a politicas y base de conocimiento de cada negocio. Resultado: respuestas mas rapidas, seguimiento consistente y una operacion diaria mas fluida.",
       bullets: [
-        "Entrenada con la información de tu propio negocio",
-        "WhatsApp primero, diseñado para negocios en LATAM",
-        "Configuración transparente y soporte bilingüe",
+        "Prompts personalizados por negocio",
+        "Captura de datos de cliente conectada a operacion",
+        "Implementacion clara y soporte",
       ],
     },
     footer: {
@@ -592,6 +656,9 @@ export default function App() {
         ctaLabel: t.plans.ctas.premium,
         ctaHref: "https://www.evolvianai.net/settings",
         ctaEvent: "PremiumPlan_Click",
+        secondaryCtaLabel: t.plans.ctas.premiumSecondary,
+        secondaryCtaHref: "#contact",
+        secondaryCtaEvent: "PremiumPlanContactSales_Click",
         theme: "premium",
         badge: t.plans.mostPopular,
       },
@@ -604,7 +671,7 @@ export default function App() {
         ctaHref: "#contact",
         ctaEvent: "WhiteLabel_Click",
         theme: "soft",
-        customPrice: "Custom",
+        note: t.plans.whiteLabelNote,
       },
     ],
     [t]
@@ -959,6 +1026,13 @@ export default function App() {
               <p className="section-kicker">{t.plans.kicker}</p>
               <h2>{t.plans.title}</h2>
               <p>{t.plans.description}</p>
+              <a
+                href={DIRECT_LOGIN_URL}
+                className="btn btn-secondary plans-try-it"
+                onClick={() => trackEvent({ name: "TryIt_Click", category: "Pricing", label: `Heading_${language}` })}
+              >
+                {t.plans.tryIt}
+              </a>
             </div>
 
             <div className="plan-grid">
@@ -973,7 +1047,7 @@ export default function App() {
                         <h3>{plan.title}</h3>
                         {plan.badge ? <span className="plan-badge">{plan.badge}</span> : null}
                       </div>
-                      <p className="plan-price">{price || "Custom"}</p>
+                      {price ? <p className="plan-price">{price}</p> : null}
                       <p className="plan-description">{plan.description}</p>
                       <ul>
                         {plan.highlights.map((highlight) => (
@@ -982,18 +1056,67 @@ export default function App() {
                       </ul>
                     </div>
 
-                    <a
-                      href={plan.ctaHref}
-                      target={plan.ctaHref.startsWith("http") ? "_blank" : undefined}
-                      rel={plan.ctaHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className={`btn ${plan.theme === "premium" ? "btn-primary" : "btn-secondary"}`}
-                      onClick={() => trackEvent({ name: plan.ctaEvent, category: "Pricing", label: `${plan.title}_${language}` })}
-                    >
-                      {plan.ctaLabel}
-                    </a>
+                    <div className="plan-ctas">
+                      <a
+                        href={plan.ctaHref}
+                        target={plan.ctaHref.startsWith("http") ? "_blank" : undefined}
+                        rel={plan.ctaHref.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className={`btn ${plan.theme === "premium" ? "btn-primary" : "btn-secondary"}`}
+                        onClick={() => trackEvent({ name: plan.ctaEvent, category: "Pricing", label: `${plan.title}_${language}` })}
+                      >
+                        {plan.ctaLabel}
+                      </a>
+                      {plan.secondaryCtaLabel ? (
+                        <a
+                          href={plan.secondaryCtaHref}
+                          className="plan-cta-secondary"
+                          onClick={() =>
+                            trackEvent({ name: plan.secondaryCtaEvent, category: "Pricing", label: `${plan.title}_${language}` })
+                          }
+                        >
+                          {plan.secondaryCtaLabel}
+                        </a>
+                      ) : null}
+                      {plan.note ? <p className="plan-note">{plan.note}</p> : null}
+                    </div>
                   </article>
                 );
               })}
+            </div>
+
+            <div className="plan-compare">
+              <h3>{t.plans.compare.title}</h3>
+              <div className="plan-compare-table-wrap">
+                <table className="plan-compare-table">
+                  <thead>
+                    <tr>
+                      <th>{t.plans.compare.feature}</th>
+                      <th>Free</th>
+                      <th>Starter</th>
+                      <th>Premium</th>
+                      <th>White Label</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {t.plans.compare.rows.map((row) => (
+                      <tr key={row.feature}>
+                        <td>{row.feature}</td>
+                        {["free", "starter", "premium", "white_label"].map((planId) => (
+                          <td key={planId}>
+                            {typeof row[planId] === "boolean" ? (
+                              <span className={row[planId] ? "plan-check-yes" : "plan-check-no"}>
+                                {row[planId] ? "✅" : "❌"}
+                              </span>
+                            ) : (
+                              row[planId]
+                            )}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>

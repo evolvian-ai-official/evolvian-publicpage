@@ -18,6 +18,12 @@ import PrivacyConsentManager from "./components/PrivacyConsentManager";
 import BlogLayout from "./blog/BlogLayout";
 import BlogIndex from "./blog/BlogIndex"; // ✅ página que lista todos los posts
 
+// EvoIn — Discovery Agent
+import FounderSetup from "./pages/evoin/FounderSetup";
+import FounderDashboard from "./pages/evoin/FounderDashboard";
+import InterviewDetail from "./pages/evoin/InterviewDetail";
+import ParticipantFlow from "./pages/evoin/ParticipantFlow";
+
 function AnalyticsPageTracker() {
   const location = useLocation();
 
@@ -46,6 +52,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
             {/* 📰 Blog - post individual */}
             <Route path="/blog/:slug" element={<BlogLayout />} />
+
+            {/* 🔍 EvoIn — Discovery Agent */}
+            <Route path="/evoin" element={<FounderSetup />} />
+            <Route path="/evoin/dashboard" element={<FounderDashboard />} />
+            <Route path="/evoin/interview/:id" element={<InterviewDetail />} />
+            <Route path="/i/:id" element={<ParticipantFlow />} />
 
             {/* ⚖️ Legal */}
             <Route path="/terms" element={<Terms />} />

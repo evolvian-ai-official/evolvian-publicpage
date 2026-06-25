@@ -654,6 +654,88 @@ a {
   top: 0.44rem;
 }
 
+.plans-try-it {
+  display: inline-flex;
+  margin-top: 1.1rem;
+}
+
+.plan-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.plan-cta-secondary {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.plan-cta-secondary:hover {
+  text-decoration: underline;
+}
+
+.plan-note {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.plan-compare {
+  margin-top: 3rem;
+}
+
+.plan-compare h3 {
+  margin: 0 0 1.25rem;
+  font-size: 1.4rem;
+}
+
+.plan-compare-table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.plan-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+  font-size: 0.88rem;
+}
+
+.plan-compare-table th,
+.plan-compare-table td {
+  padding: 0.7rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.plan-compare-table th:first-child,
+.plan-compare-table td:first-child {
+  text-align: left;
+  white-space: normal;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.plan-compare-table thead th {
+  color: var(--brand-deep);
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-weight: 700;
+}
+
+.plan-compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.plan-check-no {
+  opacity: 0.45;
+}
+
 .process-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
