@@ -323,6 +323,101 @@ a {
   padding-bottom: 5.8rem;
 }
 
+.hero-carousel {
+  position: relative;
+}
+
+.hero-slides {
+  position: relative;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.hero-slide.is-active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.hero-slide-evoin {
+  background: linear-gradient(160deg, #1c2f4d, #274472 55%, #3f679f);
+  border-radius: 0;
+}
+
+.hero-slide-evoin .evoin-grid {
+  padding-top: 5.4rem;
+  padding-bottom: 4.4rem;
+}
+
+.hero-slide-evoin .evoin-bullets {
+  margin-top: 1.2rem;
+}
+
+.hero-title-evoin {
+  font-size: clamp(1.8rem, 4.2vw, 3rem);
+}
+
+.evoin-kicker {
+  border-color: rgba(254, 243, 199, 0.5);
+}
+
+.hero-carousel-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 1.4rem;
+}
+
+.hero-carousel-arrow {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.hero-carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hero-carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.32);
+  cursor: pointer;
+  padding: 0;
+}
+
+.hero-carousel-dot.is-active {
+  background: #f5a623;
+  width: 22px;
+}
+
 .hero-glow {
   position: absolute;
   pointer-events: none;
@@ -1656,6 +1751,101 @@ textarea.form-control {
   }
 }
 
+.evoin-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.4rem;
+  align-items: center;
+}
+
+.evoin-copy .section-kicker {
+  color: #bcd6f7;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.evoin-badge {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.evoin-copy h2 {
+  color: #ffffff;
+  margin: 0.5rem 0 0.8rem;
+}
+
+.evoin-copy > p {
+  color: #d7e6fb;
+}
+
+.evoin-bullets {
+  list-style: none;
+  margin: 1.3rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.evoin-bullets li {
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+  color: #eaf2fd;
+}
+
+.evoin-bullets li::before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #f5a623;
+  left: 0;
+  top: 0.45rem;
+}
+
+.evoin-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+.evoin-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.evoin-panel {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  padding: 1.3rem;
+}
+
+.evoin-panel p {
+  color: #e3ecfb;
+  margin: 0.5rem 0 0;
+  font-size: 0.92rem;
+}
+
+.evoin-panel-label {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9fc3f5;
+}
+
+.evoin-panel-solution {
+  background: rgba(245, 166, 35, 0.12);
+  border-color: rgba(245, 166, 35, 0.4);
+}
+
 @media (max-width: 820px) {
   .desktop-nav,
   .desktop-actions {
@@ -1693,7 +1883,8 @@ textarea.form-control {
 
   .feature-grid,
   .trust-grid,
-  .plan-grid {
+  .plan-grid,
+  .evoin-grid {
     grid-template-columns: 1fr;
   }
 

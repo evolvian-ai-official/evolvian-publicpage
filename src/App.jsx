@@ -155,6 +155,27 @@ const COPY = {
         },
       ],
     },
+    evoin: {
+      kicker: "EvoIn · Discovery Agent",
+      badge: "Premium",
+      title: "Stop guessing what your customers want. Let AI run the interviews for you.",
+      description:
+        "Most founders never validate their idea because real discovery means hours of scheduling and conducting Mom Test interviews. EvoIn runs those interviews for you, asynchronously, at scale.",
+      problemTitle: "The problem",
+      problemText:
+        "Validating a hypothesis means talking to dozens of real customers without leading questions, then making sense of every transcript. Most teams skip it and ship on assumptions instead.",
+      solutionTitle: "How EvoIn solves it",
+      solutionText:
+        "Define your hypothesis and target segment, and EvoIn generates a Mom Test-style interview, shares a public link with participants, and analyzes every response automatically — no scheduling, no manual note-taking.",
+      bullets: [
+        "AI-crafted Mom Test questions (6, 10, or 15, based on depth) that avoid leading bias",
+        "Shareable public interview link — participants answer on their own time",
+        "Automatic signal detection: real pain points, jobs-to-be-done, buying signals, and key quotes",
+        "Hypothesis validated or invalidated, with an estimated willingness to pay and recommended next steps",
+      ],
+      ctaPrimary: "Get Premium for EvoIn",
+      ctaSecondary: "Talk to sales",
+    },
     plans: {
       kicker: "Pricing",
       title: "Choose the plan that helps you respond faster, book more appointments, and grow your business.",
@@ -187,6 +208,7 @@ const COPY = {
         premium: [
           "Everything in Starter",
           "5,000 messages / month",
+          "EvoIn discovery agent",
           "Client insights",
           "Custom assistant behavior",
           "Branded chat experience",
@@ -214,6 +236,7 @@ const COPY = {
           { feature: "Appointment booking", free: true, starter: true, premium: true, white_label: true },
           { feature: "Active WhatsApp AI", free: false, starter: true, premium: true, white_label: true },
           { feature: "Appointment reminders", free: false, starter: true, premium: true, white_label: true },
+          { feature: "EvoIn discovery agent", free: false, starter: false, premium: true, white_label: true },
           { feature: "Client insights", free: false, starter: false, premium: true, white_label: true },
           { feature: "Custom assistant behavior", free: false, starter: false, premium: true, white_label: true },
           { feature: "Branded chat experience", free: false, starter: false, premium: true, white_label: true },
@@ -223,8 +246,6 @@ const COPY = {
           { feature: "Automated follow-ups", free: false, starter: false, premium: true, white_label: true },
           { feature: "Dedicated onboarding", free: false, starter: false, premium: false, white_label: true },
           { feature: "Priority support", free: false, starter: false, premium: false, white_label: true },
-          { feature: "White label", free: false, starter: false, premium: false, white_label: true },
-          { feature: "Multi-location setup", free: false, starter: false, premium: false, white_label: true },
         ],
       },
     },
@@ -405,6 +426,27 @@ const COPY = {
         },
       ],
     },
+    evoin: {
+      kicker: "EvoIn · Agente de Discovery",
+      badge: "Premium",
+      title: "Deja de adivinar lo que quieren tus clientes. Que la AI haga las entrevistas por ti.",
+      description:
+        "La mayoria de founders nunca valida su idea porque hacer discovery real significa horas agendando y conduciendo entrevistas Mom Test. EvoIn hace esas entrevistas por ti, de forma asincrona y a escala.",
+      problemTitle: "El problema",
+      problemText:
+        "Validar una hipotesis requiere hablar con decenas de clientes reales sin preguntas sesgadas y luego analizar cada transcripcion. La mayoria de equipos se lo salta y lanza su producto sobre suposiciones.",
+      solutionTitle: "Como lo resuelve EvoIn",
+      solutionText:
+        "Define tu hipotesis y segmento de cliente, y EvoIn genera una entrevista estilo Mom Test, comparte un link publico con los participantes y analiza cada respuesta automaticamente — sin agendar, sin tomar notas a mano.",
+      bullets: [
+        "Preguntas Mom Test generadas por AI (6, 10 o 15, segun la profundidad) que evitan sesgo",
+        "Link publico de entrevista — los participantes responden cuando quieran",
+        "Deteccion automatica de senales: pain points reales, jobs-to-be-done, senales de compra y citas clave",
+        "Hipotesis validada o invalidada, con willingness to pay estimado y proximos pasos recomendados",
+      ],
+      ctaPrimary: "Obtener Premium para EvoIn",
+      ctaSecondary: "Hablar con ventas",
+    },
     plans: {
       kicker: "Planes",
       title: "Elige el plan que te ayude a responder mas rapido, agendar mas citas y crecer tu negocio.",
@@ -437,6 +479,7 @@ const COPY = {
         premium: [
           "Todo lo de Starter",
           "5,000 mensajes / mes",
+          "Agente de discovery EvoIn",
           "Insights de clientes",
           "Comportamiento personalizado del asistente",
           "Experiencia de chat con tu marca",
@@ -464,6 +507,7 @@ const COPY = {
           { feature: "Agendamiento de citas", free: true, starter: true, premium: true, white_label: true },
           { feature: "WhatsApp AI activo", free: false, starter: true, premium: true, white_label: true },
           { feature: "Recordatorios de citas", free: false, starter: true, premium: true, white_label: true },
+          { feature: "Agente de discovery EvoIn", free: false, starter: false, premium: true, white_label: true },
           { feature: "Insights de clientes", free: false, starter: false, premium: true, white_label: true },
           { feature: "Comportamiento personalizado del asistente", free: false, starter: false, premium: true, white_label: true },
           { feature: "Experiencia de chat con tu marca", free: false, starter: false, premium: true, white_label: true },
@@ -473,8 +517,6 @@ const COPY = {
           { feature: "Seguimiento automatizado", free: false, starter: false, premium: true, white_label: true },
           { feature: "Onboarding dedicado", free: false, starter: false, premium: false, white_label: true },
           { feature: "Soporte prioritario", free: false, starter: false, premium: false, white_label: true },
-          { feature: "White label", free: false, starter: false, premium: false, white_label: true },
-          { feature: "Configuracion multi-sucursal", free: false, starter: false, premium: false, white_label: true },
         ],
       },
     },
@@ -629,8 +671,18 @@ export default function App() {
   const [contactStatus, setContactStatus] = useState({ type: "idle", message: "" });
   const [isContactSubmitting, setIsContactSubmitting] = useState(false);
   const [showContactSuccessModal, setShowContactSuccessModal] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
+  const [heroAutoplay, setHeroAutoplay] = useState(true);
 
   const t = COPY[language] || COPY.en;
+
+  useEffect(() => {
+    if (!heroAutoplay) return undefined;
+    const intervalId = setInterval(() => {
+      setHeroSlide((slide) => (slide === 0 ? 1 : 0));
+    }, 7000);
+    return () => clearInterval(intervalId);
+  }, [heroAutoplay]);
 
   const navLinks = useMemo(
     () => [
@@ -946,57 +998,150 @@ export default function App() {
         <section id="hero" className="hero-section">
           <div className="hero-glow hero-glow-left" />
           <div className="hero-glow hero-glow-right" />
-          <div className="section-shell hero-grid">
-            <div>
-              <p className="hero-kicker">{t.hero.kicker}</p>
-              <h1 className="hero-title">
-                {t.hero.titleBefore} <span>{t.hero.titleEmphasis}</span>
-              </h1>
-              <p className="hero-description">{t.hero.description}</p>
 
-              <div className="hero-cta-row">
-                <a
-                  href={DIRECT_LOGIN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary btn-large btn-evolvian-yellow"
-                  onClick={() => trackEvent({ name: "Hero_StartFree_Click", category: "Hero", label: language })}
-                >
-                  {t.hero.ctaPrimary}
-                </a>
-                <a
-                  href="#contact"
-                  className="btn btn-ghost btn-large btn-evolvian-yellow-outline"
-                  onClick={() => trackEvent({ name: "Hero_BookDemo_Click", category: "Hero", label: language })}
-                >
-                  {t.hero.ctaSecondary}
-                </a>
-                <a
-                  href="/demo"
-                  className="btn btn-secondary btn-large"
-                  onClick={() => trackEvent({ name: "Hero_Demo_Click", category: "Hero", label: language })}
-                >
-                  {t.hero.ctaDemo}
-                </a>
+          <div
+            className="hero-carousel"
+            onMouseEnter={() => setHeroAutoplay(false)}
+            onMouseLeave={() => setHeroAutoplay(true)}
+          >
+            <div className="hero-slides">
+              <div
+                className={`hero-slide hero-slide-evoin ${heroSlide === 0 ? "is-active" : ""}`}
+                aria-hidden={heroSlide !== 0}
+              >
+                <div className="section-shell evoin-grid">
+                  <div className="evoin-copy">
+                    <p className="hero-kicker evoin-kicker">
+                      {t.evoin.kicker} <span className="plan-badge evoin-badge">{t.evoin.badge}</span>
+                    </p>
+                    <h1 className="hero-title hero-title-evoin">{t.evoin.title}</h1>
+                    <p className="hero-description">{t.evoin.description}</p>
+
+                    <div className="hero-cta-row">
+                      <a
+                        href={DIRECT_LOGIN_URL}
+                        className="btn btn-primary btn-large btn-evolvian-yellow"
+                        onClick={() => trackEvent({ name: "EvoIn_CTA_Click", category: "EvoIn", label: `Hero_Primary_${language}` })}
+                      >
+                        {t.evoin.ctaPrimary}
+                      </a>
+                      <a
+                        href="#contact"
+                        className="btn btn-ghost btn-large btn-evolvian-yellow-outline"
+                        onClick={() => trackEvent({ name: "EvoIn_CTA_Click", category: "EvoIn", label: `Hero_Secondary_${language}` })}
+                      >
+                        {t.evoin.ctaSecondary}
+                      </a>
+                    </div>
+
+                    <ul className="evoin-bullets">
+                      {t.evoin.bullets.slice(0, 3).map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="evoin-pair">
+                    <article className="evoin-panel card-lift">
+                      <p className="evoin-panel-label">{t.evoin.problemTitle}</p>
+                      <p>{t.evoin.problemText}</p>
+                    </article>
+                    <article className="evoin-panel evoin-panel-solution card-lift">
+                      <p className="evoin-panel-label">{t.evoin.solutionTitle}</p>
+                      <p>{t.evoin.solutionText}</p>
+                    </article>
+                  </div>
+                </div>
               </div>
 
-              <div className="hero-pill-row">
-                {t.hero.pills.map((pill) => (
-                  <span key={pill}>{pill}</span>
-                ))}
+              <div
+                className={`hero-slide hero-slide-main ${heroSlide === 1 ? "is-active" : ""}`}
+                aria-hidden={heroSlide !== 1}
+              >
+                <div className="section-shell hero-grid">
+                  <div>
+                    <p className="hero-kicker">{t.hero.kicker}</p>
+                    <h1 className="hero-title">
+                      {t.hero.titleBefore} <span>{t.hero.titleEmphasis}</span>
+                    </h1>
+                    <p className="hero-description">{t.hero.description}</p>
+
+                    <div className="hero-cta-row">
+                      <a
+                        href={DIRECT_LOGIN_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary btn-large btn-evolvian-yellow"
+                        onClick={() => trackEvent({ name: "Hero_StartFree_Click", category: "Hero", label: language })}
+                      >
+                        {t.hero.ctaPrimary}
+                      </a>
+                      <a
+                        href="#contact"
+                        className="btn btn-ghost btn-large btn-evolvian-yellow-outline"
+                        onClick={() => trackEvent({ name: "Hero_BookDemo_Click", category: "Hero", label: language })}
+                      >
+                        {t.hero.ctaSecondary}
+                      </a>
+                      <a
+                        href="/demo"
+                        className="btn btn-secondary btn-large"
+                        onClick={() => trackEvent({ name: "Hero_Demo_Click", category: "Hero", label: language })}
+                      >
+                        {t.hero.ctaDemo}
+                      </a>
+                    </div>
+
+                    <div className="hero-pill-row">
+                      {t.hero.pills.map((pill) => (
+                        <span key={pill}>{pill}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="hero-visual card-lift">
+                    <img src="/ai-illustration.png" alt="Evolvian AI preview" className="hero-image" />
+                    <div className="hero-float hero-float-one">
+                      <p>{t.hero.statLeadLabel}</p>
+                      <strong>{t.hero.statLeadValue}</strong>
+                    </div>
+                    <div className="hero-float hero-float-two">
+                      <p>{t.hero.statSetupLabel}</p>
+                      <strong>{t.hero.statSetupValue}</strong>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="hero-visual card-lift">
-              <img src="/ai-illustration.png" alt="Evolvian AI preview" className="hero-image" />
-              <div className="hero-float hero-float-one">
-                <p>{t.hero.statLeadLabel}</p>
-                <strong>{t.hero.statLeadValue}</strong>
+            <div className="hero-carousel-controls">
+              <button
+                type="button"
+                className="hero-carousel-arrow"
+                aria-label="Previous slide"
+                onClick={() => setHeroSlide((slide) => (slide === 0 ? 1 : 0))}
+              >
+                ‹
+              </button>
+              <div className="hero-carousel-dots">
+                {[0, 1].map((index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={`hero-carousel-dot ${heroSlide === index ? "is-active" : ""}`}
+                    aria-label={`Go to slide ${index + 1}`}
+                    onClick={() => setHeroSlide(index)}
+                  />
+                ))}
               </div>
-              <div className="hero-float hero-float-two">
-                <p>{t.hero.statSetupLabel}</p>
-                <strong>{t.hero.statSetupValue}</strong>
-              </div>
+              <button
+                type="button"
+                className="hero-carousel-arrow"
+                aria-label="Next slide"
+                onClick={() => setHeroSlide((slide) => (slide === 1 ? 0 : 1))}
+              >
+                ›
+              </button>
             </div>
           </div>
         </section>
